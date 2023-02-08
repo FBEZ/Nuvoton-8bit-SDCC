@@ -5,8 +5,8 @@ set proname=helloworld
 :: set fosc=FOSC_166000
 set fosc=FOSC_240000
 
-If not exist Objects ( mkdir Objects )
-cd .\Objects
+If not exist build ( mkdir build )
+cd .\build
 set libpath="..\..\..\..\..\Library"
 sdcc -c %libpath%\StdDriver\src\common.c -I %libpath%\StdDriver\inc\ -I %libpath%\Device\Include\ -o .\common.rel
 sdcc -c %libpath%\StdDriver\src\delay.c -I %libpath%\StdDriver\inc\ -I %libpath%\Device\Include\ -o .\delay.rel
@@ -24,3 +24,6 @@ sdcc -c %libpath%\putchar.c -I %libpath%\StdDriver\inc\ -I %libpath%\Device\Incl
 del %proname%.ihx
 sdcc ..\..\%proname%.c --iram-size 256 --xram-size 1024 putchar.rel sys.rel uart.rel -I %libpath%\StdDriver\inc\ -I %libpath%\Device\Include\
 cd ..
+del %proname%.hex
+sdobjcopy -Iihex -Obinary .\build\%proname%.ihx %proname%.hex
+pause

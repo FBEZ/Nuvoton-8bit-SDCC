@@ -1,6 +1,20 @@
 # Prerequisites
 *.d
 
+# Assembled files
+
+*.asm
+*.ihx
+*.lst
+*.mem
+*.bin
+*.rel
+*.lk
+*.sym
+*.hex
+
+build/*
+
 # Object files
 *.o
 *.ko
