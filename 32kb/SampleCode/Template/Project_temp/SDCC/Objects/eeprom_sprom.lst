@@ -1,0 +1,1425 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.2.14 #13855 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module eeprom_sprom
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _WriteDataToSPOnePage_PARM_3
+                                     12 	.globl _WriteDataToSPOnePage_PARM_2
+                                     13 	.globl _Read_SPROM_DATAFLASH_ARRAY_PARM_3
+                                     14 	.globl _Read_SPROM_DATAFLASH_ARRAY_PARM_2
+                                     15 	.globl _MOSI
+                                     16 	.globl _P00
+                                     17 	.globl _MISO
+                                     18 	.globl _P01
+                                     19 	.globl _RXD_1
+                                     20 	.globl _P02
+                                     21 	.globl _P03
+                                     22 	.globl _STADC
+                                     23 	.globl _P04
+                                     24 	.globl _P05
+                                     25 	.globl _TXD
+                                     26 	.globl _P06
+                                     27 	.globl _RXD
+                                     28 	.globl _P07
+                                     29 	.globl _IT0
+                                     30 	.globl _IE0
+                                     31 	.globl _IT1
+                                     32 	.globl _IE1
+                                     33 	.globl _TR0
+                                     34 	.globl _TF0
+                                     35 	.globl _TR1
+                                     36 	.globl _TF1
+                                     37 	.globl _P10
+                                     38 	.globl _P11
+                                     39 	.globl _P12
+                                     40 	.globl _SCL
+                                     41 	.globl _P13
+                                     42 	.globl _SDA
+                                     43 	.globl _P14
+                                     44 	.globl _P15
+                                     45 	.globl _TXD_1
+                                     46 	.globl _P16
+                                     47 	.globl _P17
+                                     48 	.globl _RI
+                                     49 	.globl _TI
+                                     50 	.globl _RB8
+                                     51 	.globl _TB8
+                                     52 	.globl _REN
+                                     53 	.globl _SM2
+                                     54 	.globl _SM1
+                                     55 	.globl _FE
+                                     56 	.globl _SM0
+                                     57 	.globl _P20
+                                     58 	.globl _EX0
+                                     59 	.globl _ET0
+                                     60 	.globl _EX1
+                                     61 	.globl _ET1
+                                     62 	.globl _ES
+                                     63 	.globl _EBOD
+                                     64 	.globl _EADC
+                                     65 	.globl _EA
+                                     66 	.globl _P30
+                                     67 	.globl _P31
+                                     68 	.globl _P32
+                                     69 	.globl _P33
+                                     70 	.globl _P34
+                                     71 	.globl _P35
+                                     72 	.globl _P36
+                                     73 	.globl _P37
+                                     74 	.globl _PX0
+                                     75 	.globl _PT0
+                                     76 	.globl _PX1
+                                     77 	.globl _PT1
+                                     78 	.globl _PS
+                                     79 	.globl _PBOD
+                                     80 	.globl _PADC
+                                     81 	.globl _I2CPX
+                                     82 	.globl _AA
+                                     83 	.globl _SI
+                                     84 	.globl _STO
+                                     85 	.globl _STA
+                                     86 	.globl _I2CEN
+                                     87 	.globl _CM_RL2
+                                     88 	.globl _TR2
+                                     89 	.globl _TF2
+                                     90 	.globl _P
+                                     91 	.globl _OV
+                                     92 	.globl _RS0
+                                     93 	.globl _RS1
+                                     94 	.globl _F0
+                                     95 	.globl _AC
+                                     96 	.globl _CY
+                                     97 	.globl _CLRPWM
+                                     98 	.globl _PWMF
+                                     99 	.globl _LOAD
+                                    100 	.globl _PWMRUN
+                                    101 	.globl _ADCHS0
+                                    102 	.globl _ADCHS1
+                                    103 	.globl _ADCHS2
+                                    104 	.globl _ADCHS3
+                                    105 	.globl _ETGSEL0
+                                    106 	.globl _ETGSEL1
+                                    107 	.globl _ADCS
+                                    108 	.globl _ADCF
+                                    109 	.globl _RI_1
+                                    110 	.globl _TI_1
+                                    111 	.globl _RB8_1
+                                    112 	.globl _TB8_1
+                                    113 	.globl _REN_1
+                                    114 	.globl _SM2_1
+                                    115 	.globl _SM1_1
+                                    116 	.globl _FE_1
+                                    117 	.globl _SM0_1
+                                    118 	.globl _PIPS6
+                                    119 	.globl _PIPS5
+                                    120 	.globl _PIPS4
+                                    121 	.globl _PIPS3
+                                    122 	.globl _PIPS2
+                                    123 	.globl _PIPS1
+                                    124 	.globl _PIPS0
+                                    125 	.globl _PIPS7
+                                    126 	.globl _SC2CR1
+                                    127 	.globl _SC2CR0
+                                    128 	.globl _SC1CR1
+                                    129 	.globl _SC1CR0
+                                    130 	.globl _SC0CR1
+                                    131 	.globl _SC0CR0
+                                    132 	.globl _SC2TSR
+                                    133 	.globl _SC2IS
+                                    134 	.globl _SC2IE
+                                    135 	.globl _SC2ETURD1
+                                    136 	.globl _SC2ETURD0
+                                    137 	.globl _SC2EGT
+                                    138 	.globl _SC2DR
+                                    139 	.globl _SC1TSR
+                                    140 	.globl _SC1IS
+                                    141 	.globl _SC1IE
+                                    142 	.globl _SC1ETURD1
+                                    143 	.globl _SC1ETURD0
+                                    144 	.globl _SC1EGT
+                                    145 	.globl _SC1DR
+                                    146 	.globl _SC0TSR
+                                    147 	.globl _SC0IS
+                                    148 	.globl _SC0IE
+                                    149 	.globl _SC0ETURD1
+                                    150 	.globl _SC0ETURD0
+                                    151 	.globl _SC0EGT
+                                    152 	.globl _SC0DR
+                                    153 	.globl _XTLCON
+                                    154 	.globl _PWM3INTC
+                                    155 	.globl _PWM3CON1
+                                    156 	.globl _PWM3CON0
+                                    157 	.globl _PWM3C1L
+                                    158 	.globl _PWM3C0L
+                                    159 	.globl _PWM3PL
+                                    160 	.globl _EIPH2
+                                    161 	.globl _EIP2
+                                    162 	.globl _PWM3MEN
+                                    163 	.globl _PWM3MD
+                                    164 	.globl _PWM3C1H
+                                    165 	.globl _PWM3C0H
+                                    166 	.globl _PWM3PH
+                                    167 	.globl _PWM2INTC
+                                    168 	.globl _PWM2CON1
+                                    169 	.globl _PWM2CON0
+                                    170 	.globl _PWM2C1L
+                                    171 	.globl _PWM2C0L
+                                    172 	.globl _PWM2PL
+                                    173 	.globl _PWM2MEN
+                                    174 	.globl _PWM2MD
+                                    175 	.globl _PWM2C1H
+                                    176 	.globl _PWM2C0H
+                                    177 	.globl _PWM2PH
+                                    178 	.globl _PIOCON2
+                                    179 	.globl _PWM1INTC
+                                    180 	.globl _PWM1CON1
+                                    181 	.globl _PWM1CON0
+                                    182 	.globl _PWM1C1L
+                                    183 	.globl _PWM1C0L
+                                    184 	.globl _PWM1PL
+                                    185 	.globl _PWM1MEN
+                                    186 	.globl _PWM1MD
+                                    187 	.globl _PWM1C1H
+                                    188 	.globl _PWM1C0H
+                                    189 	.globl _PWM1PH
+                                    190 	.globl _AUXR8
+                                    191 	.globl _AUXR7
+                                    192 	.globl _AUXR6
+                                    193 	.globl _AUXR5
+                                    194 	.globl _AUXR4
+                                    195 	.globl _AUXR3
+                                    196 	.globl _AUXR2
+                                    197 	.globl _P3DW
+                                    198 	.globl _P2DW
+                                    199 	.globl _P1DW
+                                    200 	.globl _P0DW
+                                    201 	.globl _AINDIDS1
+                                    202 	.globl _RWKH
+                                    203 	.globl _P3UP
+                                    204 	.globl _P2UP
+                                    205 	.globl _P1UP
+                                    206 	.globl _P0UP
+                                    207 	.globl _ADCSR
+                                    208 	.globl _ADCCN
+                                    209 	.globl _ADCSN
+                                    210 	.globl _P2S
+                                    211 	.globl _P2SR
+                                    212 	.globl _P2M2
+                                    213 	.globl _P2M1
+                                    214 	.globl _ADCCON3
+                                    215 	.globl _ADCBAH
+                                    216 	.globl _ADCBAL
+                                    217 	.globl _LVRDIS
+                                    218 	.globl _SPCR2
+                                    219 	.globl _PWM0C5L
+                                    220 	.globl _PWM0C4L
+                                    221 	.globl _PIOCON1
+                                    222 	.globl _PWM0C5H
+                                    223 	.globl _PWM0C4H
+                                    224 	.globl _PWM0INTC
+                                    225 	.globl _P1SR
+                                    226 	.globl _P1S
+                                    227 	.globl _P0SR
+                                    228 	.globl _P0S
+                                    229 	.globl _P3SR
+                                    230 	.globl _P3S
+                                    231 	.globl _EIPH1
+                                    232 	.globl _EIP1
+                                    233 	.globl _PORDIS
+                                    234 	.globl _PWM0MD
+                                    235 	.globl _PWM0MEN
+                                    236 	.globl _PWM0DTCNT
+                                    237 	.globl _PWM0DTEN
+                                    238 	.globl _SCON_1
+                                    239 	.globl _EIPH
+                                    240 	.globl _AINDIDS0
+                                    241 	.globl _SPDR
+                                    242 	.globl _SPSR
+                                    243 	.globl _SPCR
+                                    244 	.globl _CAPCON4
+                                    245 	.globl _CAPCON3
+                                    246 	.globl _B
+                                    247 	.globl _EIP
+                                    248 	.globl _C2H
+                                    249 	.globl _C2L
+                                    250 	.globl _PIF
+                                    251 	.globl _PIPEN
+                                    252 	.globl _PINEN
+                                    253 	.globl _PICON
+                                    254 	.globl _ADCCON0
+                                    255 	.globl _C1H
+                                    256 	.globl _C1L
+                                    257 	.globl _C0H
+                                    258 	.globl _C0L
+                                    259 	.globl _ADCDLY
+                                    260 	.globl _ADCCON2
+                                    261 	.globl _ADCCON1
+                                    262 	.globl _ACC
+                                    263 	.globl _PWM0CON1
+                                    264 	.globl _PIOCON0
+                                    265 	.globl _PWM0C3L
+                                    266 	.globl _PWM0C2L
+                                    267 	.globl _PWM0C1L
+                                    268 	.globl _PWM0C0L
+                                    269 	.globl _PWM0PL
+                                    270 	.globl _PWM0CON0
+                                    271 	.globl _PWM0FBD
+                                    272 	.globl _PNP
+                                    273 	.globl _PWM0C3H
+                                    274 	.globl _PWM0C2H
+                                    275 	.globl _PWM0C1H
+                                    276 	.globl _PWM0C0H
+                                    277 	.globl _PWM0PH
+                                    278 	.globl _PSW
+                                    279 	.globl _ADCMPH
+                                    280 	.globl _ADCMPL
+                                    281 	.globl _TH2
+                                    282 	.globl _TL2
+                                    283 	.globl _RCMP2H
+                                    284 	.globl _RCMP2L
+                                    285 	.globl _T2MOD
+                                    286 	.globl _T2CON
+                                    287 	.globl _TA
+                                    288 	.globl _RH3
+                                    289 	.globl _RL3
+                                    290 	.globl _T3CON
+                                    291 	.globl _ADCRH
+                                    292 	.globl _ADCRL
+                                    293 	.globl _I2ADDR
+                                    294 	.globl _I2CON
+                                    295 	.globl _I2TOC
+                                    296 	.globl _I2CLK
+                                    297 	.globl _I2STAT
+                                    298 	.globl _I2DAT
+                                    299 	.globl _SADDR_1
+                                    300 	.globl _SADEN_1
+                                    301 	.globl _SADEN
+                                    302 	.globl _IP
+                                    303 	.globl _PWMINTC
+                                    304 	.globl _IPH
+                                    305 	.globl _TOE
+                                    306 	.globl _P1M2
+                                    307 	.globl _P1M1
+                                    308 	.globl _P0M2
+                                    309 	.globl _P0M1
+                                    310 	.globl _P3
+                                    311 	.globl _IAPCN
+                                    312 	.globl _IAPFD
+                                    313 	.globl _P3M2
+                                    314 	.globl _P3M1
+                                    315 	.globl _BODCON1
+                                    316 	.globl _WDCON
+                                    317 	.globl _SADDR
+                                    318 	.globl _IE
+                                    319 	.globl _IAPAH
+                                    320 	.globl _IAPAL
+                                    321 	.globl _IAPUEN
+                                    322 	.globl _IAPTRG
+                                    323 	.globl _BODCON0
+                                    324 	.globl _AUXR1
+                                    325 	.globl _P2
+                                    326 	.globl _CHPCON
+                                    327 	.globl _EIE1
+                                    328 	.globl _EIE
+                                    329 	.globl _SBUF_1
+                                    330 	.globl _SBUF
+                                    331 	.globl _SCON
+                                    332 	.globl _CKEN
+                                    333 	.globl _CKSWT
+                                    334 	.globl _CKDIV
+                                    335 	.globl _CAPCON2
+                                    336 	.globl _CAPCON1
+                                    337 	.globl _CAPCON0
+                                    338 	.globl _SFRS
+                                    339 	.globl _P1
+                                    340 	.globl _WKCON
+                                    341 	.globl _CKCON
+                                    342 	.globl _TH1
+                                    343 	.globl _TH0
+                                    344 	.globl _TL1
+                                    345 	.globl _TL0
+                                    346 	.globl _TMOD
+                                    347 	.globl _TCON
+                                    348 	.globl _PCON
+                                    349 	.globl _RWK
+                                    350 	.globl _RCTRIM1
+                                    351 	.globl _RCTRIM0
+                                    352 	.globl _DPH
+                                    353 	.globl _DPL
+                                    354 	.globl _SP
+                                    355 	.globl _P0
+                                    356 	.globl _Write_SPROM_DATAFLASH_ARRAY_PARM_3
+                                    357 	.globl _Write_SPROM_DATAFLASH_ARRAY_PARM_2
+                                    358 	.globl _Read_SPROM_BYTE
+                                    359 	.globl _Write_SPROM_DATAFLASH_ARRAY
+                                    360 	.globl _Read_SPROM_DATAFLASH_ARRAY
+                                    361 	.globl _WriteDataToSPOnePage
+                                    362 ;--------------------------------------------------------
+                                    363 ; special function registers
+                                    364 ;--------------------------------------------------------
+                                    365 	.area RSEG    (ABS,DATA)
+      000000                        366 	.org 0x0000
+                           000080   367 _P0	=	0x0080
+                           000081   368 _SP	=	0x0081
+                           000082   369 _DPL	=	0x0082
+                           000083   370 _DPH	=	0x0083
+                           000084   371 _RCTRIM0	=	0x0084
+                           000085   372 _RCTRIM1	=	0x0085
+                           000086   373 _RWK	=	0x0086
+                           000087   374 _PCON	=	0x0087
+                           000088   375 _TCON	=	0x0088
+                           000089   376 _TMOD	=	0x0089
+                           00008A   377 _TL0	=	0x008a
+                           00008B   378 _TL1	=	0x008b
+                           00008C   379 _TH0	=	0x008c
+                           00008D   380 _TH1	=	0x008d
+                           00008E   381 _CKCON	=	0x008e
+                           00008F   382 _WKCON	=	0x008f
+                           000090   383 _P1	=	0x0090
+                           000091   384 _SFRS	=	0x0091
+                           000092   385 _CAPCON0	=	0x0092
+                           000093   386 _CAPCON1	=	0x0093
+                           000094   387 _CAPCON2	=	0x0094
+                           000095   388 _CKDIV	=	0x0095
+                           000096   389 _CKSWT	=	0x0096
+                           000097   390 _CKEN	=	0x0097
+                           000098   391 _SCON	=	0x0098
+                           000099   392 _SBUF	=	0x0099
+                           00009A   393 _SBUF_1	=	0x009a
+                           00009B   394 _EIE	=	0x009b
+                           00009C   395 _EIE1	=	0x009c
+                           00009F   396 _CHPCON	=	0x009f
+                           0000A0   397 _P2	=	0x00a0
+                           0000A2   398 _AUXR1	=	0x00a2
+                           0000A3   399 _BODCON0	=	0x00a3
+                           0000A4   400 _IAPTRG	=	0x00a4
+                           0000A5   401 _IAPUEN	=	0x00a5
+                           0000A6   402 _IAPAL	=	0x00a6
+                           0000A7   403 _IAPAH	=	0x00a7
+                           0000A8   404 _IE	=	0x00a8
+                           0000A9   405 _SADDR	=	0x00a9
+                           0000AA   406 _WDCON	=	0x00aa
+                           0000AB   407 _BODCON1	=	0x00ab
+                           0000AC   408 _P3M1	=	0x00ac
+                           0000AD   409 _P3M2	=	0x00ad
+                           0000AE   410 _IAPFD	=	0x00ae
+                           0000AF   411 _IAPCN	=	0x00af
+                           0000B0   412 _P3	=	0x00b0
+                           0000B1   413 _P0M1	=	0x00b1
+                           0000B2   414 _P0M2	=	0x00b2
+                           0000B3   415 _P1M1	=	0x00b3
+                           0000B4   416 _P1M2	=	0x00b4
+                           0000B5   417 _TOE	=	0x00b5
+                           0000B7   418 _IPH	=	0x00b7
+                           0000B7   419 _PWMINTC	=	0x00b7
+                           0000B8   420 _IP	=	0x00b8
+                           0000B9   421 _SADEN	=	0x00b9
+                           0000BA   422 _SADEN_1	=	0x00ba
+                           0000BB   423 _SADDR_1	=	0x00bb
+                           0000BC   424 _I2DAT	=	0x00bc
+                           0000BD   425 _I2STAT	=	0x00bd
+                           0000BE   426 _I2CLK	=	0x00be
+                           0000BF   427 _I2TOC	=	0x00bf
+                           0000C0   428 _I2CON	=	0x00c0
+                           0000C1   429 _I2ADDR	=	0x00c1
+                           0000C2   430 _ADCRL	=	0x00c2
+                           0000C3   431 _ADCRH	=	0x00c3
+                           0000C4   432 _T3CON	=	0x00c4
+                           0000C5   433 _RL3	=	0x00c5
+                           0000C6   434 _RH3	=	0x00c6
+                           0000C7   435 _TA	=	0x00c7
+                           0000C8   436 _T2CON	=	0x00c8
+                           0000C9   437 _T2MOD	=	0x00c9
+                           0000CA   438 _RCMP2L	=	0x00ca
+                           0000CB   439 _RCMP2H	=	0x00cb
+                           0000CC   440 _TL2	=	0x00cc
+                           0000CD   441 _TH2	=	0x00cd
+                           0000CE   442 _ADCMPL	=	0x00ce
+                           0000CF   443 _ADCMPH	=	0x00cf
+                           0000D0   444 _PSW	=	0x00d0
+                           0000D1   445 _PWM0PH	=	0x00d1
+                           0000D2   446 _PWM0C0H	=	0x00d2
+                           0000D3   447 _PWM0C1H	=	0x00d3
+                           0000D4   448 _PWM0C2H	=	0x00d4
+                           0000D5   449 _PWM0C3H	=	0x00d5
+                           0000D6   450 _PNP	=	0x00d6
+                           0000D7   451 _PWM0FBD	=	0x00d7
+                           0000D8   452 _PWM0CON0	=	0x00d8
+                           0000D9   453 _PWM0PL	=	0x00d9
+                           0000DA   454 _PWM0C0L	=	0x00da
+                           0000DB   455 _PWM0C1L	=	0x00db
+                           0000DC   456 _PWM0C2L	=	0x00dc
+                           0000DD   457 _PWM0C3L	=	0x00dd
+                           0000DE   458 _PIOCON0	=	0x00de
+                           0000DF   459 _PWM0CON1	=	0x00df
+                           0000E0   460 _ACC	=	0x00e0
+                           0000E1   461 _ADCCON1	=	0x00e1
+                           0000E2   462 _ADCCON2	=	0x00e2
+                           0000E3   463 _ADCDLY	=	0x00e3
+                           0000E4   464 _C0L	=	0x00e4
+                           0000E5   465 _C0H	=	0x00e5
+                           0000E6   466 _C1L	=	0x00e6
+                           0000E7   467 _C1H	=	0x00e7
+                           0000E8   468 _ADCCON0	=	0x00e8
+                           0000E9   469 _PICON	=	0x00e9
+                           0000EA   470 _PINEN	=	0x00ea
+                           0000EB   471 _PIPEN	=	0x00eb
+                           0000EC   472 _PIF	=	0x00ec
+                           0000ED   473 _C2L	=	0x00ed
+                           0000EE   474 _C2H	=	0x00ee
+                           0000EF   475 _EIP	=	0x00ef
+                           0000F0   476 _B	=	0x00f0
+                           0000F1   477 _CAPCON3	=	0x00f1
+                           0000F2   478 _CAPCON4	=	0x00f2
+                           0000F3   479 _SPCR	=	0x00f3
+                           0000F4   480 _SPSR	=	0x00f4
+                           0000F5   481 _SPDR	=	0x00f5
+                           0000F6   482 _AINDIDS0	=	0x00f6
+                           0000F7   483 _EIPH	=	0x00f7
+                           0000F8   484 _SCON_1	=	0x00f8
+                           0000F9   485 _PWM0DTEN	=	0x00f9
+                           0000FA   486 _PWM0DTCNT	=	0x00fa
+                           0000FB   487 _PWM0MEN	=	0x00fb
+                           0000FC   488 _PWM0MD	=	0x00fc
+                           0000FD   489 _PORDIS	=	0x00fd
+                           0000FE   490 _EIP1	=	0x00fe
+                           0000FF   491 _EIPH1	=	0x00ff
+                           0000AC   492 _P3S	=	0x00ac
+                           0000AD   493 _P3SR	=	0x00ad
+                           0000B1   494 _P0S	=	0x00b1
+                           0000B2   495 _P0SR	=	0x00b2
+                           0000B3   496 _P1S	=	0x00b3
+                           0000B4   497 _P1SR	=	0x00b4
+                           0000B7   498 _PWM0INTC	=	0x00b7
+                           0000C4   499 _PWM0C4H	=	0x00c4
+                           0000C5   500 _PWM0C5H	=	0x00c5
+                           0000C6   501 _PIOCON1	=	0x00c6
+                           0000CC   502 _PWM0C4L	=	0x00cc
+                           0000CD   503 _PWM0C5L	=	0x00cd
+                           0000F3   504 _SPCR2	=	0x00f3
+                           0000FF   505 _LVRDIS	=	0x00ff
+                           000084   506 _ADCBAL	=	0x0084
+                           000085   507 _ADCBAH	=	0x0085
+                           000086   508 _ADCCON3	=	0x0086
+                           000089   509 _P2M1	=	0x0089
+                           00008A   510 _P2M2	=	0x008a
+                           00008B   511 _P2SR	=	0x008b
+                           00008C   512 _P2S	=	0x008c
+                           00008D   513 _ADCSN	=	0x008d
+                           00008E   514 _ADCCN	=	0x008e
+                           00008F   515 _ADCSR	=	0x008f
+                           000092   516 _P0UP	=	0x0092
+                           000093   517 _P1UP	=	0x0093
+                           000094   518 _P2UP	=	0x0094
+                           000095   519 _P3UP	=	0x0095
+                           000097   520 _RWKH	=	0x0097
+                           000099   521 _AINDIDS1	=	0x0099
+                           00009A   522 _P0DW	=	0x009a
+                           00009B   523 _P1DW	=	0x009b
+                           00009C   524 _P2DW	=	0x009c
+                           00009D   525 _P3DW	=	0x009d
+                           0000A1   526 _AUXR2	=	0x00a1
+                           0000A2   527 _AUXR3	=	0x00a2
+                           0000A3   528 _AUXR4	=	0x00a3
+                           0000A4   529 _AUXR5	=	0x00a4
+                           0000A5   530 _AUXR6	=	0x00a5
+                           0000A6   531 _AUXR7	=	0x00a6
+                           0000A7   532 _AUXR8	=	0x00a7
+                           0000A9   533 _PWM1PH	=	0x00a9
+                           0000AA   534 _PWM1C0H	=	0x00aa
+                           0000AB   535 _PWM1C1H	=	0x00ab
+                           0000AC   536 _PWM1MD	=	0x00ac
+                           0000AD   537 _PWM1MEN	=	0x00ad
+                           0000B1   538 _PWM1PL	=	0x00b1
+                           0000B2   539 _PWM1C0L	=	0x00b2
+                           0000B3   540 _PWM1C1L	=	0x00b3
+                           0000B4   541 _PWM1CON0	=	0x00b4
+                           0000B5   542 _PWM1CON1	=	0x00b5
+                           0000B6   543 _PWM1INTC	=	0x00b6
+                           0000B7   544 _PIOCON2	=	0x00b7
+                           0000B9   545 _PWM2PH	=	0x00b9
+                           0000BA   546 _PWM2C0H	=	0x00ba
+                           0000BB   547 _PWM2C1H	=	0x00bb
+                           0000BC   548 _PWM2MD	=	0x00bc
+                           0000BD   549 _PWM2MEN	=	0x00bd
+                           0000C1   550 _PWM2PL	=	0x00c1
+                           0000C2   551 _PWM2C0L	=	0x00c2
+                           0000C3   552 _PWM2C1L	=	0x00c3
+                           0000C4   553 _PWM2CON0	=	0x00c4
+                           0000C5   554 _PWM2CON1	=	0x00c5
+                           0000C6   555 _PWM2INTC	=	0x00c6
+                           0000C9   556 _PWM3PH	=	0x00c9
+                           0000CA   557 _PWM3C0H	=	0x00ca
+                           0000CB   558 _PWM3C1H	=	0x00cb
+                           0000CC   559 _PWM3MD	=	0x00cc
+                           0000CD   560 _PWM3MEN	=	0x00cd
+                           0000CE   561 _EIP2	=	0x00ce
+                           0000CF   562 _EIPH2	=	0x00cf
+                           0000D1   563 _PWM3PL	=	0x00d1
+                           0000D2   564 _PWM3C0L	=	0x00d2
+                           0000D3   565 _PWM3C1L	=	0x00d3
+                           0000D4   566 _PWM3CON0	=	0x00d4
+                           0000D5   567 _PWM3CON1	=	0x00d5
+                           0000D6   568 _PWM3INTC	=	0x00d6
+                           0000D7   569 _XTLCON	=	0x00d7
+                           0000D9   570 _SC0DR	=	0x00d9
+                           0000DA   571 _SC0EGT	=	0x00da
+                           0000DB   572 _SC0ETURD0	=	0x00db
+                           0000DC   573 _SC0ETURD1	=	0x00dc
+                           0000DD   574 _SC0IE	=	0x00dd
+                           0000DE   575 _SC0IS	=	0x00de
+                           0000DF   576 _SC0TSR	=	0x00df
+                           0000E1   577 _SC1DR	=	0x00e1
+                           0000E2   578 _SC1EGT	=	0x00e2
+                           0000E3   579 _SC1ETURD0	=	0x00e3
+                           0000E4   580 _SC1ETURD1	=	0x00e4
+                           0000E5   581 _SC1IE	=	0x00e5
+                           0000E6   582 _SC1IS	=	0x00e6
+                           0000E7   583 _SC1TSR	=	0x00e7
+                           0000E9   584 _SC2DR	=	0x00e9
+                           0000EA   585 _SC2EGT	=	0x00ea
+                           0000EB   586 _SC2ETURD0	=	0x00eb
+                           0000EC   587 _SC2ETURD1	=	0x00ec
+                           0000ED   588 _SC2IE	=	0x00ed
+                           0000EE   589 _SC2IS	=	0x00ee
+                           0000EF   590 _SC2TSR	=	0x00ef
+                           0000F1   591 _SC0CR0	=	0x00f1
+                           0000F2   592 _SC0CR1	=	0x00f2
+                           0000F3   593 _SC1CR0	=	0x00f3
+                           0000F4   594 _SC1CR1	=	0x00f4
+                           0000F5   595 _SC2CR0	=	0x00f5
+                           0000F6   596 _SC2CR1	=	0x00f6
+                           0000F7   597 _PIPS7	=	0x00f7
+                           0000F9   598 _PIPS0	=	0x00f9
+                           0000FA   599 _PIPS1	=	0x00fa
+                           0000FB   600 _PIPS2	=	0x00fb
+                           0000FC   601 _PIPS3	=	0x00fc
+                           0000FD   602 _PIPS4	=	0x00fd
+                           0000FE   603 _PIPS5	=	0x00fe
+                           0000FF   604 _PIPS6	=	0x00ff
+                                    605 ;--------------------------------------------------------
+                                    606 ; special function bits
+                                    607 ;--------------------------------------------------------
+                                    608 	.area RSEG    (ABS,DATA)
+      000000                        609 	.org 0x0000
+                           0000FF   610 _SM0_1	=	0x00ff
+                           0000FF   611 _FE_1	=	0x00ff
+                           0000FE   612 _SM1_1	=	0x00fe
+                           0000FD   613 _SM2_1	=	0x00fd
+                           0000FC   614 _REN_1	=	0x00fc
+                           0000FB   615 _TB8_1	=	0x00fb
+                           0000FA   616 _RB8_1	=	0x00fa
+                           0000F9   617 _TI_1	=	0x00f9
+                           0000F8   618 _RI_1	=	0x00f8
+                           0000EF   619 _ADCF	=	0x00ef
+                           0000EE   620 _ADCS	=	0x00ee
+                           0000ED   621 _ETGSEL1	=	0x00ed
+                           0000EC   622 _ETGSEL0	=	0x00ec
+                           0000EB   623 _ADCHS3	=	0x00eb
+                           0000EA   624 _ADCHS2	=	0x00ea
+                           0000E9   625 _ADCHS1	=	0x00e9
+                           0000E8   626 _ADCHS0	=	0x00e8
+                           0000DF   627 _PWMRUN	=	0x00df
+                           0000DE   628 _LOAD	=	0x00de
+                           0000DD   629 _PWMF	=	0x00dd
+                           0000DC   630 _CLRPWM	=	0x00dc
+                           0000D7   631 _CY	=	0x00d7
+                           0000D6   632 _AC	=	0x00d6
+                           0000D5   633 _F0	=	0x00d5
+                           0000D4   634 _RS1	=	0x00d4
+                           0000D3   635 _RS0	=	0x00d3
+                           0000D2   636 _OV	=	0x00d2
+                           0000D0   637 _P	=	0x00d0
+                           0000CF   638 _TF2	=	0x00cf
+                           0000CA   639 _TR2	=	0x00ca
+                           0000C8   640 _CM_RL2	=	0x00c8
+                           0000C6   641 _I2CEN	=	0x00c6
+                           0000C5   642 _STA	=	0x00c5
+                           0000C4   643 _STO	=	0x00c4
+                           0000C3   644 _SI	=	0x00c3
+                           0000C2   645 _AA	=	0x00c2
+                           0000C0   646 _I2CPX	=	0x00c0
+                           0000BE   647 _PADC	=	0x00be
+                           0000BD   648 _PBOD	=	0x00bd
+                           0000BC   649 _PS	=	0x00bc
+                           0000BB   650 _PT1	=	0x00bb
+                           0000BA   651 _PX1	=	0x00ba
+                           0000B9   652 _PT0	=	0x00b9
+                           0000B8   653 _PX0	=	0x00b8
+                           0000B7   654 _P37	=	0x00b7
+                           0000B6   655 _P36	=	0x00b6
+                           0000B5   656 _P35	=	0x00b5
+                           0000B4   657 _P34	=	0x00b4
+                           0000B3   658 _P33	=	0x00b3
+                           0000B2   659 _P32	=	0x00b2
+                           0000B1   660 _P31	=	0x00b1
+                           0000B0   661 _P30	=	0x00b0
+                           0000AF   662 _EA	=	0x00af
+                           0000AE   663 _EADC	=	0x00ae
+                           0000AD   664 _EBOD	=	0x00ad
+                           0000AC   665 _ES	=	0x00ac
+                           0000AB   666 _ET1	=	0x00ab
+                           0000AA   667 _EX1	=	0x00aa
+                           0000A9   668 _ET0	=	0x00a9
+                           0000A8   669 _EX0	=	0x00a8
+                           0000A0   670 _P20	=	0x00a0
+                           00009F   671 _SM0	=	0x009f
+                           00009F   672 _FE	=	0x009f
+                           00009E   673 _SM1	=	0x009e
+                           00009D   674 _SM2	=	0x009d
+                           00009C   675 _REN	=	0x009c
+                           00009B   676 _TB8	=	0x009b
+                           00009A   677 _RB8	=	0x009a
+                           000099   678 _TI	=	0x0099
+                           000098   679 _RI	=	0x0098
+                           000097   680 _P17	=	0x0097
+                           000096   681 _P16	=	0x0096
+                           000096   682 _TXD_1	=	0x0096
+                           000095   683 _P15	=	0x0095
+                           000094   684 _P14	=	0x0094
+                           000094   685 _SDA	=	0x0094
+                           000093   686 _P13	=	0x0093
+                           000093   687 _SCL	=	0x0093
+                           000092   688 _P12	=	0x0092
+                           000091   689 _P11	=	0x0091
+                           000090   690 _P10	=	0x0090
+                           00008F   691 _TF1	=	0x008f
+                           00008E   692 _TR1	=	0x008e
+                           00008D   693 _TF0	=	0x008d
+                           00008C   694 _TR0	=	0x008c
+                           00008B   695 _IE1	=	0x008b
+                           00008A   696 _IT1	=	0x008a
+                           000089   697 _IE0	=	0x0089
+                           000088   698 _IT0	=	0x0088
+                           000087   699 _P07	=	0x0087
+                           000087   700 _RXD	=	0x0087
+                           000086   701 _P06	=	0x0086
+                           000086   702 _TXD	=	0x0086
+                           000085   703 _P05	=	0x0085
+                           000084   704 _P04	=	0x0084
+                           000084   705 _STADC	=	0x0084
+                           000083   706 _P03	=	0x0083
+                           000082   707 _P02	=	0x0082
+                           000082   708 _RXD_1	=	0x0082
+                           000081   709 _P01	=	0x0081
+                           000081   710 _MISO	=	0x0081
+                           000080   711 _P00	=	0x0080
+                           000080   712 _MOSI	=	0x0080
+                                    713 ;--------------------------------------------------------
+                                    714 ; overlayable register banks
+                                    715 ;--------------------------------------------------------
+                                    716 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        717 	.ds 8
+                                    718 ;--------------------------------------------------------
+                                    719 ; internal ram data
+                                    720 ;--------------------------------------------------------
+                                    721 	.area DSEG    (DATA)
+      000000                        722 _Write_SPROM_DATAFLASH_ARRAY_PARM_2:
+      000000                        723 	.ds 3
+      000003                        724 _Write_SPROM_DATAFLASH_ARRAY_PARM_3:
+      000003                        725 	.ds 2
+                                    726 ;--------------------------------------------------------
+                                    727 ; overlayable items in internal ram
+                                    728 ;--------------------------------------------------------
+                                    729 	.area	OSEG    (OVR,DATA)
+                                    730 	.area	OSEG    (OVR,DATA)
+      000000                        731 _Read_SPROM_DATAFLASH_ARRAY_PARM_2:
+      000000                        732 	.ds 3
+      000003                        733 _Read_SPROM_DATAFLASH_ARRAY_PARM_3:
+      000003                        734 	.ds 2
+      000005                        735 _Read_SPROM_DATAFLASH_ARRAY_i_65536_90:
+      000005                        736 	.ds 2
+                                    737 	.area	OSEG    (OVR,DATA)
+      000000                        738 _WriteDataToSPOnePage_PARM_2:
+      000000                        739 	.ds 3
+      000003                        740 _WriteDataToSPOnePage_PARM_3:
+      000003                        741 	.ds 1
+                                    742 ;--------------------------------------------------------
+                                    743 ; indirectly addressable internal ram data
+                                    744 ;--------------------------------------------------------
+                                    745 	.area ISEG    (DATA)
+                                    746 ;--------------------------------------------------------
+                                    747 ; absolute internal ram data
+                                    748 ;--------------------------------------------------------
+                                    749 	.area IABS    (ABS,DATA)
+                                    750 	.area IABS    (ABS,DATA)
+                                    751 ;--------------------------------------------------------
+                                    752 ; bit data
+                                    753 ;--------------------------------------------------------
+                                    754 	.area BSEG    (BIT)
+                                    755 ;--------------------------------------------------------
+                                    756 ; paged external ram data
+                                    757 ;--------------------------------------------------------
+                                    758 	.area PSEG    (PAG,XDATA)
+                                    759 ;--------------------------------------------------------
+                                    760 ; uninitialized external ram data
+                                    761 ;--------------------------------------------------------
+                                    762 	.area XSEG    (XDATA)
+      000000                        763 _WriteDataToSPOnePage_xd_tmp_65536_93:
+      000000                        764 	.ds 127
+                                    765 ;--------------------------------------------------------
+                                    766 ; absolute external ram data
+                                    767 ;--------------------------------------------------------
+                                    768 	.area XABS    (ABS,XDATA)
+                                    769 ;--------------------------------------------------------
+                                    770 ; initialized external ram data
+                                    771 ;--------------------------------------------------------
+                                    772 	.area XISEG   (XDATA)
+                                    773 	.area HOME    (CODE)
+                                    774 	.area GSINIT0 (CODE)
+                                    775 	.area GSINIT1 (CODE)
+                                    776 	.area GSINIT2 (CODE)
+                                    777 	.area GSINIT3 (CODE)
+                                    778 	.area GSINIT4 (CODE)
+                                    779 	.area GSINIT5 (CODE)
+                                    780 	.area GSINIT  (CODE)
+                                    781 	.area GSFINAL (CODE)
+                                    782 	.area CSEG    (CODE)
+                                    783 ;--------------------------------------------------------
+                                    784 ; global & static initialisations
+                                    785 ;--------------------------------------------------------
+                                    786 	.area HOME    (CODE)
+                                    787 	.area GSINIT  (CODE)
+                                    788 	.area GSFINAL (CODE)
+                                    789 	.area GSINIT  (CODE)
+                                    790 ;--------------------------------------------------------
+                                    791 ; Home
+                                    792 ;--------------------------------------------------------
+                                    793 	.area HOME    (CODE)
+                                    794 	.area HOME    (CODE)
+                                    795 ;--------------------------------------------------------
+                                    796 ; code
+                                    797 ;--------------------------------------------------------
+                                    798 	.area CSEG    (CODE)
+                                    799 ;------------------------------------------------------------
+                                    800 ;Allocation info for local variables in function 'Read_SPROM_BYTE'
+                                    801 ;------------------------------------------------------------
+                                    802 ;u8_addr                   Allocated to registers r6 r7 
+                                    803 ;rdata                     Allocated to registers r7 
+                                    804 ;------------------------------------------------------------
+                                    805 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:21: unsigned char Read_SPROM_BYTE(unsigned char __code *u8_addr)
+                                    806 ;	-----------------------------------------
+                                    807 ;	 function Read_SPROM_BYTE
+                                    808 ;	-----------------------------------------
+      000000                        809 _Read_SPROM_BYTE:
+                           000007   810 	ar7 = 0x07
+                           000006   811 	ar6 = 0x06
+                           000005   812 	ar5 = 0x05
+                           000004   813 	ar4 = 0x04
+                           000003   814 	ar3 = 0x03
+                           000002   815 	ar2 = 0x02
+                           000001   816 	ar1 = 0x01
+                           000000   817 	ar0 = 0x00
+      000000 AE 82            [24]  818 	mov	r6,dpl
+      000002 AF 83            [24]  819 	mov	r7,dph
+                                    820 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:24: set_IAPUEN_SPMEN;
+                                    821 ;	assignBit
+      000004 A2 AF            [12]  822 	mov	c,_EA
+      000006 92*00            [24]  823 	mov	_BIT_TMP,c
+                                    824 ;	assignBit
+      000008 C2 AF            [12]  825 	clr	_EA
+      00000A 75 C7 AA         [24]  826 	mov	_TA,#0xaa
+      00000D 75 C7 55         [24]  827 	mov	_TA,#0x55
+      000010 43 A5 10         [24]  828 	orl	_IAPUEN,#0x10
+                                    829 ;	assignBit
+      000013 A2*00            [12]  830 	mov	c,_BIT_TMP
+      000015 92 AF            [24]  831 	mov	_EA,c
+                                    832 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:25: rdata = *(0xFF80+u8_addr);
+      000017 74 80            [12]  833 	mov	a,#0x80
+      000019 2E               [12]  834 	add	a,r6
+      00001A F5 82            [12]  835 	mov	dpl,a
+      00001C 74 FF            [12]  836 	mov	a,#0xff
+      00001E 3F               [12]  837 	addc	a,r7
+      00001F F5 83            [12]  838 	mov	dph,a
+      000021 E4               [12]  839 	clr	a
+      000022 93               [24]  840 	movc	a,@a+dptr
+                                    841 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:26: return rdata;
+                                    842 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:27: }
+      000023 F5 82            [12]  843 	mov	dpl,a
+      000025 22               [24]  844 	ret
+                                    845 ;------------------------------------------------------------
+                                    846 ;Allocation info for local variables in function 'Write_SPROM_DATAFLASH_ARRAY'
+                                    847 ;------------------------------------------------------------
+                                    848 ;pDat                      Allocated with name '_Write_SPROM_DATAFLASH_ARRAY_PARM_2'
+                                    849 ;num                       Allocated with name '_Write_SPROM_DATAFLASH_ARRAY_PARM_3'
+                                    850 ;u16_addr                  Allocated to registers r6 r7 
+                                    851 ;CPageAddr                 Allocated to registers r4 
+                                    852 ;EPageAddr                 Allocated to registers r3 
+                                    853 ;cnt                       Allocated to registers r5 
+                                    854 ;------------------------------------------------------------
+                                    855 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:30: void Write_SPROM_DATAFLASH_ARRAY(unsigned int u16_addr, unsigned char *pDat, unsigned int num)
+                                    856 ;	-----------------------------------------
+                                    857 ;	 function Write_SPROM_DATAFLASH_ARRAY
+                                    858 ;	-----------------------------------------
+      000026                        859 _Write_SPROM_DATAFLASH_ARRAY:
+      000026 AE 82            [24]  860 	mov	r6,dpl
+      000028 AF 83            [24]  861 	mov	r7,dph
+                                    862 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:33: CPageAddr = u16_addr >> 7;
+      00002A 8E 04            [24]  863 	mov	ar4,r6
+      00002C EF               [12]  864 	mov	a,r7
+      00002D A2 E7            [12]  865 	mov	c,acc.7
+      00002F CC               [12]  866 	xch	a,r4
+      000030 33               [12]  867 	rlc	a
+      000031 CC               [12]  868 	xch	a,r4
+      000032 33               [12]  869 	rlc	a
+      000033 CC               [12]  870 	xch	a,r4
+      000034 54 01            [12]  871 	anl	a,#0x01
+                                    872 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:34: EPageAddr = (u16_addr + num) >> 7;
+      000036 E5*03            [12]  873 	mov	a,_Write_SPROM_DATAFLASH_ARRAY_PARM_3
+      000038 2E               [12]  874 	add	a,r6
+      000039 FB               [12]  875 	mov	r3,a
+      00003A E5*04            [12]  876 	mov	a,(_Write_SPROM_DATAFLASH_ARRAY_PARM_3 + 1)
+      00003C 3F               [12]  877 	addc	a,r7
+      00003D A2 E7            [12]  878 	mov	c,acc.7
+      00003F CB               [12]  879 	xch	a,r3
+      000040 33               [12]  880 	rlc	a
+      000041 CB               [12]  881 	xch	a,r3
+      000042 33               [12]  882 	rlc	a
+      000043 CB               [12]  883 	xch	a,r3
+      000044 54 01            [12]  884 	anl	a,#0x01
+      000046 FD               [12]  885 	mov	r5,a
+                                    886 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:36: while (CPageAddr != EPageAddr)
+      000047                        887 00101$:
+      000047 EC               [12]  888 	mov	a,r4
+      000048 B5 03 02         [24]  889 	cjne	a,ar3,00120$
+      00004B 80 57            [24]  890 	sjmp	00103$
+      00004D                        891 00120$:
+                                    892 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:38: cnt = WriteDataToSPOnePage(u16_addr+0xFF80, pDat, 127);
+      00004D 74 80            [12]  893 	mov	a,#0x80
+      00004F 2E               [12]  894 	add	a,r6
+      000050 F5 82            [12]  895 	mov	dpl,a
+      000052 74 FF            [12]  896 	mov	a,#0xff
+      000054 3F               [12]  897 	addc	a,r7
+      000055 F5 83            [12]  898 	mov	dph,a
+      000057 85*00*00         [24]  899 	mov	_WriteDataToSPOnePage_PARM_2,_Write_SPROM_DATAFLASH_ARRAY_PARM_2
+      00005A 85*01*01         [24]  900 	mov	(_WriteDataToSPOnePage_PARM_2 + 1),(_Write_SPROM_DATAFLASH_ARRAY_PARM_2 + 1)
+      00005D 85*02*02         [24]  901 	mov	(_WriteDataToSPOnePage_PARM_2 + 2),(_Write_SPROM_DATAFLASH_ARRAY_PARM_2 + 2)
+      000060 75*03 7F         [24]  902 	mov	_WriteDataToSPOnePage_PARM_3,#0x7f
+      000063 C0 07            [24]  903 	push	ar7
+      000065 C0 06            [24]  904 	push	ar6
+      000067 C0 03            [24]  905 	push	ar3
+      000069 12r01r1B         [24]  906 	lcall	_WriteDataToSPOnePage
+      00006C AD 82            [24]  907 	mov	r5,dpl
+      00006E D0 03            [24]  908 	pop	ar3
+      000070 D0 06            [24]  909 	pop	ar6
+      000072 D0 07            [24]  910 	pop	ar7
+                                    911 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:39: u16_addr += cnt;
+      000074 8D 01            [24]  912 	mov	ar1,r5
+      000076 7A 00            [12]  913 	mov	r2,#0x00
+      000078 E9               [12]  914 	mov	a,r1
+      000079 2E               [12]  915 	add	a,r6
+      00007A FE               [12]  916 	mov	r6,a
+      00007B EA               [12]  917 	mov	a,r2
+      00007C 3F               [12]  918 	addc	a,r7
+      00007D FF               [12]  919 	mov	r7,a
+                                    920 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:40: pDat += cnt;
+      00007E ED               [12]  921 	mov	a,r5
+      00007F 25*00            [12]  922 	add	a,_Write_SPROM_DATAFLASH_ARRAY_PARM_2
+      000081 F5*00            [12]  923 	mov	_Write_SPROM_DATAFLASH_ARRAY_PARM_2,a
+      000083 E4               [12]  924 	clr	a
+      000084 35*01            [12]  925 	addc	a,(_Write_SPROM_DATAFLASH_ARRAY_PARM_2 + 1)
+      000086 F5*01            [12]  926 	mov	(_Write_SPROM_DATAFLASH_ARRAY_PARM_2 + 1),a
+                                    927 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:41: num -= cnt;
+      000088 E5*03            [12]  928 	mov	a,_Write_SPROM_DATAFLASH_ARRAY_PARM_3
+      00008A C3               [12]  929 	clr	c
+      00008B 99               [12]  930 	subb	a,r1
+      00008C F5*03            [12]  931 	mov	_Write_SPROM_DATAFLASH_ARRAY_PARM_3,a
+      00008E E5*04            [12]  932 	mov	a,(_Write_SPROM_DATAFLASH_ARRAY_PARM_3 + 1)
+      000090 9A               [12]  933 	subb	a,r2
+      000091 F5*04            [12]  934 	mov	(_Write_SPROM_DATAFLASH_ARRAY_PARM_3 + 1),a
+                                    935 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:42: CPageAddr = u16_addr >> 7;
+      000093 8E 02            [24]  936 	mov	ar2,r6
+      000095 EF               [12]  937 	mov	a,r7
+      000096 A2 E7            [12]  938 	mov	c,acc.7
+      000098 CA               [12]  939 	xch	a,r2
+      000099 33               [12]  940 	rlc	a
+      00009A CA               [12]  941 	xch	a,r2
+      00009B 33               [12]  942 	rlc	a
+      00009C CA               [12]  943 	xch	a,r2
+      00009D 54 01            [12]  944 	anl	a,#0x01
+      00009F FD               [12]  945 	mov	r5,a
+      0000A0 8A 04            [24]  946 	mov	ar4,r2
+      0000A2 80 A3            [24]  947 	sjmp	00101$
+      0000A4                        948 00103$:
+                                    949 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:45: if (num)
+      0000A4 E5*03            [12]  950 	mov	a,_Write_SPROM_DATAFLASH_ARRAY_PARM_3
+      0000A6 45*04            [12]  951 	orl	a,(_Write_SPROM_DATAFLASH_ARRAY_PARM_3 + 1)
+      0000A8 60 13            [24]  952 	jz	00106$
+                                    953 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:47: WriteDataToSPOnePage(u16_addr, pDat, num);
+      0000AA 85*03*03         [24]  954 	mov	_WriteDataToSPOnePage_PARM_3,_Write_SPROM_DATAFLASH_ARRAY_PARM_3
+      0000AD 85*00*00         [24]  955 	mov	_WriteDataToSPOnePage_PARM_2,_Write_SPROM_DATAFLASH_ARRAY_PARM_2
+      0000B0 85*01*01         [24]  956 	mov	(_WriteDataToSPOnePage_PARM_2 + 1),(_Write_SPROM_DATAFLASH_ARRAY_PARM_2 + 1)
+      0000B3 85*02*02         [24]  957 	mov	(_WriteDataToSPOnePage_PARM_2 + 2),(_Write_SPROM_DATAFLASH_ARRAY_PARM_2 + 2)
+      0000B6 8E 82            [24]  958 	mov	dpl,r6
+      0000B8 8F 83            [24]  959 	mov	dph,r7
+                                    960 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:49: }
+      0000BA 02r01r1B         [24]  961 	ljmp	_WriteDataToSPOnePage
+      0000BD                        962 00106$:
+      0000BD 22               [24]  963 	ret
+                                    964 ;------------------------------------------------------------
+                                    965 ;Allocation info for local variables in function 'Read_SPROM_DATAFLASH_ARRAY'
+                                    966 ;------------------------------------------------------------
+                                    967 ;pDat                      Allocated with name '_Read_SPROM_DATAFLASH_ARRAY_PARM_2'
+                                    968 ;num                       Allocated with name '_Read_SPROM_DATAFLASH_ARRAY_PARM_3'
+                                    969 ;u16_addr                  Allocated to registers r6 r7 
+                                    970 ;i                         Allocated with name '_Read_SPROM_DATAFLASH_ARRAY_i_65536_90'
+                                    971 ;------------------------------------------------------------
+                                    972 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:51: void Read_SPROM_DATAFLASH_ARRAY(unsigned int u16_addr, unsigned char *pDat, unsigned int num)
+                                    973 ;	-----------------------------------------
+                                    974 ;	 function Read_SPROM_DATAFLASH_ARRAY
+                                    975 ;	-----------------------------------------
+      0000BE                        976 _Read_SPROM_DATAFLASH_ARRAY:
+      0000BE AE 82            [24]  977 	mov	r6,dpl
+      0000C0 AF 83            [24]  978 	mov	r7,dph
+                                    979 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:55: set_IAPUEN_SPMEN;
+                                    980 ;	assignBit
+      0000C2 A2 AF            [12]  981 	mov	c,_EA
+      0000C4 92*00            [24]  982 	mov	_BIT_TMP,c
+                                    983 ;	assignBit
+      0000C6 C2 AF            [12]  984 	clr	_EA
+      0000C8 75 C7 AA         [24]  985 	mov	_TA,#0xaa
+      0000CB 75 C7 55         [24]  986 	mov	_TA,#0x55
+      0000CE 43 A5 10         [24]  987 	orl	_IAPUEN,#0x10
+                                    988 ;	assignBit
+      0000D1 A2*00            [12]  989 	mov	c,_BIT_TMP
+      0000D3 92 AF            [24]  990 	mov	_EA,c
+                                    991 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:56: for (i = 0; i < num; i++)
+      0000D5 74 80            [12]  992 	mov	a,#0x80
+      0000D7 2E               [12]  993 	add	a,r6
+      0000D8 FE               [12]  994 	mov	r6,a
+      0000D9 74 FF            [12]  995 	mov	a,#0xff
+      0000DB 3F               [12]  996 	addc	a,r7
+      0000DC FF               [12]  997 	mov	r7,a
+      0000DD E4               [12]  998 	clr	a
+      0000DE F5*05            [12]  999 	mov	_Read_SPROM_DATAFLASH_ARRAY_i_65536_90,a
+      0000E0 F5*06            [12] 1000 	mov	(_Read_SPROM_DATAFLASH_ARRAY_i_65536_90 + 1),a
+      0000E2                       1001 00103$:
+      0000E2 C3               [12] 1002 	clr	c
+      0000E3 E5*05            [12] 1003 	mov	a,_Read_SPROM_DATAFLASH_ARRAY_i_65536_90
+      0000E5 95*03            [12] 1004 	subb	a,_Read_SPROM_DATAFLASH_ARRAY_PARM_3
+      0000E7 E5*06            [12] 1005 	mov	a,(_Read_SPROM_DATAFLASH_ARRAY_i_65536_90 + 1)
+      0000E9 95*04            [12] 1006 	subb	a,(_Read_SPROM_DATAFLASH_ARRAY_PARM_3 + 1)
+      0000EB 50 2D            [24] 1007 	jnc	00105$
+                                   1008 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:57: pDat[i] = *(unsigned char __code *)(u16_addr+0xFF80 + i);
+      0000ED E5*05            [12] 1009 	mov	a,_Read_SPROM_DATAFLASH_ARRAY_i_65536_90
+      0000EF 25*00            [12] 1010 	add	a,_Read_SPROM_DATAFLASH_ARRAY_PARM_2
+      0000F1 F9               [12] 1011 	mov	r1,a
+      0000F2 E5*06            [12] 1012 	mov	a,(_Read_SPROM_DATAFLASH_ARRAY_i_65536_90 + 1)
+      0000F4 35*01            [12] 1013 	addc	a,(_Read_SPROM_DATAFLASH_ARRAY_PARM_2 + 1)
+      0000F6 FA               [12] 1014 	mov	r2,a
+      0000F7 AB*02            [24] 1015 	mov	r3,(_Read_SPROM_DATAFLASH_ARRAY_PARM_2 + 2)
+      0000F9 E5*05            [12] 1016 	mov	a,_Read_SPROM_DATAFLASH_ARRAY_i_65536_90
+      0000FB 2E               [12] 1017 	add	a,r6
+      0000FC F8               [12] 1018 	mov	r0,a
+      0000FD E5*06            [12] 1019 	mov	a,(_Read_SPROM_DATAFLASH_ARRAY_i_65536_90 + 1)
+      0000FF 3F               [12] 1020 	addc	a,r7
+      000100 FD               [12] 1021 	mov	r5,a
+      000101 88 82            [24] 1022 	mov	dpl,r0
+      000103 8D 83            [24] 1023 	mov	dph,r5
+      000105 E4               [12] 1024 	clr	a
+      000106 93               [24] 1025 	movc	a,@a+dptr
+      000107 89 82            [24] 1026 	mov	dpl,r1
+      000109 8A 83            [24] 1027 	mov	dph,r2
+      00010B 8B F0            [24] 1028 	mov	b,r3
+      00010D 12r00r00         [24] 1029 	lcall	__gptrput
+                                   1030 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:56: for (i = 0; i < num; i++)
+      000110 05*05            [12] 1031 	inc	_Read_SPROM_DATAFLASH_ARRAY_i_65536_90
+      000112 E4               [12] 1032 	clr	a
+      000113 B5*05 CC         [24] 1033 	cjne	a,_Read_SPROM_DATAFLASH_ARRAY_i_65536_90,00103$
+      000116 05*06            [12] 1034 	inc	(_Read_SPROM_DATAFLASH_ARRAY_i_65536_90 + 1)
+      000118 80 C8            [24] 1035 	sjmp	00103$
+      00011A                       1036 00105$:
+                                   1037 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:58: }
+      00011A 22               [24] 1038 	ret
+                                   1039 ;------------------------------------------------------------
+                                   1040 ;Allocation info for local variables in function 'WriteDataToSPOnePage'
+                                   1041 ;------------------------------------------------------------
+                                   1042 ;xd_tmp                    Allocated with name '_WriteDataToSPOnePage_xd_tmp_65536_93'
+                                   1043 ;pDat                      Allocated with name '_WriteDataToSPOnePage_PARM_2'
+                                   1044 ;num                       Allocated with name '_WriteDataToSPOnePage_PARM_3'
+                                   1045 ;u16_addr                  Allocated to registers r6 r7 
+                                   1046 ;i                         Allocated to registers r3 
+                                   1047 ;offset                    Allocated to registers r4 
+                                   1048 ;pCode                     Allocated to registers r6 r7 
+                                   1049 ;------------------------------------------------------------
+                                   1050 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:61: unsigned char WriteDataToSPOnePage(unsigned int u16_addr, const unsigned char *pDat, unsigned char num)
+                                   1051 ;	-----------------------------------------
+                                   1052 ;	 function WriteDataToSPOnePage
+                                   1053 ;	-----------------------------------------
+      00011B                       1054 _WriteDataToSPOnePage:
+      00011B AE 82            [24] 1055 	mov	r6,dpl
+      00011D AF 83            [24] 1056 	mov	r7,dph
+                                   1057 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:67: set_CHPCON_IAPEN;
+      00011F 75 91 00         [24] 1058 	mov	_SFRS,#0x00
+                                   1059 ;	assignBit
+      000122 A2 AF            [12] 1060 	mov	c,_EA
+      000124 92*00            [24] 1061 	mov	_BIT_TMP,c
+                                   1062 ;	assignBit
+      000126 C2 AF            [12] 1063 	clr	_EA
+      000128 75 C7 AA         [24] 1064 	mov	_TA,#0xaa
+      00012B 75 C7 55         [24] 1065 	mov	_TA,#0x55
+      00012E 43 9F 01         [24] 1066 	orl	_CHPCON,#0x01
+                                   1067 ;	assignBit
+      000131 A2*00            [12] 1068 	mov	c,_BIT_TMP
+      000133 92 AF            [24] 1069 	mov	_EA,c
+                                   1070 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:68: set_IAPUEN_SPMEN;
+                                   1071 ;	assignBit
+      000135 A2 AF            [12] 1072 	mov	c,_EA
+      000137 92*00            [24] 1073 	mov	_BIT_TMP,c
+                                   1074 ;	assignBit
+      000139 C2 AF            [12] 1075 	clr	_EA
+      00013B 75 C7 AA         [24] 1076 	mov	_TA,#0xaa
+      00013E 75 C7 55         [24] 1077 	mov	_TA,#0x55
+      000141 43 A5 10         [24] 1078 	orl	_IAPUEN,#0x10
+                                   1079 ;	assignBit
+      000144 A2*00            [12] 1080 	mov	c,_BIT_TMP
+      000146 92 AF            [24] 1081 	mov	_EA,c
+                                   1082 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:69: set_IAPUEN_SPUEN;
+                                   1083 ;	assignBit
+      000148 A2 AF            [12] 1084 	mov	c,_EA
+      00014A 92*00            [24] 1085 	mov	_BIT_TMP,c
+                                   1086 ;	assignBit
+      00014C C2 AF            [12] 1087 	clr	_EA
+      00014E 75 C7 AA         [24] 1088 	mov	_TA,#0xaa
+      000151 75 C7 55         [24] 1089 	mov	_TA,#0x55
+      000154 43 A5 08         [24] 1090 	orl	_IAPUEN,#0x08
+                                   1091 ;	assignBit
+      000157 A2*00            [12] 1092 	mov	c,_BIT_TMP
+      000159 92 AF            [24] 1093 	mov	_EA,c
+                                   1094 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:71: offset = u16_addr & 0x007F;
+      00015B 8E 05            [24] 1095 	mov	ar5,r6
+      00015D 74 7F            [12] 1096 	mov	a,#0x7f
+      00015F 5D               [12] 1097 	anl	a,r5
+                                   1098 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:72: i = PAGE_SIZE - offset;
+      000160 FC               [12] 1099 	mov	r4,a
+      000161 FB               [12] 1100 	mov	r3,a
+      000162 74 80            [12] 1101 	mov	a,#0x80
+      000164 C3               [12] 1102 	clr	c
+      000165 9B               [12] 1103 	subb	a,r3
+                                   1104 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:74: if (num > i)num = i;
+      000166 FB               [12] 1105 	mov	r3,a
+      000167 C3               [12] 1106 	clr	c
+      000168 95*03            [12] 1107 	subb	a,_WriteDataToSPOnePage_PARM_3
+      00016A 50 02            [24] 1108 	jnc	00104$
+      00016C 8B*03            [24] 1109 	mov	_WriteDataToSPOnePage_PARM_3,r3
+                                   1110 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:83: set_IAPTRG_IAPGO;
+      00016E                       1111 00104$:
+                                   1112 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:86: pCode = (unsigned char __code *)(u16_addr+0xFF80);
+      00016E 74 80            [12] 1113 	mov	a,#0x80
+      000170 2E               [12] 1114 	add	a,r6
+      000171 FE               [12] 1115 	mov	r6,a
+      000172 74 FF            [12] 1116 	mov	a,#0xff
+      000174 3F               [12] 1117 	addc	a,r7
+      000175 FF               [12] 1118 	mov	r7,a
+                                   1119 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:87: for (i = 0; i < num; i++)
+      000176 7B 00            [12] 1120 	mov	r3,#0x00
+      000178                       1121 00128$:
+      000178 C3               [12] 1122 	clr	c
+      000179 EB               [12] 1123 	mov	a,r3
+      00017A 95*03            [12] 1124 	subb	a,_WriteDataToSPOnePage_PARM_3
+      00017C 50 11            [24] 1125 	jnc	00107$
+                                   1126 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:89: if (pCode[i] != 0xFF)break;
+      00017E EB               [12] 1127 	mov	a,r3
+      00017F 2E               [12] 1128 	add	a,r6
+      000180 F5 82            [12] 1129 	mov	dpl,a
+      000182 E4               [12] 1130 	clr	a
+      000183 3F               [12] 1131 	addc	a,r7
+      000184 F5 83            [12] 1132 	mov	dph,a
+      000186 E4               [12] 1133 	clr	a
+      000187 93               [24] 1134 	movc	a,@a+dptr
+      000188 FA               [12] 1135 	mov	r2,a
+      000189 BA FF 03         [24] 1136 	cjne	r2,#0xff,00107$
+                                   1137 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:87: for (i = 0; i < num; i++)
+      00018C 0B               [12] 1138 	inc	r3
+      00018D 80 E9            [24] 1139 	sjmp	00128$
+      00018F                       1140 00107$:
+                                   1141 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:92: if (i == num)
+      00018F EB               [12] 1142 	mov	a,r3
+      000190 B5*03 02         [24] 1143 	cjne	a,_WriteDataToSPOnePage_PARM_3,00235$
+      000193 80 02            [24] 1144 	sjmp	00236$
+      000195                       1145 00235$:
+      000195 80 7B            [24] 1146 	sjmp	00158$
+      000197                       1147 00236$:
+                                   1148 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:94: IAPCN = BYTE_PROGRAM_SPROM;
+      000197 75 AF A1         [24] 1149 	mov	_IAPCN,#0xa1
+                                   1150 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:95: IAPAL = u16_addr+0x80;
+      00019A 74 80            [12] 1151 	mov	a,#0x80
+      00019C 2D               [12] 1152 	add	a,r5
+      00019D F5 A6            [12] 1153 	mov	_IAPAL,a
+                                   1154 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:96: IAPAH = 0x01;
+      00019F 75 A7 01         [24] 1155 	mov	_IAPAH,#0x01
+                                   1156 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:98: for (i = 0; i < num; i++)
+      0001A2 7D 00            [12] 1157 	mov	r5,#0x00
+      0001A4                       1158 00131$:
+      0001A4 C3               [12] 1159 	clr	c
+      0001A5 ED               [12] 1160 	mov	a,r5
+      0001A6 95*03            [12] 1161 	subb	a,_WriteDataToSPOnePage_PARM_3
+      0001A8 50 33            [24] 1162 	jnc	00108$
+                                   1163 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:100: IAPFD = pDat[i];
+      0001AA ED               [12] 1164 	mov	a,r5
+      0001AB 25*00            [12] 1165 	add	a,_WriteDataToSPOnePage_PARM_2
+      0001AD F9               [12] 1166 	mov	r1,a
+      0001AE E4               [12] 1167 	clr	a
+      0001AF 35*01            [12] 1168 	addc	a,(_WriteDataToSPOnePage_PARM_2 + 1)
+      0001B1 FA               [12] 1169 	mov	r2,a
+      0001B2 AB*02            [24] 1170 	mov	r3,(_WriteDataToSPOnePage_PARM_2 + 2)
+      0001B4 89 82            [24] 1171 	mov	dpl,r1
+      0001B6 8A 83            [24] 1172 	mov	dph,r2
+      0001B8 8B F0            [24] 1173 	mov	b,r3
+      0001BA 12r00r00         [24] 1174 	lcall	__gptrget
+      0001BD F5 AE            [12] 1175 	mov	_IAPFD,a
+                                   1176 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:101: set_IAPTRG_IAPGO;
+      0001BF 75 91 00         [24] 1177 	mov	_SFRS,#0x00
+                                   1178 ;	assignBit
+      0001C2 A2 AF            [12] 1179 	mov	c,_EA
+      0001C4 92*00            [24] 1180 	mov	_BIT_TMP,c
+                                   1181 ;	assignBit
+      0001C6 C2 AF            [12] 1182 	clr	_EA
+      0001C8 75 C7 AA         [24] 1183 	mov	_TA,#0xaa
+      0001CB 75 C7 55         [24] 1184 	mov	_TA,#0x55
+      0001CE 43 A4 01         [24] 1185 	orl	_IAPTRG,#0x01
+                                   1186 ;	assignBit
+      0001D1 A2*00            [12] 1187 	mov	c,_BIT_TMP
+      0001D3 92 AF            [24] 1188 	mov	_EA,c
+                                   1189 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:102: IAPAL++;
+      0001D5 E5 A6            [12] 1190 	mov	a,_IAPAL
+      0001D7 04               [12] 1191 	inc	a
+      0001D8 F5 A6            [12] 1192 	mov	_IAPAL,a
+                                   1193 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:98: for (i = 0; i < num; i++)
+      0001DA 0D               [12] 1194 	inc	r5
+      0001DB 80 C7            [24] 1195 	sjmp	00131$
+      0001DD                       1196 00108$:
+                                   1197 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:105: for (i = 0; i < num; i++)
+      0001DD 7D 00            [12] 1198 	mov	r5,#0x00
+      0001DF                       1199 00134$:
+      0001DF C3               [12] 1200 	clr	c
+      0001E0 ED               [12] 1201 	mov	a,r5
+      0001E1 95*03            [12] 1202 	subb	a,_WriteDataToSPOnePage_PARM_3
+      0001E3 50 26            [24] 1203 	jnc	00111$
+                                   1204 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:107: if (pCode[i] != pDat[i])break;
+      0001E5 ED               [12] 1205 	mov	a,r5
+      0001E6 2E               [12] 1206 	add	a,r6
+      0001E7 F5 82            [12] 1207 	mov	dpl,a
+      0001E9 E4               [12] 1208 	clr	a
+      0001EA 3F               [12] 1209 	addc	a,r7
+      0001EB F5 83            [12] 1210 	mov	dph,a
+      0001ED E4               [12] 1211 	clr	a
+      0001EE 93               [24] 1212 	movc	a,@a+dptr
+      0001EF FB               [12] 1213 	mov	r3,a
+      0001F0 ED               [12] 1214 	mov	a,r5
+      0001F1 25*00            [12] 1215 	add	a,_WriteDataToSPOnePage_PARM_2
+      0001F3 F8               [12] 1216 	mov	r0,a
+      0001F4 E4               [12] 1217 	clr	a
+      0001F5 35*01            [12] 1218 	addc	a,(_WriteDataToSPOnePage_PARM_2 + 1)
+      0001F7 F9               [12] 1219 	mov	r1,a
+      0001F8 AA*02            [24] 1220 	mov	r2,(_WriteDataToSPOnePage_PARM_2 + 2)
+      0001FA 88 82            [24] 1221 	mov	dpl,r0
+      0001FC 89 83            [24] 1222 	mov	dph,r1
+      0001FE 8A F0            [24] 1223 	mov	b,r2
+      000200 12r00r00         [24] 1224 	lcall	__gptrget
+      000203 F8               [12] 1225 	mov	r0,a
+      000204 EB               [12] 1226 	mov	a,r3
+      000205 B5 00 03         [24] 1227 	cjne	a,ar0,00111$
+                                   1228 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:105: for (i = 0; i < num; i++)
+      000208 0D               [12] 1229 	inc	r5
+      000209 80 D4            [24] 1230 	sjmp	00134$
+      00020B                       1231 00111$:
+                                   1232 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:110: if (i != num) goto WriteDataToPage20;
+      00020B ED               [12] 1233 	mov	a,r5
+      00020C B5*03 03         [24] 1234 	cjne	a,_WriteDataToSPOnePage_PARM_3,00241$
+      00020F 02r02rE3         [24] 1235 	ljmp	00126$
+      000212                       1236 00241$:
+                                   1237 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:117: for (i = 0; i < 128; i++)
+      000212                       1238 00158$:
+      000212 7F 00            [12] 1239 	mov	r7,#0x00
+      000214                       1240 00136$:
+                                   1241 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:119: xd_tmp[i] = pCode[i];
+      000214 EF               [12] 1242 	mov	a,r7
+      000215 24r00            [12] 1243 	add	a,#_WriteDataToSPOnePage_xd_tmp_65536_93
+      000217 FD               [12] 1244 	mov	r5,a
+      000218 E4               [12] 1245 	clr	a
+      000219 34s00            [12] 1246 	addc	a,#(_WriteDataToSPOnePage_xd_tmp_65536_93 >> 8)
+      00021B FE               [12] 1247 	mov	r6,a
+      00021C 74 80            [12] 1248 	mov	a,#0x80
+      00021E 2F               [12] 1249 	add	a,r7
+      00021F F5 82            [12] 1250 	mov	dpl,a
+      000221 E4               [12] 1251 	clr	a
+      000222 34 FF            [12] 1252 	addc	a,#0xff
+      000224 F5 83            [12] 1253 	mov	dph,a
+      000226 E4               [12] 1254 	clr	a
+      000227 93               [24] 1255 	movc	a,@a+dptr
+      000228 FB               [12] 1256 	mov	r3,a
+      000229 8D 82            [24] 1257 	mov	dpl,r5
+      00022B 8E 83            [24] 1258 	mov	dph,r6
+      00022D F0               [24] 1259 	movx	@dptr,a
+                                   1260 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:117: for (i = 0; i < 128; i++)
+      00022E 0F               [12] 1261 	inc	r7
+      00022F BF 80 00         [24] 1262 	cjne	r7,#0x80,00242$
+      000232                       1263 00242$:
+      000232 40 E0            [24] 1264 	jc	00136$
+                                   1265 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:122: for (i = 0; i < num; i++)
+      000234 7F 00            [12] 1266 	mov	r7,#0x00
+      000236                       1267 00139$:
+      000236 C3               [12] 1268 	clr	c
+      000237 EF               [12] 1269 	mov	a,r7
+      000238 95*03            [12] 1270 	subb	a,_WriteDataToSPOnePage_PARM_3
+      00023A 50 25            [24] 1271 	jnc	00121$
+                                   1272 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:124: xd_tmp[offset + i] = pDat[i];
+      00023C EF               [12] 1273 	mov	a,r7
+      00023D 2C               [12] 1274 	add	a,r4
+      00023E 24r00            [12] 1275 	add	a,#_WriteDataToSPOnePage_xd_tmp_65536_93
+      000240 FD               [12] 1276 	mov	r5,a
+      000241 E4               [12] 1277 	clr	a
+      000242 34s00            [12] 1278 	addc	a,#(_WriteDataToSPOnePage_xd_tmp_65536_93 >> 8)
+      000244 FE               [12] 1279 	mov	r6,a
+      000245 EF               [12] 1280 	mov	a,r7
+      000246 25*00            [12] 1281 	add	a,_WriteDataToSPOnePage_PARM_2
+      000248 F9               [12] 1282 	mov	r1,a
+      000249 E4               [12] 1283 	clr	a
+      00024A 35*01            [12] 1284 	addc	a,(_WriteDataToSPOnePage_PARM_2 + 1)
+      00024C FA               [12] 1285 	mov	r2,a
+      00024D AB*02            [24] 1286 	mov	r3,(_WriteDataToSPOnePage_PARM_2 + 2)
+      00024F 89 82            [24] 1287 	mov	dpl,r1
+      000251 8A 83            [24] 1288 	mov	dph,r2
+      000253 8B F0            [24] 1289 	mov	b,r3
+      000255 12r00r00         [24] 1290 	lcall	__gptrget
+      000258 F9               [12] 1291 	mov	r1,a
+      000259 8D 82            [24] 1292 	mov	dpl,r5
+      00025B 8E 83            [24] 1293 	mov	dph,r6
+      00025D F0               [24] 1294 	movx	@dptr,a
+                                   1295 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:122: for (i = 0; i < num; i++)
+      00025E 0F               [12] 1296 	inc	r7
+                                   1297 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:127: do
+      00025F 80 D5            [24] 1298 	sjmp	00139$
+      000261                       1299 00121$:
+                                   1300 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:129: IAPAL = 0x80;
+      000261 75 A6 80         [24] 1301 	mov	_IAPAL,#0x80
+                                   1302 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:130: IAPAH = 0x01;
+      000264 75 A7 01         [24] 1303 	mov	_IAPAH,#0x01
+                                   1304 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:131: IAPCN = PAGE_ERASE_SPROM;
+      000267 75 AF A2         [24] 1305 	mov	_IAPCN,#0xa2
+                                   1306 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:132: IAPFD = 0xFF;
+      00026A 75 AE FF         [24] 1307 	mov	_IAPFD,#0xff
+                                   1308 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:133: set_IAPTRG_IAPGO;
+      00026D 75 91 00         [24] 1309 	mov	_SFRS,#0x00
+                                   1310 ;	assignBit
+      000270 A2 AF            [12] 1311 	mov	c,_EA
+      000272 92*00            [24] 1312 	mov	_BIT_TMP,c
+                                   1313 ;	assignBit
+      000274 C2 AF            [12] 1314 	clr	_EA
+      000276 75 C7 AA         [24] 1315 	mov	_TA,#0xaa
+      000279 75 C7 55         [24] 1316 	mov	_TA,#0x55
+      00027C 43 A4 01         [24] 1317 	orl	_IAPTRG,#0x01
+                                   1318 ;	assignBit
+      00027F A2*00            [12] 1319 	mov	c,_BIT_TMP
+      000281 92 AF            [24] 1320 	mov	_EA,c
+                                   1321 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:134: IAPCN = BYTE_PROGRAM_SPROM;
+      000283 75 AF A1         [24] 1322 	mov	_IAPCN,#0xa1
+                                   1323 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:136: for (i = 0; i < 127; i++)
+      000286 7F 00            [12] 1324 	mov	r7,#0x00
+      000288                       1325 00141$:
+                                   1326 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:138: IAPFD = xd_tmp[i];
+      000288 EF               [12] 1327 	mov	a,r7
+      000289 24r00            [12] 1328 	add	a,#_WriteDataToSPOnePage_xd_tmp_65536_93
+      00028B F5 82            [12] 1329 	mov	dpl,a
+      00028D E4               [12] 1330 	clr	a
+      00028E 34s00            [12] 1331 	addc	a,#(_WriteDataToSPOnePage_xd_tmp_65536_93 >> 8)
+      000290 F5 83            [12] 1332 	mov	dph,a
+      000292 E0               [24] 1333 	movx	a,@dptr
+      000293 F5 AE            [12] 1334 	mov	_IAPFD,a
+                                   1335 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:139: set_IAPTRG_IAPGO;
+      000295 75 91 00         [24] 1336 	mov	_SFRS,#0x00
+                                   1337 ;	assignBit
+      000298 A2 AF            [12] 1338 	mov	c,_EA
+      00029A 92*00            [24] 1339 	mov	_BIT_TMP,c
+                                   1340 ;	assignBit
+      00029C C2 AF            [12] 1341 	clr	_EA
+      00029E 75 C7 AA         [24] 1342 	mov	_TA,#0xaa
+      0002A1 75 C7 55         [24] 1343 	mov	_TA,#0x55
+      0002A4 43 A4 01         [24] 1344 	orl	_IAPTRG,#0x01
+                                   1345 ;	assignBit
+      0002A7 A2*00            [12] 1346 	mov	c,_BIT_TMP
+      0002A9 92 AF            [24] 1347 	mov	_EA,c
+                                   1348 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:140: IAPAL++;
+      0002AB E5 A6            [12] 1349 	mov	a,_IAPAL
+      0002AD 04               [12] 1350 	inc	a
+      0002AE F5 A6            [12] 1351 	mov	_IAPAL,a
+                                   1352 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:136: for (i = 0; i < 127; i++)
+      0002B0 0F               [12] 1353 	inc	r7
+      0002B1 BF 7F 00         [24] 1354 	cjne	r7,#0x7f,00245$
+      0002B4                       1355 00245$:
+      0002B4 40 D2            [24] 1356 	jc	00141$
+                                   1357 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:143: for (i = 0; i < 128; i++)
+      0002B6 7F 00            [12] 1358 	mov	r7,#0x00
+      0002B8                       1359 00143$:
+                                   1360 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:145: if (pCode[i] != xd_tmp[i])break;
+      0002B8 74 80            [12] 1361 	mov	a,#0x80
+      0002BA 2F               [12] 1362 	add	a,r7
+      0002BB F5 82            [12] 1363 	mov	dpl,a
+      0002BD E4               [12] 1364 	clr	a
+      0002BE 34 FF            [12] 1365 	addc	a,#0xff
+      0002C0 F5 83            [12] 1366 	mov	dph,a
+      0002C2 E4               [12] 1367 	clr	a
+      0002C3 93               [24] 1368 	movc	a,@a+dptr
+      0002C4 FE               [12] 1369 	mov	r6,a
+      0002C5 EF               [12] 1370 	mov	a,r7
+      0002C6 24r00            [12] 1371 	add	a,#_WriteDataToSPOnePage_xd_tmp_65536_93
+      0002C8 F5 82            [12] 1372 	mov	dpl,a
+      0002CA E4               [12] 1373 	clr	a
+      0002CB 34s00            [12] 1374 	addc	a,#(_WriteDataToSPOnePage_xd_tmp_65536_93 >> 8)
+      0002CD F5 83            [12] 1375 	mov	dph,a
+      0002CF E0               [24] 1376 	movx	a,@dptr
+      0002D0 FD               [12] 1377 	mov	r5,a
+      0002D1 EE               [12] 1378 	mov	a,r6
+      0002D2 B5 05 06         [24] 1379 	cjne	a,ar5,00122$
+                                   1380 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:143: for (i = 0; i < 128; i++)
+      0002D5 0F               [12] 1381 	inc	r7
+      0002D6 BF 80 00         [24] 1382 	cjne	r7,#0x80,00249$
+      0002D9                       1383 00249$:
+      0002D9 40 DD            [24] 1384 	jc	00143$
+      0002DB                       1385 00122$:
+                                   1386 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:147: } while (i != 128);
+      0002DB BF 80 02         [24] 1387 	cjne	r7,#0x80,00251$
+      0002DE 80 03            [24] 1388 	sjmp	00252$
+      0002E0                       1389 00251$:
+      0002E0 02r02r61         [24] 1390 	ljmp	00121$
+      0002E3                       1391 00252$:
+      0002E3                       1392 00126$:
+                                   1393 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:151: clr_IAPUEN_SPUEN;
+                                   1394 ;	assignBit
+      0002E3 A2 AF            [12] 1395 	mov	c,_EA
+      0002E5 92*00            [24] 1396 	mov	_BIT_TMP,c
+                                   1397 ;	assignBit
+      0002E7 C2 AF            [12] 1398 	clr	_EA
+      0002E9 75 C7 AA         [24] 1399 	mov	_TA,#0xaa
+      0002EC 75 C7 55         [24] 1400 	mov	_TA,#0x55
+      0002EF 53 A5 F7         [24] 1401 	anl	_IAPUEN,#0xf7
+                                   1402 ;	assignBit
+      0002F2 A2*00            [12] 1403 	mov	c,_BIT_TMP
+      0002F4 92 AF            [24] 1404 	mov	_EA,c
+                                   1405 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:152: clr_CHPCON_IAPEN;
+      0002F6 75 91 00         [24] 1406 	mov	_SFRS,#0x00
+                                   1407 ;	assignBit
+      0002F9 A2 AF            [12] 1408 	mov	c,_EA
+      0002FB 92*00            [24] 1409 	mov	_BIT_TMP,c
+                                   1410 ;	assignBit
+      0002FD C2 AF            [12] 1411 	clr	_EA
+      0002FF 75 C7 AA         [24] 1412 	mov	_TA,#0xaa
+      000302 75 C7 55         [24] 1413 	mov	_TA,#0x55
+      000305 53 9F FE         [24] 1414 	anl	_CHPCON,#0xfe
+                                   1415 ;	assignBit
+      000308 A2*00            [12] 1416 	mov	c,_BIT_TMP
+      00030A 92 AF            [24] 1417 	mov	_EA,c
+                                   1418 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:154: return num;
+      00030C 85*03 82         [24] 1419 	mov	dpl,_WriteDataToSPOnePage_PARM_3
+                                   1420 ;	..\..\..\..\..\Library\StdDriver\src\eeprom_sprom.c:155: }
+      00030F 22               [24] 1421 	ret
+                                   1422 	.area CSEG    (CODE)
+                                   1423 	.area CONST   (CODE)
+                                   1424 	.area XINIT   (CODE)
+                                   1425 	.area CABS    (ABS,CODE)

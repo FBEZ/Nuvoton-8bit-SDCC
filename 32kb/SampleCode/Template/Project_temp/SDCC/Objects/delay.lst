@@ -1,0 +1,1393 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.2.14 #13855 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module delay
+                                      6 	.optsdcc -mmcs51 --model-small
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _MOSI
+                                     12 	.globl _P00
+                                     13 	.globl _MISO
+                                     14 	.globl _P01
+                                     15 	.globl _RXD_1
+                                     16 	.globl _P02
+                                     17 	.globl _P03
+                                     18 	.globl _STADC
+                                     19 	.globl _P04
+                                     20 	.globl _P05
+                                     21 	.globl _TXD
+                                     22 	.globl _P06
+                                     23 	.globl _RXD
+                                     24 	.globl _P07
+                                     25 	.globl _IT0
+                                     26 	.globl _IE0
+                                     27 	.globl _IT1
+                                     28 	.globl _IE1
+                                     29 	.globl _TR0
+                                     30 	.globl _TF0
+                                     31 	.globl _TR1
+                                     32 	.globl _TF1
+                                     33 	.globl _P10
+                                     34 	.globl _P11
+                                     35 	.globl _P12
+                                     36 	.globl _SCL
+                                     37 	.globl _P13
+                                     38 	.globl _SDA
+                                     39 	.globl _P14
+                                     40 	.globl _P15
+                                     41 	.globl _TXD_1
+                                     42 	.globl _P16
+                                     43 	.globl _P17
+                                     44 	.globl _RI
+                                     45 	.globl _TI
+                                     46 	.globl _RB8
+                                     47 	.globl _TB8
+                                     48 	.globl _REN
+                                     49 	.globl _SM2
+                                     50 	.globl _SM1
+                                     51 	.globl _FE
+                                     52 	.globl _SM0
+                                     53 	.globl _P20
+                                     54 	.globl _EX0
+                                     55 	.globl _ET0
+                                     56 	.globl _EX1
+                                     57 	.globl _ET1
+                                     58 	.globl _ES
+                                     59 	.globl _EBOD
+                                     60 	.globl _EADC
+                                     61 	.globl _EA
+                                     62 	.globl _P30
+                                     63 	.globl _P31
+                                     64 	.globl _P32
+                                     65 	.globl _P33
+                                     66 	.globl _P34
+                                     67 	.globl _P35
+                                     68 	.globl _P36
+                                     69 	.globl _P37
+                                     70 	.globl _PX0
+                                     71 	.globl _PT0
+                                     72 	.globl _PX1
+                                     73 	.globl _PT1
+                                     74 	.globl _PS
+                                     75 	.globl _PBOD
+                                     76 	.globl _PADC
+                                     77 	.globl _I2CPX
+                                     78 	.globl _AA
+                                     79 	.globl _SI
+                                     80 	.globl _STO
+                                     81 	.globl _STA
+                                     82 	.globl _I2CEN
+                                     83 	.globl _CM_RL2
+                                     84 	.globl _TR2
+                                     85 	.globl _TF2
+                                     86 	.globl _P
+                                     87 	.globl _OV
+                                     88 	.globl _RS0
+                                     89 	.globl _RS1
+                                     90 	.globl _F0
+                                     91 	.globl _AC
+                                     92 	.globl _CY
+                                     93 	.globl _CLRPWM
+                                     94 	.globl _PWMF
+                                     95 	.globl _LOAD
+                                     96 	.globl _PWMRUN
+                                     97 	.globl _ADCHS0
+                                     98 	.globl _ADCHS1
+                                     99 	.globl _ADCHS2
+                                    100 	.globl _ADCHS3
+                                    101 	.globl _ETGSEL0
+                                    102 	.globl _ETGSEL1
+                                    103 	.globl _ADCS
+                                    104 	.globl _ADCF
+                                    105 	.globl _RI_1
+                                    106 	.globl _TI_1
+                                    107 	.globl _RB8_1
+                                    108 	.globl _TB8_1
+                                    109 	.globl _REN_1
+                                    110 	.globl _SM2_1
+                                    111 	.globl _SM1_1
+                                    112 	.globl _FE_1
+                                    113 	.globl _SM0_1
+                                    114 	.globl _PIPS6
+                                    115 	.globl _PIPS5
+                                    116 	.globl _PIPS4
+                                    117 	.globl _PIPS3
+                                    118 	.globl _PIPS2
+                                    119 	.globl _PIPS1
+                                    120 	.globl _PIPS0
+                                    121 	.globl _PIPS7
+                                    122 	.globl _SC2CR1
+                                    123 	.globl _SC2CR0
+                                    124 	.globl _SC1CR1
+                                    125 	.globl _SC1CR0
+                                    126 	.globl _SC0CR1
+                                    127 	.globl _SC0CR0
+                                    128 	.globl _SC2TSR
+                                    129 	.globl _SC2IS
+                                    130 	.globl _SC2IE
+                                    131 	.globl _SC2ETURD1
+                                    132 	.globl _SC2ETURD0
+                                    133 	.globl _SC2EGT
+                                    134 	.globl _SC2DR
+                                    135 	.globl _SC1TSR
+                                    136 	.globl _SC1IS
+                                    137 	.globl _SC1IE
+                                    138 	.globl _SC1ETURD1
+                                    139 	.globl _SC1ETURD0
+                                    140 	.globl _SC1EGT
+                                    141 	.globl _SC1DR
+                                    142 	.globl _SC0TSR
+                                    143 	.globl _SC0IS
+                                    144 	.globl _SC0IE
+                                    145 	.globl _SC0ETURD1
+                                    146 	.globl _SC0ETURD0
+                                    147 	.globl _SC0EGT
+                                    148 	.globl _SC0DR
+                                    149 	.globl _XTLCON
+                                    150 	.globl _PWM3INTC
+                                    151 	.globl _PWM3CON1
+                                    152 	.globl _PWM3CON0
+                                    153 	.globl _PWM3C1L
+                                    154 	.globl _PWM3C0L
+                                    155 	.globl _PWM3PL
+                                    156 	.globl _EIPH2
+                                    157 	.globl _EIP2
+                                    158 	.globl _PWM3MEN
+                                    159 	.globl _PWM3MD
+                                    160 	.globl _PWM3C1H
+                                    161 	.globl _PWM3C0H
+                                    162 	.globl _PWM3PH
+                                    163 	.globl _PWM2INTC
+                                    164 	.globl _PWM2CON1
+                                    165 	.globl _PWM2CON0
+                                    166 	.globl _PWM2C1L
+                                    167 	.globl _PWM2C0L
+                                    168 	.globl _PWM2PL
+                                    169 	.globl _PWM2MEN
+                                    170 	.globl _PWM2MD
+                                    171 	.globl _PWM2C1H
+                                    172 	.globl _PWM2C0H
+                                    173 	.globl _PWM2PH
+                                    174 	.globl _PIOCON2
+                                    175 	.globl _PWM1INTC
+                                    176 	.globl _PWM1CON1
+                                    177 	.globl _PWM1CON0
+                                    178 	.globl _PWM1C1L
+                                    179 	.globl _PWM1C0L
+                                    180 	.globl _PWM1PL
+                                    181 	.globl _PWM1MEN
+                                    182 	.globl _PWM1MD
+                                    183 	.globl _PWM1C1H
+                                    184 	.globl _PWM1C0H
+                                    185 	.globl _PWM1PH
+                                    186 	.globl _AUXR8
+                                    187 	.globl _AUXR7
+                                    188 	.globl _AUXR6
+                                    189 	.globl _AUXR5
+                                    190 	.globl _AUXR4
+                                    191 	.globl _AUXR3
+                                    192 	.globl _AUXR2
+                                    193 	.globl _P3DW
+                                    194 	.globl _P2DW
+                                    195 	.globl _P1DW
+                                    196 	.globl _P0DW
+                                    197 	.globl _AINDIDS1
+                                    198 	.globl _RWKH
+                                    199 	.globl _P3UP
+                                    200 	.globl _P2UP
+                                    201 	.globl _P1UP
+                                    202 	.globl _P0UP
+                                    203 	.globl _ADCSR
+                                    204 	.globl _ADCCN
+                                    205 	.globl _ADCSN
+                                    206 	.globl _P2S
+                                    207 	.globl _P2SR
+                                    208 	.globl _P2M2
+                                    209 	.globl _P2M1
+                                    210 	.globl _ADCCON3
+                                    211 	.globl _ADCBAH
+                                    212 	.globl _ADCBAL
+                                    213 	.globl _LVRDIS
+                                    214 	.globl _SPCR2
+                                    215 	.globl _PWM0C5L
+                                    216 	.globl _PWM0C4L
+                                    217 	.globl _PIOCON1
+                                    218 	.globl _PWM0C5H
+                                    219 	.globl _PWM0C4H
+                                    220 	.globl _PWM0INTC
+                                    221 	.globl _P1SR
+                                    222 	.globl _P1S
+                                    223 	.globl _P0SR
+                                    224 	.globl _P0S
+                                    225 	.globl _P3SR
+                                    226 	.globl _P3S
+                                    227 	.globl _EIPH1
+                                    228 	.globl _EIP1
+                                    229 	.globl _PORDIS
+                                    230 	.globl _PWM0MD
+                                    231 	.globl _PWM0MEN
+                                    232 	.globl _PWM0DTCNT
+                                    233 	.globl _PWM0DTEN
+                                    234 	.globl _SCON_1
+                                    235 	.globl _EIPH
+                                    236 	.globl _AINDIDS0
+                                    237 	.globl _SPDR
+                                    238 	.globl _SPSR
+                                    239 	.globl _SPCR
+                                    240 	.globl _CAPCON4
+                                    241 	.globl _CAPCON3
+                                    242 	.globl _B
+                                    243 	.globl _EIP
+                                    244 	.globl _C2H
+                                    245 	.globl _C2L
+                                    246 	.globl _PIF
+                                    247 	.globl _PIPEN
+                                    248 	.globl _PINEN
+                                    249 	.globl _PICON
+                                    250 	.globl _ADCCON0
+                                    251 	.globl _C1H
+                                    252 	.globl _C1L
+                                    253 	.globl _C0H
+                                    254 	.globl _C0L
+                                    255 	.globl _ADCDLY
+                                    256 	.globl _ADCCON2
+                                    257 	.globl _ADCCON1
+                                    258 	.globl _ACC
+                                    259 	.globl _PWM0CON1
+                                    260 	.globl _PIOCON0
+                                    261 	.globl _PWM0C3L
+                                    262 	.globl _PWM0C2L
+                                    263 	.globl _PWM0C1L
+                                    264 	.globl _PWM0C0L
+                                    265 	.globl _PWM0PL
+                                    266 	.globl _PWM0CON0
+                                    267 	.globl _PWM0FBD
+                                    268 	.globl _PNP
+                                    269 	.globl _PWM0C3H
+                                    270 	.globl _PWM0C2H
+                                    271 	.globl _PWM0C1H
+                                    272 	.globl _PWM0C0H
+                                    273 	.globl _PWM0PH
+                                    274 	.globl _PSW
+                                    275 	.globl _ADCMPH
+                                    276 	.globl _ADCMPL
+                                    277 	.globl _TH2
+                                    278 	.globl _TL2
+                                    279 	.globl _RCMP2H
+                                    280 	.globl _RCMP2L
+                                    281 	.globl _T2MOD
+                                    282 	.globl _T2CON
+                                    283 	.globl _TA
+                                    284 	.globl _RH3
+                                    285 	.globl _RL3
+                                    286 	.globl _T3CON
+                                    287 	.globl _ADCRH
+                                    288 	.globl _ADCRL
+                                    289 	.globl _I2ADDR
+                                    290 	.globl _I2CON
+                                    291 	.globl _I2TOC
+                                    292 	.globl _I2CLK
+                                    293 	.globl _I2STAT
+                                    294 	.globl _I2DAT
+                                    295 	.globl _SADDR_1
+                                    296 	.globl _SADEN_1
+                                    297 	.globl _SADEN
+                                    298 	.globl _IP
+                                    299 	.globl _PWMINTC
+                                    300 	.globl _IPH
+                                    301 	.globl _TOE
+                                    302 	.globl _P1M2
+                                    303 	.globl _P1M1
+                                    304 	.globl _P0M2
+                                    305 	.globl _P0M1
+                                    306 	.globl _P3
+                                    307 	.globl _IAPCN
+                                    308 	.globl _IAPFD
+                                    309 	.globl _P3M2
+                                    310 	.globl _P3M1
+                                    311 	.globl _BODCON1
+                                    312 	.globl _WDCON
+                                    313 	.globl _SADDR
+                                    314 	.globl _IE
+                                    315 	.globl _IAPAH
+                                    316 	.globl _IAPAL
+                                    317 	.globl _IAPUEN
+                                    318 	.globl _IAPTRG
+                                    319 	.globl _BODCON0
+                                    320 	.globl _AUXR1
+                                    321 	.globl _P2
+                                    322 	.globl _CHPCON
+                                    323 	.globl _EIE1
+                                    324 	.globl _EIE
+                                    325 	.globl _SBUF_1
+                                    326 	.globl _SBUF
+                                    327 	.globl _SCON
+                                    328 	.globl _CKEN
+                                    329 	.globl _CKSWT
+                                    330 	.globl _CKDIV
+                                    331 	.globl _CAPCON2
+                                    332 	.globl _CAPCON1
+                                    333 	.globl _CAPCON0
+                                    334 	.globl _SFRS
+                                    335 	.globl _P1
+                                    336 	.globl _WKCON
+                                    337 	.globl _CKCON
+                                    338 	.globl _TH1
+                                    339 	.globl _TH0
+                                    340 	.globl _TL1
+                                    341 	.globl _TL0
+                                    342 	.globl _TMOD
+                                    343 	.globl _TCON
+                                    344 	.globl _PCON
+                                    345 	.globl _RWK
+                                    346 	.globl _RCTRIM1
+                                    347 	.globl _RCTRIM0
+                                    348 	.globl _DPH
+                                    349 	.globl _DPL
+                                    350 	.globl _SP
+                                    351 	.globl _P0
+                                    352 	.globl _Timer3_Delay_PARM_4
+                                    353 	.globl _Timer3_Delay_PARM_3
+                                    354 	.globl _Timer3_Delay_PARM_2
+                                    355 	.globl _Timer2_Delay_PARM_4
+                                    356 	.globl _Timer2_Delay_PARM_3
+                                    357 	.globl _Timer2_Delay_PARM_2
+                                    358 	.globl _Timer1_Delay_PARM_3
+                                    359 	.globl _Timer1_Delay_PARM_2
+                                    360 	.globl _Timer0_Delay_PARM_3
+                                    361 	.globl _Timer0_Delay_PARM_2
+                                    362 	.globl _Timer0_Delay
+                                    363 	.globl _Timer1_Delay
+                                    364 	.globl _Timer2_Delay
+                                    365 	.globl _Timer3_Delay
+                                    366 ;--------------------------------------------------------
+                                    367 ; special function registers
+                                    368 ;--------------------------------------------------------
+                                    369 	.area RSEG    (ABS,DATA)
+      000000                        370 	.org 0x0000
+                           000080   371 _P0	=	0x0080
+                           000081   372 _SP	=	0x0081
+                           000082   373 _DPL	=	0x0082
+                           000083   374 _DPH	=	0x0083
+                           000084   375 _RCTRIM0	=	0x0084
+                           000085   376 _RCTRIM1	=	0x0085
+                           000086   377 _RWK	=	0x0086
+                           000087   378 _PCON	=	0x0087
+                           000088   379 _TCON	=	0x0088
+                           000089   380 _TMOD	=	0x0089
+                           00008A   381 _TL0	=	0x008a
+                           00008B   382 _TL1	=	0x008b
+                           00008C   383 _TH0	=	0x008c
+                           00008D   384 _TH1	=	0x008d
+                           00008E   385 _CKCON	=	0x008e
+                           00008F   386 _WKCON	=	0x008f
+                           000090   387 _P1	=	0x0090
+                           000091   388 _SFRS	=	0x0091
+                           000092   389 _CAPCON0	=	0x0092
+                           000093   390 _CAPCON1	=	0x0093
+                           000094   391 _CAPCON2	=	0x0094
+                           000095   392 _CKDIV	=	0x0095
+                           000096   393 _CKSWT	=	0x0096
+                           000097   394 _CKEN	=	0x0097
+                           000098   395 _SCON	=	0x0098
+                           000099   396 _SBUF	=	0x0099
+                           00009A   397 _SBUF_1	=	0x009a
+                           00009B   398 _EIE	=	0x009b
+                           00009C   399 _EIE1	=	0x009c
+                           00009F   400 _CHPCON	=	0x009f
+                           0000A0   401 _P2	=	0x00a0
+                           0000A2   402 _AUXR1	=	0x00a2
+                           0000A3   403 _BODCON0	=	0x00a3
+                           0000A4   404 _IAPTRG	=	0x00a4
+                           0000A5   405 _IAPUEN	=	0x00a5
+                           0000A6   406 _IAPAL	=	0x00a6
+                           0000A7   407 _IAPAH	=	0x00a7
+                           0000A8   408 _IE	=	0x00a8
+                           0000A9   409 _SADDR	=	0x00a9
+                           0000AA   410 _WDCON	=	0x00aa
+                           0000AB   411 _BODCON1	=	0x00ab
+                           0000AC   412 _P3M1	=	0x00ac
+                           0000AD   413 _P3M2	=	0x00ad
+                           0000AE   414 _IAPFD	=	0x00ae
+                           0000AF   415 _IAPCN	=	0x00af
+                           0000B0   416 _P3	=	0x00b0
+                           0000B1   417 _P0M1	=	0x00b1
+                           0000B2   418 _P0M2	=	0x00b2
+                           0000B3   419 _P1M1	=	0x00b3
+                           0000B4   420 _P1M2	=	0x00b4
+                           0000B5   421 _TOE	=	0x00b5
+                           0000B7   422 _IPH	=	0x00b7
+                           0000B7   423 _PWMINTC	=	0x00b7
+                           0000B8   424 _IP	=	0x00b8
+                           0000B9   425 _SADEN	=	0x00b9
+                           0000BA   426 _SADEN_1	=	0x00ba
+                           0000BB   427 _SADDR_1	=	0x00bb
+                           0000BC   428 _I2DAT	=	0x00bc
+                           0000BD   429 _I2STAT	=	0x00bd
+                           0000BE   430 _I2CLK	=	0x00be
+                           0000BF   431 _I2TOC	=	0x00bf
+                           0000C0   432 _I2CON	=	0x00c0
+                           0000C1   433 _I2ADDR	=	0x00c1
+                           0000C2   434 _ADCRL	=	0x00c2
+                           0000C3   435 _ADCRH	=	0x00c3
+                           0000C4   436 _T3CON	=	0x00c4
+                           0000C5   437 _RL3	=	0x00c5
+                           0000C6   438 _RH3	=	0x00c6
+                           0000C7   439 _TA	=	0x00c7
+                           0000C8   440 _T2CON	=	0x00c8
+                           0000C9   441 _T2MOD	=	0x00c9
+                           0000CA   442 _RCMP2L	=	0x00ca
+                           0000CB   443 _RCMP2H	=	0x00cb
+                           0000CC   444 _TL2	=	0x00cc
+                           0000CD   445 _TH2	=	0x00cd
+                           0000CE   446 _ADCMPL	=	0x00ce
+                           0000CF   447 _ADCMPH	=	0x00cf
+                           0000D0   448 _PSW	=	0x00d0
+                           0000D1   449 _PWM0PH	=	0x00d1
+                           0000D2   450 _PWM0C0H	=	0x00d2
+                           0000D3   451 _PWM0C1H	=	0x00d3
+                           0000D4   452 _PWM0C2H	=	0x00d4
+                           0000D5   453 _PWM0C3H	=	0x00d5
+                           0000D6   454 _PNP	=	0x00d6
+                           0000D7   455 _PWM0FBD	=	0x00d7
+                           0000D8   456 _PWM0CON0	=	0x00d8
+                           0000D9   457 _PWM0PL	=	0x00d9
+                           0000DA   458 _PWM0C0L	=	0x00da
+                           0000DB   459 _PWM0C1L	=	0x00db
+                           0000DC   460 _PWM0C2L	=	0x00dc
+                           0000DD   461 _PWM0C3L	=	0x00dd
+                           0000DE   462 _PIOCON0	=	0x00de
+                           0000DF   463 _PWM0CON1	=	0x00df
+                           0000E0   464 _ACC	=	0x00e0
+                           0000E1   465 _ADCCON1	=	0x00e1
+                           0000E2   466 _ADCCON2	=	0x00e2
+                           0000E3   467 _ADCDLY	=	0x00e3
+                           0000E4   468 _C0L	=	0x00e4
+                           0000E5   469 _C0H	=	0x00e5
+                           0000E6   470 _C1L	=	0x00e6
+                           0000E7   471 _C1H	=	0x00e7
+                           0000E8   472 _ADCCON0	=	0x00e8
+                           0000E9   473 _PICON	=	0x00e9
+                           0000EA   474 _PINEN	=	0x00ea
+                           0000EB   475 _PIPEN	=	0x00eb
+                           0000EC   476 _PIF	=	0x00ec
+                           0000ED   477 _C2L	=	0x00ed
+                           0000EE   478 _C2H	=	0x00ee
+                           0000EF   479 _EIP	=	0x00ef
+                           0000F0   480 _B	=	0x00f0
+                           0000F1   481 _CAPCON3	=	0x00f1
+                           0000F2   482 _CAPCON4	=	0x00f2
+                           0000F3   483 _SPCR	=	0x00f3
+                           0000F4   484 _SPSR	=	0x00f4
+                           0000F5   485 _SPDR	=	0x00f5
+                           0000F6   486 _AINDIDS0	=	0x00f6
+                           0000F7   487 _EIPH	=	0x00f7
+                           0000F8   488 _SCON_1	=	0x00f8
+                           0000F9   489 _PWM0DTEN	=	0x00f9
+                           0000FA   490 _PWM0DTCNT	=	0x00fa
+                           0000FB   491 _PWM0MEN	=	0x00fb
+                           0000FC   492 _PWM0MD	=	0x00fc
+                           0000FD   493 _PORDIS	=	0x00fd
+                           0000FE   494 _EIP1	=	0x00fe
+                           0000FF   495 _EIPH1	=	0x00ff
+                           0000AC   496 _P3S	=	0x00ac
+                           0000AD   497 _P3SR	=	0x00ad
+                           0000B1   498 _P0S	=	0x00b1
+                           0000B2   499 _P0SR	=	0x00b2
+                           0000B3   500 _P1S	=	0x00b3
+                           0000B4   501 _P1SR	=	0x00b4
+                           0000B7   502 _PWM0INTC	=	0x00b7
+                           0000C4   503 _PWM0C4H	=	0x00c4
+                           0000C5   504 _PWM0C5H	=	0x00c5
+                           0000C6   505 _PIOCON1	=	0x00c6
+                           0000CC   506 _PWM0C4L	=	0x00cc
+                           0000CD   507 _PWM0C5L	=	0x00cd
+                           0000F3   508 _SPCR2	=	0x00f3
+                           0000FF   509 _LVRDIS	=	0x00ff
+                           000084   510 _ADCBAL	=	0x0084
+                           000085   511 _ADCBAH	=	0x0085
+                           000086   512 _ADCCON3	=	0x0086
+                           000089   513 _P2M1	=	0x0089
+                           00008A   514 _P2M2	=	0x008a
+                           00008B   515 _P2SR	=	0x008b
+                           00008C   516 _P2S	=	0x008c
+                           00008D   517 _ADCSN	=	0x008d
+                           00008E   518 _ADCCN	=	0x008e
+                           00008F   519 _ADCSR	=	0x008f
+                           000092   520 _P0UP	=	0x0092
+                           000093   521 _P1UP	=	0x0093
+                           000094   522 _P2UP	=	0x0094
+                           000095   523 _P3UP	=	0x0095
+                           000097   524 _RWKH	=	0x0097
+                           000099   525 _AINDIDS1	=	0x0099
+                           00009A   526 _P0DW	=	0x009a
+                           00009B   527 _P1DW	=	0x009b
+                           00009C   528 _P2DW	=	0x009c
+                           00009D   529 _P3DW	=	0x009d
+                           0000A1   530 _AUXR2	=	0x00a1
+                           0000A2   531 _AUXR3	=	0x00a2
+                           0000A3   532 _AUXR4	=	0x00a3
+                           0000A4   533 _AUXR5	=	0x00a4
+                           0000A5   534 _AUXR6	=	0x00a5
+                           0000A6   535 _AUXR7	=	0x00a6
+                           0000A7   536 _AUXR8	=	0x00a7
+                           0000A9   537 _PWM1PH	=	0x00a9
+                           0000AA   538 _PWM1C0H	=	0x00aa
+                           0000AB   539 _PWM1C1H	=	0x00ab
+                           0000AC   540 _PWM1MD	=	0x00ac
+                           0000AD   541 _PWM1MEN	=	0x00ad
+                           0000B1   542 _PWM1PL	=	0x00b1
+                           0000B2   543 _PWM1C0L	=	0x00b2
+                           0000B3   544 _PWM1C1L	=	0x00b3
+                           0000B4   545 _PWM1CON0	=	0x00b4
+                           0000B5   546 _PWM1CON1	=	0x00b5
+                           0000B6   547 _PWM1INTC	=	0x00b6
+                           0000B7   548 _PIOCON2	=	0x00b7
+                           0000B9   549 _PWM2PH	=	0x00b9
+                           0000BA   550 _PWM2C0H	=	0x00ba
+                           0000BB   551 _PWM2C1H	=	0x00bb
+                           0000BC   552 _PWM2MD	=	0x00bc
+                           0000BD   553 _PWM2MEN	=	0x00bd
+                           0000C1   554 _PWM2PL	=	0x00c1
+                           0000C2   555 _PWM2C0L	=	0x00c2
+                           0000C3   556 _PWM2C1L	=	0x00c3
+                           0000C4   557 _PWM2CON0	=	0x00c4
+                           0000C5   558 _PWM2CON1	=	0x00c5
+                           0000C6   559 _PWM2INTC	=	0x00c6
+                           0000C9   560 _PWM3PH	=	0x00c9
+                           0000CA   561 _PWM3C0H	=	0x00ca
+                           0000CB   562 _PWM3C1H	=	0x00cb
+                           0000CC   563 _PWM3MD	=	0x00cc
+                           0000CD   564 _PWM3MEN	=	0x00cd
+                           0000CE   565 _EIP2	=	0x00ce
+                           0000CF   566 _EIPH2	=	0x00cf
+                           0000D1   567 _PWM3PL	=	0x00d1
+                           0000D2   568 _PWM3C0L	=	0x00d2
+                           0000D3   569 _PWM3C1L	=	0x00d3
+                           0000D4   570 _PWM3CON0	=	0x00d4
+                           0000D5   571 _PWM3CON1	=	0x00d5
+                           0000D6   572 _PWM3INTC	=	0x00d6
+                           0000D7   573 _XTLCON	=	0x00d7
+                           0000D9   574 _SC0DR	=	0x00d9
+                           0000DA   575 _SC0EGT	=	0x00da
+                           0000DB   576 _SC0ETURD0	=	0x00db
+                           0000DC   577 _SC0ETURD1	=	0x00dc
+                           0000DD   578 _SC0IE	=	0x00dd
+                           0000DE   579 _SC0IS	=	0x00de
+                           0000DF   580 _SC0TSR	=	0x00df
+                           0000E1   581 _SC1DR	=	0x00e1
+                           0000E2   582 _SC1EGT	=	0x00e2
+                           0000E3   583 _SC1ETURD0	=	0x00e3
+                           0000E4   584 _SC1ETURD1	=	0x00e4
+                           0000E5   585 _SC1IE	=	0x00e5
+                           0000E6   586 _SC1IS	=	0x00e6
+                           0000E7   587 _SC1TSR	=	0x00e7
+                           0000E9   588 _SC2DR	=	0x00e9
+                           0000EA   589 _SC2EGT	=	0x00ea
+                           0000EB   590 _SC2ETURD0	=	0x00eb
+                           0000EC   591 _SC2ETURD1	=	0x00ec
+                           0000ED   592 _SC2IE	=	0x00ed
+                           0000EE   593 _SC2IS	=	0x00ee
+                           0000EF   594 _SC2TSR	=	0x00ef
+                           0000F1   595 _SC0CR0	=	0x00f1
+                           0000F2   596 _SC0CR1	=	0x00f2
+                           0000F3   597 _SC1CR0	=	0x00f3
+                           0000F4   598 _SC1CR1	=	0x00f4
+                           0000F5   599 _SC2CR0	=	0x00f5
+                           0000F6   600 _SC2CR1	=	0x00f6
+                           0000F7   601 _PIPS7	=	0x00f7
+                           0000F9   602 _PIPS0	=	0x00f9
+                           0000FA   603 _PIPS1	=	0x00fa
+                           0000FB   604 _PIPS2	=	0x00fb
+                           0000FC   605 _PIPS3	=	0x00fc
+                           0000FD   606 _PIPS4	=	0x00fd
+                           0000FE   607 _PIPS5	=	0x00fe
+                           0000FF   608 _PIPS6	=	0x00ff
+                                    609 ;--------------------------------------------------------
+                                    610 ; special function bits
+                                    611 ;--------------------------------------------------------
+                                    612 	.area RSEG    (ABS,DATA)
+      000000                        613 	.org 0x0000
+                           0000FF   614 _SM0_1	=	0x00ff
+                           0000FF   615 _FE_1	=	0x00ff
+                           0000FE   616 _SM1_1	=	0x00fe
+                           0000FD   617 _SM2_1	=	0x00fd
+                           0000FC   618 _REN_1	=	0x00fc
+                           0000FB   619 _TB8_1	=	0x00fb
+                           0000FA   620 _RB8_1	=	0x00fa
+                           0000F9   621 _TI_1	=	0x00f9
+                           0000F8   622 _RI_1	=	0x00f8
+                           0000EF   623 _ADCF	=	0x00ef
+                           0000EE   624 _ADCS	=	0x00ee
+                           0000ED   625 _ETGSEL1	=	0x00ed
+                           0000EC   626 _ETGSEL0	=	0x00ec
+                           0000EB   627 _ADCHS3	=	0x00eb
+                           0000EA   628 _ADCHS2	=	0x00ea
+                           0000E9   629 _ADCHS1	=	0x00e9
+                           0000E8   630 _ADCHS0	=	0x00e8
+                           0000DF   631 _PWMRUN	=	0x00df
+                           0000DE   632 _LOAD	=	0x00de
+                           0000DD   633 _PWMF	=	0x00dd
+                           0000DC   634 _CLRPWM	=	0x00dc
+                           0000D7   635 _CY	=	0x00d7
+                           0000D6   636 _AC	=	0x00d6
+                           0000D5   637 _F0	=	0x00d5
+                           0000D4   638 _RS1	=	0x00d4
+                           0000D3   639 _RS0	=	0x00d3
+                           0000D2   640 _OV	=	0x00d2
+                           0000D0   641 _P	=	0x00d0
+                           0000CF   642 _TF2	=	0x00cf
+                           0000CA   643 _TR2	=	0x00ca
+                           0000C8   644 _CM_RL2	=	0x00c8
+                           0000C6   645 _I2CEN	=	0x00c6
+                           0000C5   646 _STA	=	0x00c5
+                           0000C4   647 _STO	=	0x00c4
+                           0000C3   648 _SI	=	0x00c3
+                           0000C2   649 _AA	=	0x00c2
+                           0000C0   650 _I2CPX	=	0x00c0
+                           0000BE   651 _PADC	=	0x00be
+                           0000BD   652 _PBOD	=	0x00bd
+                           0000BC   653 _PS	=	0x00bc
+                           0000BB   654 _PT1	=	0x00bb
+                           0000BA   655 _PX1	=	0x00ba
+                           0000B9   656 _PT0	=	0x00b9
+                           0000B8   657 _PX0	=	0x00b8
+                           0000B7   658 _P37	=	0x00b7
+                           0000B6   659 _P36	=	0x00b6
+                           0000B5   660 _P35	=	0x00b5
+                           0000B4   661 _P34	=	0x00b4
+                           0000B3   662 _P33	=	0x00b3
+                           0000B2   663 _P32	=	0x00b2
+                           0000B1   664 _P31	=	0x00b1
+                           0000B0   665 _P30	=	0x00b0
+                           0000AF   666 _EA	=	0x00af
+                           0000AE   667 _EADC	=	0x00ae
+                           0000AD   668 _EBOD	=	0x00ad
+                           0000AC   669 _ES	=	0x00ac
+                           0000AB   670 _ET1	=	0x00ab
+                           0000AA   671 _EX1	=	0x00aa
+                           0000A9   672 _ET0	=	0x00a9
+                           0000A8   673 _EX0	=	0x00a8
+                           0000A0   674 _P20	=	0x00a0
+                           00009F   675 _SM0	=	0x009f
+                           00009F   676 _FE	=	0x009f
+                           00009E   677 _SM1	=	0x009e
+                           00009D   678 _SM2	=	0x009d
+                           00009C   679 _REN	=	0x009c
+                           00009B   680 _TB8	=	0x009b
+                           00009A   681 _RB8	=	0x009a
+                           000099   682 _TI	=	0x0099
+                           000098   683 _RI	=	0x0098
+                           000097   684 _P17	=	0x0097
+                           000096   685 _P16	=	0x0096
+                           000096   686 _TXD_1	=	0x0096
+                           000095   687 _P15	=	0x0095
+                           000094   688 _P14	=	0x0094
+                           000094   689 _SDA	=	0x0094
+                           000093   690 _P13	=	0x0093
+                           000093   691 _SCL	=	0x0093
+                           000092   692 _P12	=	0x0092
+                           000091   693 _P11	=	0x0091
+                           000090   694 _P10	=	0x0090
+                           00008F   695 _TF1	=	0x008f
+                           00008E   696 _TR1	=	0x008e
+                           00008D   697 _TF0	=	0x008d
+                           00008C   698 _TR0	=	0x008c
+                           00008B   699 _IE1	=	0x008b
+                           00008A   700 _IT1	=	0x008a
+                           000089   701 _IE0	=	0x0089
+                           000088   702 _IT0	=	0x0088
+                           000087   703 _P07	=	0x0087
+                           000087   704 _RXD	=	0x0087
+                           000086   705 _P06	=	0x0086
+                           000086   706 _TXD	=	0x0086
+                           000085   707 _P05	=	0x0085
+                           000084   708 _P04	=	0x0084
+                           000084   709 _STADC	=	0x0084
+                           000083   710 _P03	=	0x0083
+                           000082   711 _P02	=	0x0082
+                           000082   712 _RXD_1	=	0x0082
+                           000081   713 _P01	=	0x0081
+                           000081   714 _MISO	=	0x0081
+                           000080   715 _P00	=	0x0080
+                           000080   716 _MOSI	=	0x0080
+                                    717 ;--------------------------------------------------------
+                                    718 ; overlayable register banks
+                                    719 ;--------------------------------------------------------
+                                    720 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        721 	.ds 8
+                                    722 ;--------------------------------------------------------
+                                    723 ; internal ram data
+                                    724 ;--------------------------------------------------------
+                                    725 	.area DSEG    (DATA)
+      000000                        726 _Timer0_Delay_PARM_2:
+      000000                        727 	.ds 2
+      000002                        728 _Timer0_Delay_PARM_3:
+      000002                        729 	.ds 2
+      000004                        730 _Timer1_Delay_PARM_2:
+      000004                        731 	.ds 2
+      000006                        732 _Timer1_Delay_PARM_3:
+      000006                        733 	.ds 2
+      000008                        734 _Timer2_Delay_PARM_2:
+      000008                        735 	.ds 2
+      00000A                        736 _Timer2_Delay_PARM_3:
+      00000A                        737 	.ds 2
+      00000C                        738 _Timer2_Delay_PARM_4:
+      00000C                        739 	.ds 4
+      000010                        740 _Timer3_Delay_PARM_2:
+      000010                        741 	.ds 1
+      000011                        742 _Timer3_Delay_PARM_3:
+      000011                        743 	.ds 2
+      000013                        744 _Timer3_Delay_PARM_4:
+      000013                        745 	.ds 4
+                                    746 ;--------------------------------------------------------
+                                    747 ; overlayable items in internal ram
+                                    748 ;--------------------------------------------------------
+                                    749 ;--------------------------------------------------------
+                                    750 ; indirectly addressable internal ram data
+                                    751 ;--------------------------------------------------------
+                                    752 	.area ISEG    (DATA)
+                                    753 ;--------------------------------------------------------
+                                    754 ; absolute internal ram data
+                                    755 ;--------------------------------------------------------
+                                    756 	.area IABS    (ABS,DATA)
+                                    757 	.area IABS    (ABS,DATA)
+                                    758 ;--------------------------------------------------------
+                                    759 ; bit data
+                                    760 ;--------------------------------------------------------
+                                    761 	.area BSEG    (BIT)
+                                    762 ;--------------------------------------------------------
+                                    763 ; paged external ram data
+                                    764 ;--------------------------------------------------------
+                                    765 	.area PSEG    (PAG,XDATA)
+                                    766 ;--------------------------------------------------------
+                                    767 ; uninitialized external ram data
+                                    768 ;--------------------------------------------------------
+                                    769 	.area XSEG    (XDATA)
+                                    770 ;--------------------------------------------------------
+                                    771 ; absolute external ram data
+                                    772 ;--------------------------------------------------------
+                                    773 	.area XABS    (ABS,XDATA)
+                                    774 ;--------------------------------------------------------
+                                    775 ; initialized external ram data
+                                    776 ;--------------------------------------------------------
+                                    777 	.area XISEG   (XDATA)
+                                    778 	.area HOME    (CODE)
+                                    779 	.area GSINIT0 (CODE)
+                                    780 	.area GSINIT1 (CODE)
+                                    781 	.area GSINIT2 (CODE)
+                                    782 	.area GSINIT3 (CODE)
+                                    783 	.area GSINIT4 (CODE)
+                                    784 	.area GSINIT5 (CODE)
+                                    785 	.area GSINIT  (CODE)
+                                    786 	.area GSFINAL (CODE)
+                                    787 	.area CSEG    (CODE)
+                                    788 ;--------------------------------------------------------
+                                    789 ; global & static initialisations
+                                    790 ;--------------------------------------------------------
+                                    791 	.area HOME    (CODE)
+                                    792 	.area GSINIT  (CODE)
+                                    793 	.area GSFINAL (CODE)
+                                    794 	.area GSINIT  (CODE)
+                                    795 ;--------------------------------------------------------
+                                    796 ; Home
+                                    797 ;--------------------------------------------------------
+                                    798 	.area HOME    (CODE)
+                                    799 	.area HOME    (CODE)
+                                    800 ;--------------------------------------------------------
+                                    801 ; code
+                                    802 ;--------------------------------------------------------
+                                    803 	.area CSEG    (CODE)
+                                    804 ;------------------------------------------------------------
+                                    805 ;Allocation info for local variables in function 'Timer0_Delay'
+                                    806 ;------------------------------------------------------------
+                                    807 ;u16CNT                    Allocated with name '_Timer0_Delay_PARM_2'
+                                    808 ;u16DLYUnit                Allocated with name '_Timer0_Delay_PARM_3'
+                                    809 ;u32SYSCLK                 Allocated to registers r4 r5 r6 r7 
+                                    810 ;TL0TMP                    Allocated to registers r3 
+                                    811 ;TH0TMP                    Allocated to registers r7 
+                                    812 ;------------------------------------------------------------
+                                    813 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:27: void Timer0_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16DLYUnit)
+                                    814 ;	-----------------------------------------
+                                    815 ;	 function Timer0_Delay
+                                    816 ;	-----------------------------------------
+      000000                        817 _Timer0_Delay:
+                           000007   818 	ar7 = 0x07
+                           000006   819 	ar6 = 0x06
+                           000005   820 	ar5 = 0x05
+                           000004   821 	ar4 = 0x04
+                           000003   822 	ar3 = 0x03
+                           000002   823 	ar2 = 0x02
+                           000001   824 	ar1 = 0x01
+                           000000   825 	ar0 = 0x00
+      000000 AC 82            [24]  826 	mov	r4,dpl
+      000002 AD 83            [24]  827 	mov	r5,dph
+      000004 AE F0            [24]  828 	mov	r6,b
+      000006 FF               [12]  829 	mov	r7,a
+                                    830 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:31: SFRS = 0;
+      000007 75 91 00         [24]  831 	mov	_SFRS,#0x00
+                                    832 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:32: TIMER0_FSYS_DIV12;                                  //T0M=0, Timer0 Clock = Fsys/12
+      00000A 75 91 00         [24]  833 	mov	_SFRS,#0x00
+      00000D 53 8E F7         [24]  834 	anl	_CKCON,#0xf7
+                                    835 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:33: ENABLE_TIMER0_MODE1;                                   //Timer0 is 16-bit mode
+      000010 75 91 00         [24]  836 	mov	_SFRS,#0x00
+      000013 53 89 F0         [24]  837 	anl	_TMOD,#0xf0
+      000016 43 89 01         [24]  838 	orl	_TMOD,#0x01
+                                    839 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:34: TL0TMP = LOBYTE(65535-((u32SYSCLK/1000000)*u16DLYUnit/12));
+      000019 75*00 40         [24]  840 	mov	__divulong_PARM_2,#0x40
+      00001C 75*01 42         [24]  841 	mov	(__divulong_PARM_2 + 1),#0x42
+      00001F 75*02 0F         [24]  842 	mov	(__divulong_PARM_2 + 2),#0x0f
+      000022 75*03 00         [24]  843 	mov	(__divulong_PARM_2 + 3),#0x00
+      000025 8C 82            [24]  844 	mov	dpl,r4
+      000027 8D 83            [24]  845 	mov	dph,r5
+      000029 8E F0            [24]  846 	mov	b,r6
+      00002B EF               [12]  847 	mov	a,r7
+      00002C 12r00r00         [24]  848 	lcall	__divulong
+      00002F 85*02*00         [24]  849 	mov	__mullong_PARM_2,_Timer0_Delay_PARM_3
+      000032 85*03*01         [24]  850 	mov	(__mullong_PARM_2 + 1),(_Timer0_Delay_PARM_3 + 1)
+      000035 75*02 00         [24]  851 	mov	(__mullong_PARM_2 + 2),#0x00
+      000038 75*03 00         [24]  852 	mov	(__mullong_PARM_2 + 3),#0x00
+      00003B 12r00r00         [24]  853 	lcall	__mullong
+      00003E AC 82            [24]  854 	mov	r4,dpl
+      000040 AD 83            [24]  855 	mov	r5,dph
+      000042 AE F0            [24]  856 	mov	r6,b
+      000044 FF               [12]  857 	mov	r7,a
+      000045 75*00 0C         [24]  858 	mov	__divulong_PARM_2,#0x0c
+      000048 E4               [12]  859 	clr	a
+      000049 F5*01            [12]  860 	mov	(__divulong_PARM_2 + 1),a
+      00004B F5*02            [12]  861 	mov	(__divulong_PARM_2 + 2),a
+      00004D F5*03            [12]  862 	mov	(__divulong_PARM_2 + 3),a
+      00004F 8C 82            [24]  863 	mov	dpl,r4
+      000051 8D 83            [24]  864 	mov	dph,r5
+      000053 8E F0            [24]  865 	mov	b,r6
+      000055 EF               [12]  866 	mov	a,r7
+      000056 12r00r00         [24]  867 	lcall	__divulong
+      000059 AC 82            [24]  868 	mov	r4,dpl
+      00005B AD 83            [24]  869 	mov	r5,dph
+      00005D AE F0            [24]  870 	mov	r6,b
+      00005F FF               [12]  871 	mov	r7,a
+      000060 8C 03            [24]  872 	mov	ar3,r4
+      000062 74 FF            [12]  873 	mov	a,#0xff
+      000064 C3               [12]  874 	clr	c
+      000065 9B               [12]  875 	subb	a,r3
+      000066 FB               [12]  876 	mov	r3,a
+                                    877 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:35: TH0TMP = HIBYTE(65535-((u32SYSCLK/1000000)*u16DLYUnit/12));
+      000067 74 FF            [12]  878 	mov	a,#0xff
+      000069 C3               [12]  879 	clr	c
+      00006A 9C               [12]  880 	subb	a,r4
+      00006B 74 FF            [12]  881 	mov	a,#0xff
+      00006D 9D               [12]  882 	subb	a,r5
+      00006E FD               [12]  883 	mov	r5,a
+      00006F E4               [12]  884 	clr	a
+      000070 9E               [12]  885 	subb	a,r6
+      000071 E4               [12]  886 	clr	a
+      000072 9F               [12]  887 	subb	a,r7
+      000073 8D 07            [24]  888 	mov	ar7,r5
+                                    889 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:37: while (u16CNT != 0)
+      000075 AD*00            [24]  890 	mov	r5,_Timer0_Delay_PARM_2
+      000077 AE*01            [24]  891 	mov	r6,(_Timer0_Delay_PARM_2 + 1)
+      000079                        892 00104$:
+      000079 ED               [12]  893 	mov	a,r5
+      00007A 4E               [12]  894 	orl	a,r6
+      00007B 60 17            [24]  895 	jz	00106$
+                                    896 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:39: TL0=TL0TMP;
+      00007D 8B 8A            [24]  897 	mov	_TL0,r3
+                                    898 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:40: TH0=TH0TMP;
+      00007F 8F 8C            [24]  899 	mov	_TH0,r7
+                                    900 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:41: set_TCON_TR0;                                    //Start Timer0
+      000081 43 88 10         [24]  901 	orl	_TCON,#0x10
+                                    902 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:42: while (!TF0);                       //Check Timer0 Time-Out Flag
+      000084                        903 00101$:
+      000084 30 8D FD         [24]  904 	jnb	_TF0,00101$
+                                    905 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:43: clr_TCON_TF0;
+      000087 53 88 DF         [24]  906 	anl	_TCON,#0xdf
+                                    907 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:44: clr_TCON_TR0;                       //Stop Timer0
+      00008A 53 88 EF         [24]  908 	anl	_TCON,#0xef
+                                    909 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:45: u16CNT --;
+      00008D 1D               [12]  910 	dec	r5
+      00008E BD FF 01         [24]  911 	cjne	r5,#0xff,00128$
+      000091 1E               [12]  912 	dec	r6
+      000092                        913 00128$:
+      000092 80 E5            [24]  914 	sjmp	00104$
+      000094                        915 00106$:
+                                    916 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:48: TL0  = 0; 
+      000094 75 8A 00         [24]  917 	mov	_TL0,#0x00
+                                    918 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:49: TH0 = 0;
+      000097 75 8C 00         [24]  919 	mov	_TH0,#0x00
+                                    920 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:50: }
+      00009A 22               [24]  921 	ret
+                                    922 ;------------------------------------------------------------
+                                    923 ;Allocation info for local variables in function 'Timer1_Delay'
+                                    924 ;------------------------------------------------------------
+                                    925 ;u16CNT                    Allocated with name '_Timer1_Delay_PARM_2'
+                                    926 ;u16DLYUnit                Allocated with name '_Timer1_Delay_PARM_3'
+                                    927 ;u32SYSCLK                 Allocated to registers r4 r5 r6 r7 
+                                    928 ;TL1TMP                    Allocated to registers r3 
+                                    929 ;TH1TMP                    Allocated to registers r7 
+                                    930 ;------------------------------------------------------------
+                                    931 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:65: void Timer1_Delay(unsigned long u32SYSCLK, unsigned int u16CNT, unsigned int u16DLYUnit)
+                                    932 ;	-----------------------------------------
+                                    933 ;	 function Timer1_Delay
+                                    934 ;	-----------------------------------------
+      00009B                        935 _Timer1_Delay:
+      00009B AC 82            [24]  936 	mov	r4,dpl
+      00009D AD 83            [24]  937 	mov	r5,dph
+      00009F AE F0            [24]  938 	mov	r6,b
+      0000A1 FF               [12]  939 	mov	r7,a
+                                    940 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:69: SFRS = 0;
+      0000A2 75 91 00         [24]  941 	mov	_SFRS,#0x00
+                                    942 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:70: TIMER1_FSYS_DIV12;                                 //T1M=0, Timer1 Clock = Fsys/12
+      0000A5 75 91 00         [24]  943 	mov	_SFRS,#0x00
+      0000A8 53 8E EF         [24]  944 	anl	_CKCON,#0xef
+                                    945 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:71: ENABLE_TIMER1_MODE1;                                //Timer1 is 16-bit mode
+      0000AB 75 91 00         [24]  946 	mov	_SFRS,#0x00
+      0000AE 53 89 0F         [24]  947 	anl	_TMOD,#0x0f
+      0000B1 43 89 10         [24]  948 	orl	_TMOD,#0x10
+                                    949 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:72: TL1TMP = LOBYTE(65535-((u32SYSCLK/1000000)*u16DLYUnit)/12);
+      0000B4 75*00 40         [24]  950 	mov	__divulong_PARM_2,#0x40
+      0000B7 75*01 42         [24]  951 	mov	(__divulong_PARM_2 + 1),#0x42
+      0000BA 75*02 0F         [24]  952 	mov	(__divulong_PARM_2 + 2),#0x0f
+      0000BD 75*03 00         [24]  953 	mov	(__divulong_PARM_2 + 3),#0x00
+      0000C0 8C 82            [24]  954 	mov	dpl,r4
+      0000C2 8D 83            [24]  955 	mov	dph,r5
+      0000C4 8E F0            [24]  956 	mov	b,r6
+      0000C6 EF               [12]  957 	mov	a,r7
+      0000C7 12r00r00         [24]  958 	lcall	__divulong
+      0000CA 85*06*00         [24]  959 	mov	__mullong_PARM_2,_Timer1_Delay_PARM_3
+      0000CD 85*07*01         [24]  960 	mov	(__mullong_PARM_2 + 1),(_Timer1_Delay_PARM_3 + 1)
+      0000D0 75*02 00         [24]  961 	mov	(__mullong_PARM_2 + 2),#0x00
+      0000D3 75*03 00         [24]  962 	mov	(__mullong_PARM_2 + 3),#0x00
+      0000D6 12r00r00         [24]  963 	lcall	__mullong
+      0000D9 AC 82            [24]  964 	mov	r4,dpl
+      0000DB AD 83            [24]  965 	mov	r5,dph
+      0000DD AE F0            [24]  966 	mov	r6,b
+      0000DF FF               [12]  967 	mov	r7,a
+      0000E0 75*00 0C         [24]  968 	mov	__divulong_PARM_2,#0x0c
+      0000E3 E4               [12]  969 	clr	a
+      0000E4 F5*01            [12]  970 	mov	(__divulong_PARM_2 + 1),a
+      0000E6 F5*02            [12]  971 	mov	(__divulong_PARM_2 + 2),a
+      0000E8 F5*03            [12]  972 	mov	(__divulong_PARM_2 + 3),a
+      0000EA 8C 82            [24]  973 	mov	dpl,r4
+      0000EC 8D 83            [24]  974 	mov	dph,r5
+      0000EE 8E F0            [24]  975 	mov	b,r6
+      0000F0 EF               [12]  976 	mov	a,r7
+      0000F1 12r00r00         [24]  977 	lcall	__divulong
+      0000F4 AC 82            [24]  978 	mov	r4,dpl
+      0000F6 AD 83            [24]  979 	mov	r5,dph
+      0000F8 AE F0            [24]  980 	mov	r6,b
+      0000FA FF               [12]  981 	mov	r7,a
+      0000FB 8C 03            [24]  982 	mov	ar3,r4
+      0000FD 74 FF            [12]  983 	mov	a,#0xff
+      0000FF C3               [12]  984 	clr	c
+      000100 9B               [12]  985 	subb	a,r3
+      000101 FB               [12]  986 	mov	r3,a
+                                    987 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:73: TH1TMP = HIBYTE(65535-((u32SYSCLK/1000000)*u16DLYUnit)/12);
+      000102 74 FF            [12]  988 	mov	a,#0xff
+      000104 C3               [12]  989 	clr	c
+      000105 9C               [12]  990 	subb	a,r4
+      000106 74 FF            [12]  991 	mov	a,#0xff
+      000108 9D               [12]  992 	subb	a,r5
+      000109 FD               [12]  993 	mov	r5,a
+      00010A E4               [12]  994 	clr	a
+      00010B 9E               [12]  995 	subb	a,r6
+      00010C E4               [12]  996 	clr	a
+      00010D 9F               [12]  997 	subb	a,r7
+      00010E 8D 07            [24]  998 	mov	ar7,r5
+                                    999 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:75: while (u16CNT != 0)
+      000110 AD*04            [24] 1000 	mov	r5,_Timer1_Delay_PARM_2
+      000112 AE*05            [24] 1001 	mov	r6,(_Timer1_Delay_PARM_2 + 1)
+      000114                       1002 00104$:
+      000114 ED               [12] 1003 	mov	a,r5
+      000115 4E               [12] 1004 	orl	a,r6
+      000116 60 17            [24] 1005 	jz	00107$
+                                   1006 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:77: TL1 = TL1TMP;
+      000118 8B 8B            [24] 1007 	mov	_TL1,r3
+                                   1008 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:78: TH1 = TH1TMP;
+      00011A 8F 8D            [24] 1009 	mov	_TH1,r7
+                                   1010 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:79: set_TCON_TR1;                                //Start Timer1
+      00011C 43 88 40         [24] 1011 	orl	_TCON,#0x40
+                                   1012 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:80: while (!TF1);                                //Check Timer1 Time-Out Flag
+      00011F                       1013 00101$:
+      00011F 30 8F FD         [24] 1014 	jnb	_TF1,00101$
+                                   1015 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:81: clr_TCON_TF1;
+      000122 53 88 7F         [24] 1016 	anl	_TCON,#0x7f
+                                   1017 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:82: clr_TCON_TR1;
+      000125 53 88 BF         [24] 1018 	anl	_TCON,#0xbf
+                                   1019 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:83: u16CNT --;
+      000128 1D               [12] 1020 	dec	r5
+      000129 BD FF 01         [24] 1021 	cjne	r5,#0xff,00128$
+      00012C 1E               [12] 1022 	dec	r6
+      00012D                       1023 00128$:
+      00012D 80 E5            [24] 1024 	sjmp	00104$
+      00012F                       1025 00107$:
+                                   1026 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:85: }
+      00012F 22               [24] 1027 	ret
+                                   1028 ;------------------------------------------------------------
+                                   1029 ;Allocation info for local variables in function 'Timer2_Delay'
+                                   1030 ;------------------------------------------------------------
+                                   1031 ;u16TMDIV                  Allocated with name '_Timer2_Delay_PARM_2'
+                                   1032 ;u16CNT                    Allocated with name '_Timer2_Delay_PARM_3'
+                                   1033 ;u32DLYUnit                Allocated with name '_Timer2_Delay_PARM_4'
+                                   1034 ;u32SYSCLK                 Allocated to registers r4 r5 r6 r7 
+                                   1035 ;TL2TMP                    Allocated to registers r3 
+                                   1036 ;TH2TMP                    Allocated to registers r7 
+                                   1037 ;------------------------------------------------------------
+                                   1038 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:102: void Timer2_Delay(unsigned long u32SYSCLK,unsigned int u16TMDIV, unsigned int u16CNT, unsigned long u32DLYUnit)
+                                   1039 ;	-----------------------------------------
+                                   1040 ;	 function Timer2_Delay
+                                   1041 ;	-----------------------------------------
+      000130                       1042 _Timer2_Delay:
+      000130 AC 82            [24] 1043 	mov	r4,dpl
+      000132 AD 83            [24] 1044 	mov	r5,dph
+      000134 AE F0            [24] 1045 	mov	r6,b
+      000136 FF               [12] 1046 	mov	r7,a
+                                   1047 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:106: SFRS = 0;
+      000137 75 91 00         [24] 1048 	mov	_SFRS,#0x00
+                                   1049 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:107: switch (u16TMDIV)
+      00013A 74 01            [12] 1050 	mov	a,#0x01
+      00013C B5*08 06         [24] 1051 	cjne	a,_Timer2_Delay_PARM_2,00167$
+      00013F 14               [12] 1052 	dec	a
+      000140 B5*09 02         [24] 1053 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00167$
+      000143 80 4C            [24] 1054 	sjmp	00101$
+      000145                       1055 00167$:
+      000145 74 04            [12] 1056 	mov	a,#0x04
+      000147 B5*08 06         [24] 1057 	cjne	a,_Timer2_Delay_PARM_2,00168$
+      00014A E4               [12] 1058 	clr	a
+      00014B B5*09 02         [24] 1059 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00168$
+      00014E 80 46            [24] 1060 	sjmp	00102$
+      000150                       1061 00168$:
+      000150 74 10            [12] 1062 	mov	a,#0x10
+      000152 B5*08 06         [24] 1063 	cjne	a,_Timer2_Delay_PARM_2,00169$
+      000155 E4               [12] 1064 	clr	a
+      000156 B5*09 02         [24] 1065 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00169$
+      000159 80 43            [24] 1066 	sjmp	00103$
+      00015B                       1067 00169$:
+      00015B 74 20            [12] 1068 	mov	a,#0x20
+      00015D B5*08 06         [24] 1069 	cjne	a,_Timer2_Delay_PARM_2,00170$
+      000160 E4               [12] 1070 	clr	a
+      000161 B5*09 02         [24] 1071 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00170$
+      000164 80 40            [24] 1072 	sjmp	00104$
+      000166                       1073 00170$:
+      000166 74 40            [12] 1074 	mov	a,#0x40
+      000168 B5*08 06         [24] 1075 	cjne	a,_Timer2_Delay_PARM_2,00171$
+      00016B E4               [12] 1076 	clr	a
+      00016C B5*09 02         [24] 1077 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00171$
+      00016F 80 3D            [24] 1078 	sjmp	00105$
+      000171                       1079 00171$:
+      000171 74 80            [12] 1080 	mov	a,#0x80
+      000173 B5*08 06         [24] 1081 	cjne	a,_Timer2_Delay_PARM_2,00172$
+      000176 E4               [12] 1082 	clr	a
+      000177 B5*09 02         [24] 1083 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00172$
+      00017A 80 3A            [24] 1084 	sjmp	00106$
+      00017C                       1085 00172$:
+      00017C E4               [12] 1086 	clr	a
+      00017D B5*08 06         [24] 1087 	cjne	a,_Timer2_Delay_PARM_2,00173$
+      000180 04               [12] 1088 	inc	a
+      000181 B5*09 02         [24] 1089 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00173$
+      000184 80 38            [24] 1090 	sjmp	00107$
+      000186                       1091 00173$:
+      000186 E4               [12] 1092 	clr	a
+                                   1093 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:109: case 1:T2MOD&=0x8F; break;
+      000187 B5*08 42         [24] 1094 	cjne	a,_Timer2_Delay_PARM_2,00109$
+      00018A 74 02            [12] 1095 	mov	a,#0x02
+      00018C B5*09 3D         [24] 1096 	cjne	a,(_Timer2_Delay_PARM_2 + 1),00109$
+      00018F 80 35            [24] 1097 	sjmp	00108$
+      000191                       1098 00101$:
+      000191 53 C9 8F         [24] 1099 	anl	_T2MOD,#0x8f
+                                   1100 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:110: case 4:T2MOD&=0x8F;T2MOD|=0x10; break;
+      000194 80 36            [24] 1101 	sjmp	00109$
+      000196                       1102 00102$:
+      000196 53 C9 8F         [24] 1103 	anl	_T2MOD,#0x8f
+      000199 43 C9 10         [24] 1104 	orl	_T2MOD,#0x10
+                                   1105 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:111: case 16:T2MOD&=0x8F;T2MOD|=0x20; break;
+      00019C 80 2E            [24] 1106 	sjmp	00109$
+      00019E                       1107 00103$:
+      00019E 53 C9 8F         [24] 1108 	anl	_T2MOD,#0x8f
+      0001A1 43 C9 20         [24] 1109 	orl	_T2MOD,#0x20
+                                   1110 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:112: case 32:T2MOD&=0x8F;T2MOD|=0x30; break;
+      0001A4 80 26            [24] 1111 	sjmp	00109$
+      0001A6                       1112 00104$:
+      0001A6 53 C9 8F         [24] 1113 	anl	_T2MOD,#0x8f
+      0001A9 43 C9 30         [24] 1114 	orl	_T2MOD,#0x30
+                                   1115 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:113: case 64:T2MOD&=0x8F;T2MOD|=0x40; break;
+      0001AC 80 1E            [24] 1116 	sjmp	00109$
+      0001AE                       1117 00105$:
+      0001AE 53 C9 8F         [24] 1118 	anl	_T2MOD,#0x8f
+      0001B1 43 C9 40         [24] 1119 	orl	_T2MOD,#0x40
+                                   1120 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:114: case 128:T2MOD&=0x8F;T2MOD|=0x50; break;
+      0001B4 80 16            [24] 1121 	sjmp	00109$
+      0001B6                       1122 00106$:
+      0001B6 53 C9 8F         [24] 1123 	anl	_T2MOD,#0x8f
+      0001B9 43 C9 50         [24] 1124 	orl	_T2MOD,#0x50
+                                   1125 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:115: case 256:T2MOD&=0x8F;T2MOD|=0x60; break;
+      0001BC 80 0E            [24] 1126 	sjmp	00109$
+      0001BE                       1127 00107$:
+      0001BE 53 C9 8F         [24] 1128 	anl	_T2MOD,#0x8f
+      0001C1 43 C9 60         [24] 1129 	orl	_T2MOD,#0x60
+                                   1130 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:116: case 512:T2MOD&=0x8F;T2MOD|=0x70; break;
+      0001C4 80 06            [24] 1131 	sjmp	00109$
+      0001C6                       1132 00108$:
+      0001C6 53 C9 8F         [24] 1133 	anl	_T2MOD,#0x8f
+      0001C9 43 C9 70         [24] 1134 	orl	_T2MOD,#0x70
+                                   1135 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:117: }
+      0001CC                       1136 00109$:
+                                   1137 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:118: clr_T2CON_CMRL2;                                  //Timer 2 as auto-reload mode
+      0001CC 53 C8 FE         [24] 1138 	anl	_T2CON,#0xfe
+                                   1139 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:119: set_T2MOD_LDEN;
+      0001CF 75 91 00         [24] 1140 	mov	_SFRS,#0x00
+      0001D2 43 C9 80         [24] 1141 	orl	_T2MOD,#0x80
+                                   1142 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:120: set_T2MOD_CMPCR;                                  //Timer 2 value is auto-cleared as 0000H when a compare match occurs.
+      0001D5 75 91 00         [24] 1143 	mov	_SFRS,#0x00
+      0001D8 43 C9 04         [24] 1144 	orl	_T2MOD,#0x04
+                                   1145 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:121: TL2TMP = LOBYTE(65536-((u32SYSCLK/1000000)*u32DLYUnit/u16TMDIV));
+      0001DB 75*00 40         [24] 1146 	mov	__divulong_PARM_2,#0x40
+      0001DE 75*01 42         [24] 1147 	mov	(__divulong_PARM_2 + 1),#0x42
+      0001E1 75*02 0F         [24] 1148 	mov	(__divulong_PARM_2 + 2),#0x0f
+      0001E4 75*03 00         [24] 1149 	mov	(__divulong_PARM_2 + 3),#0x00
+      0001E7 8C 82            [24] 1150 	mov	dpl,r4
+      0001E9 8D 83            [24] 1151 	mov	dph,r5
+      0001EB 8E F0            [24] 1152 	mov	b,r6
+      0001ED EF               [12] 1153 	mov	a,r7
+      0001EE 12r00r00         [24] 1154 	lcall	__divulong
+      0001F1 85*0C*00         [24] 1155 	mov	__mullong_PARM_2,_Timer2_Delay_PARM_4
+      0001F4 85*0D*01         [24] 1156 	mov	(__mullong_PARM_2 + 1),(_Timer2_Delay_PARM_4 + 1)
+      0001F7 85*0E*02         [24] 1157 	mov	(__mullong_PARM_2 + 2),(_Timer2_Delay_PARM_4 + 2)
+      0001FA 85*0F*03         [24] 1158 	mov	(__mullong_PARM_2 + 3),(_Timer2_Delay_PARM_4 + 3)
+      0001FD 12r00r00         [24] 1159 	lcall	__mullong
+      000200 85*08*00         [24] 1160 	mov	__divulong_PARM_2,_Timer2_Delay_PARM_2
+      000203 85*09*01         [24] 1161 	mov	(__divulong_PARM_2 + 1),(_Timer2_Delay_PARM_2 + 1)
+      000206 75*02 00         [24] 1162 	mov	(__divulong_PARM_2 + 2),#0x00
+      000209 75*03 00         [24] 1163 	mov	(__divulong_PARM_2 + 3),#0x00
+      00020C 12r00r00         [24] 1164 	lcall	__divulong
+      00020F AC 82            [24] 1165 	mov	r4,dpl
+      000211 AD 83            [24] 1166 	mov	r5,dph
+      000213 AE F0            [24] 1167 	mov	r6,b
+      000215 FF               [12] 1168 	mov	r7,a
+      000216 8C 03            [24] 1169 	mov	ar3,r4
+      000218 C3               [12] 1170 	clr	c
+      000219 E4               [12] 1171 	clr	a
+      00021A 9B               [12] 1172 	subb	a,r3
+      00021B FB               [12] 1173 	mov	r3,a
+                                   1174 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:122: TH2TMP = HIBYTE(65536-((u32SYSCLK/1000000)*u32DLYUnit/u16TMDIV));
+      00021C E4               [12] 1175 	clr	a
+      00021D C3               [12] 1176 	clr	c
+      00021E 9C               [12] 1177 	subb	a,r4
+      00021F E4               [12] 1178 	clr	a
+      000220 9D               [12] 1179 	subb	a,r5
+      000221 FD               [12] 1180 	mov	r5,a
+      000222 74 01            [12] 1181 	mov	a,#0x01
+      000224 9E               [12] 1182 	subb	a,r6
+      000225 E4               [12] 1183 	clr	a
+      000226 9F               [12] 1184 	subb	a,r7
+      000227 8D 07            [24] 1185 	mov	ar7,r5
+                                   1186 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:123: while (u16CNT != 0)
+      000229 AD*0A            [24] 1187 	mov	r5,_Timer2_Delay_PARM_3
+      00022B AE*0B            [24] 1188 	mov	r6,(_Timer2_Delay_PARM_3 + 1)
+      00022D                       1189 00113$:
+      00022D ED               [12] 1190 	mov	a,r5
+      00022E 4E               [12] 1191 	orl	a,r6
+      00022F 60 17            [24] 1192 	jz	00116$
+                                   1193 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:125: TL2 = TL2TMP;
+      000231 8B CC            [24] 1194 	mov	_TL2,r3
+                                   1195 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:126: TH2 = TH2TMP;
+      000233 8F CD            [24] 1196 	mov	_TH2,r7
+                                   1197 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:127: set_T2CON_TR2;                                    //Start Timer2
+      000235 43 C8 04         [24] 1198 	orl	_T2CON,#0x04
+                                   1199 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:128: while (TF2!=1);            //Check Timer2 Time-Out Flag
+      000238                       1200 00110$:
+      000238 30 CF FD         [24] 1201 	jnb	_TF2,00110$
+                                   1202 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:129: clr_T2CON_TF2;
+      00023B 53 C8 7F         [24] 1203 	anl	_T2CON,#0x7f
+                                   1204 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:130: clr_T2CON_TR2;                                    //Stop Timer2
+      00023E 53 C8 FB         [24] 1205 	anl	_T2CON,#0xfb
+                                   1206 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:131: u16CNT --;
+      000241 1D               [12] 1207 	dec	r5
+      000242 BD FF 01         [24] 1208 	cjne	r5,#0xff,00177$
+      000245 1E               [12] 1209 	dec	r6
+      000246                       1210 00177$:
+      000246 80 E5            [24] 1211 	sjmp	00113$
+      000248                       1212 00116$:
+                                   1213 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:133: }
+      000248 22               [24] 1214 	ret
+                                   1215 ;------------------------------------------------------------
+                                   1216 ;Allocation info for local variables in function 'Timer3_Delay'
+                                   1217 ;------------------------------------------------------------
+                                   1218 ;u8TMDIV                   Allocated with name '_Timer3_Delay_PARM_2'
+                                   1219 ;u16CNT                    Allocated with name '_Timer3_Delay_PARM_3'
+                                   1220 ;u32DLYUnit                Allocated with name '_Timer3_Delay_PARM_4'
+                                   1221 ;u32SYSCLK                 Allocated to registers r4 r5 r6 r7 
+                                   1222 ;TL3TMP                    Allocated to registers r3 
+                                   1223 ;TH3TMP                    Allocated to registers r7 
+                                   1224 ;------------------------------------------------------------
+                                   1225 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:149: void Timer3_Delay(unsigned long u32SYSCLK,unsigned char u8TMDIV, unsigned int u16CNT, unsigned long u32DLYUnit)
+                                   1226 ;	-----------------------------------------
+                                   1227 ;	 function Timer3_Delay
+                                   1228 ;	-----------------------------------------
+      000249                       1229 _Timer3_Delay:
+      000249 AC 82            [24] 1230 	mov	r4,dpl
+      00024B AD 83            [24] 1231 	mov	r5,dph
+      00024D AE F0            [24] 1232 	mov	r6,b
+      00024F FF               [12] 1233 	mov	r7,a
+                                   1234 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:153: SFRS = 0;
+      000250 75 91 00         [24] 1235 	mov	_SFRS,#0x00
+                                   1236 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:154: switch (u8TMDIV)
+      000253 74 01            [12] 1237 	mov	a,#0x01
+      000255 B5*10 02         [24] 1238 	cjne	a,_Timer3_Delay_PARM_2,00167$
+      000258 80 31            [24] 1239 	sjmp	00101$
+      00025A                       1240 00167$:
+      00025A 74 02            [12] 1241 	mov	a,#0x02
+      00025C B5*10 02         [24] 1242 	cjne	a,_Timer3_Delay_PARM_2,00168$
+      00025F 80 2F            [24] 1243 	sjmp	00102$
+      000261                       1244 00168$:
+      000261 74 04            [12] 1245 	mov	a,#0x04
+      000263 B5*10 02         [24] 1246 	cjne	a,_Timer3_Delay_PARM_2,00169$
+      000266 80 30            [24] 1247 	sjmp	00103$
+      000268                       1248 00169$:
+      000268 74 08            [12] 1249 	mov	a,#0x08
+      00026A B5*10 02         [24] 1250 	cjne	a,_Timer3_Delay_PARM_2,00170$
+      00026D 80 31            [24] 1251 	sjmp	00104$
+      00026F                       1252 00170$:
+      00026F 74 10            [12] 1253 	mov	a,#0x10
+      000271 B5*10 02         [24] 1254 	cjne	a,_Timer3_Delay_PARM_2,00171$
+      000274 80 32            [24] 1255 	sjmp	00105$
+      000276                       1256 00171$:
+      000276 74 20            [12] 1257 	mov	a,#0x20
+      000278 B5*10 02         [24] 1258 	cjne	a,_Timer3_Delay_PARM_2,00172$
+      00027B 80 33            [24] 1259 	sjmp	00106$
+      00027D                       1260 00172$:
+      00027D 74 40            [12] 1261 	mov	a,#0x40
+      00027F B5*10 02         [24] 1262 	cjne	a,_Timer3_Delay_PARM_2,00173$
+      000282 80 34            [24] 1263 	sjmp	00107$
+      000284                       1264 00173$:
+      000284 74 80            [12] 1265 	mov	a,#0x80
+                                   1266 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:156: case 1:T3CON&=0xF8; break;
+      000286 B5*10 3D         [24] 1267 	cjne	a,_Timer3_Delay_PARM_2,00109$
+      000289 80 35            [24] 1268 	sjmp	00108$
+      00028B                       1269 00101$:
+      00028B 53 C4 F8         [24] 1270 	anl	_T3CON,#0xf8
+                                   1271 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:157: case 2:T3CON&=0xF8;T3CON|=0x01; break;
+      00028E 80 36            [24] 1272 	sjmp	00109$
+      000290                       1273 00102$:
+      000290 53 C4 F8         [24] 1274 	anl	_T3CON,#0xf8
+      000293 43 C4 01         [24] 1275 	orl	_T3CON,#0x01
+                                   1276 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:158: case 4:T3CON&=0xF8;T3CON|=0x02; break;
+      000296 80 2E            [24] 1277 	sjmp	00109$
+      000298                       1278 00103$:
+      000298 53 C4 F8         [24] 1279 	anl	_T3CON,#0xf8
+      00029B 43 C4 02         [24] 1280 	orl	_T3CON,#0x02
+                                   1281 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:159: case 8:T3CON&=0xF8;T3CON|=0x03; break;
+      00029E 80 26            [24] 1282 	sjmp	00109$
+      0002A0                       1283 00104$:
+      0002A0 53 C4 F8         [24] 1284 	anl	_T3CON,#0xf8
+      0002A3 43 C4 03         [24] 1285 	orl	_T3CON,#0x03
+                                   1286 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:160: case 16:T3CON&=0xF8;T3CON|=0x04; break;
+      0002A6 80 1E            [24] 1287 	sjmp	00109$
+      0002A8                       1288 00105$:
+      0002A8 53 C4 F8         [24] 1289 	anl	_T3CON,#0xf8
+      0002AB 43 C4 04         [24] 1290 	orl	_T3CON,#0x04
+                                   1291 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:161: case 32:T3CON&=0xF8;T3CON|=0x05; break;
+      0002AE 80 16            [24] 1292 	sjmp	00109$
+      0002B0                       1293 00106$:
+      0002B0 53 C4 F8         [24] 1294 	anl	_T3CON,#0xf8
+      0002B3 43 C4 05         [24] 1295 	orl	_T3CON,#0x05
+                                   1296 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:162: case 64:T3CON&=0xF8;T3CON|=0x06; break;
+      0002B6 80 0E            [24] 1297 	sjmp	00109$
+      0002B8                       1298 00107$:
+      0002B8 53 C4 F8         [24] 1299 	anl	_T3CON,#0xf8
+      0002BB 43 C4 06         [24] 1300 	orl	_T3CON,#0x06
+                                   1301 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:163: case 128:T3CON&=0xF8;T3CON|=0x07; break;
+      0002BE 80 06            [24] 1302 	sjmp	00109$
+      0002C0                       1303 00108$:
+      0002C0 53 C4 F8         [24] 1304 	anl	_T3CON,#0xf8
+      0002C3 43 C4 07         [24] 1305 	orl	_T3CON,#0x07
+                                   1306 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:164: }
+      0002C6                       1307 00109$:
+                                   1308 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:165: TL3TMP = LOBYTE(65536-((u32SYSCLK/1000000)*u32DLYUnit/u8TMDIV));
+      0002C6 75*00 40         [24] 1309 	mov	__divulong_PARM_2,#0x40
+      0002C9 75*01 42         [24] 1310 	mov	(__divulong_PARM_2 + 1),#0x42
+      0002CC 75*02 0F         [24] 1311 	mov	(__divulong_PARM_2 + 2),#0x0f
+      0002CF 75*03 00         [24] 1312 	mov	(__divulong_PARM_2 + 3),#0x00
+      0002D2 8C 82            [24] 1313 	mov	dpl,r4
+      0002D4 8D 83            [24] 1314 	mov	dph,r5
+      0002D6 8E F0            [24] 1315 	mov	b,r6
+      0002D8 EF               [12] 1316 	mov	a,r7
+      0002D9 12r00r00         [24] 1317 	lcall	__divulong
+      0002DC 85*13*00         [24] 1318 	mov	__mullong_PARM_2,_Timer3_Delay_PARM_4
+      0002DF 85*14*01         [24] 1319 	mov	(__mullong_PARM_2 + 1),(_Timer3_Delay_PARM_4 + 1)
+      0002E2 85*15*02         [24] 1320 	mov	(__mullong_PARM_2 + 2),(_Timer3_Delay_PARM_4 + 2)
+      0002E5 85*16*03         [24] 1321 	mov	(__mullong_PARM_2 + 3),(_Timer3_Delay_PARM_4 + 3)
+      0002E8 12r00r00         [24] 1322 	lcall	__mullong
+      0002EB 85*10*00         [24] 1323 	mov	__divulong_PARM_2,_Timer3_Delay_PARM_2
+      0002EE 75*01 00         [24] 1324 	mov	(__divulong_PARM_2 + 1),#0x00
+      0002F1 75*02 00         [24] 1325 	mov	(__divulong_PARM_2 + 2),#0x00
+      0002F4 75*03 00         [24] 1326 	mov	(__divulong_PARM_2 + 3),#0x00
+      0002F7 12r00r00         [24] 1327 	lcall	__divulong
+      0002FA AC 82            [24] 1328 	mov	r4,dpl
+      0002FC AD 83            [24] 1329 	mov	r5,dph
+      0002FE AE F0            [24] 1330 	mov	r6,b
+      000300 FF               [12] 1331 	mov	r7,a
+      000301 8C 03            [24] 1332 	mov	ar3,r4
+      000303 C3               [12] 1333 	clr	c
+      000304 E4               [12] 1334 	clr	a
+      000305 9B               [12] 1335 	subb	a,r3
+      000306 FB               [12] 1336 	mov	r3,a
+                                   1337 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:166: TH3TMP = HIBYTE(65536-((u32SYSCLK/1000000)*u32DLYUnit/u8TMDIV));
+      000307 E4               [12] 1338 	clr	a
+      000308 C3               [12] 1339 	clr	c
+      000309 9C               [12] 1340 	subb	a,r4
+      00030A FC               [12] 1341 	mov	r4,a
+      00030B E4               [12] 1342 	clr	a
+      00030C 9D               [12] 1343 	subb	a,r5
+      00030D FD               [12] 1344 	mov	r5,a
+      00030E 74 01            [12] 1345 	mov	a,#0x01
+      000310 9E               [12] 1346 	subb	a,r6
+      000311 E4               [12] 1347 	clr	a
+      000312 9F               [12] 1348 	subb	a,r7
+      000313 8D 07            [24] 1349 	mov	ar7,r5
+                                   1350 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:167: while (u16CNT != 0)
+      000315 AD*11            [24] 1351 	mov	r5,_Timer3_Delay_PARM_3
+      000317 AE*12            [24] 1352 	mov	r6,(_Timer3_Delay_PARM_3 + 1)
+      000319                       1353 00113$:
+      000319 ED               [12] 1354 	mov	a,r5
+      00031A 4E               [12] 1355 	orl	a,r6
+      00031B 60 2D            [24] 1356 	jz	00116$
+                                   1357 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:169: clr_T3CON_TF3;
+      00031D 75 91 00         [24] 1358 	mov	_SFRS,#0x00
+      000320 53 C4 EF         [24] 1359 	anl	_T3CON,#0xef
+                                   1360 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:170: RL3 = TL3TMP;
+      000323 8B C5            [24] 1361 	mov	_RL3,r3
+                                   1362 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:171: RH3 = TH3TMP;
+      000325 8F C6            [24] 1363 	mov	_RH3,r7
+                                   1364 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:172: set_T3CON_TR3;                                    //Trigger Timer3
+      000327 75 91 00         [24] 1365 	mov	_SFRS,#0x00
+      00032A 43 C4 08         [24] 1366 	orl	_T3CON,#0x08
+                                   1367 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:173: while ((T3CON|CLR_BIT4)==CLR_BIT4);    //Check Timer3 Time-Out Flag
+      00032D                       1368 00110$:
+      00032D 74 EF            [12] 1369 	mov	a,#0xef
+      00032F 45 C4            [12] 1370 	orl	a,_T3CON
+      000331 FC               [12] 1371 	mov	r4,a
+      000332 BC EF 02         [24] 1372 	cjne	r4,#0xef,00176$
+      000335 80 F6            [24] 1373 	sjmp	00110$
+      000337                       1374 00176$:
+                                   1375 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:174: clr_T3CON_TF3;
+      000337 75 91 00         [24] 1376 	mov	_SFRS,#0x00
+      00033A 53 C4 EF         [24] 1377 	anl	_T3CON,#0xef
+                                   1378 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:175: clr_T3CON_TR3;                                    //Stop Timer3
+      00033D 75 91 00         [24] 1379 	mov	_SFRS,#0x00
+      000340 53 C4 F7         [24] 1380 	anl	_T3CON,#0xf7
+                                   1381 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:176: u16CNT --;
+      000343 1D               [12] 1382 	dec	r5
+      000344 BD FF 01         [24] 1383 	cjne	r5,#0xff,00177$
+      000347 1E               [12] 1384 	dec	r6
+      000348                       1385 00177$:
+      000348 80 CF            [24] 1386 	sjmp	00113$
+      00034A                       1387 00116$:
+                                   1388 ;	..\..\..\..\..\Library\StdDriver\src\delay.c:178: }
+      00034A 22               [24] 1389 	ret
+                                   1390 	.area CSEG    (CODE)
+                                   1391 	.area CONST   (CODE)
+                                   1392 	.area XINIT   (CODE)
+                                   1393 	.area CABS    (ABS,CODE)
