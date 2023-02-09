@@ -28,7 +28,7 @@ void main (void)
     UART_Open(24000000,UART0_Timer3,115200);
     ENABLE_UART0_PRINTF;
 
-    printf("\n Hello world! Tioc SDCC");
+    printf("\n Hello world! Unix");
     while(1);
 
 

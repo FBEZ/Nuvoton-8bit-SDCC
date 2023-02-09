@@ -14,11 +14,11 @@
 /******************************************************************************/
 /*                         Peripheral header files                            */
 /******************************************************************************/
-#include "Function_define_MS51_32K.h"
+#include "Function_Define_MS51_32K.h"
 //#include "adc.h"
 #include "sys.h"
 #include "eeprom.h"
-#include "Delay.h" 
+#include "delay.h" 
 #include "uart.h"
 //#include "timer.h"
 #include "IAP.h"
