@@ -58,7 +58,7 @@ void main(void)
     StructData.b = 0x55555555;
     StructData.c = 0x55;
 
-    Write_DATAFLASH_ARRAY(0x38E0, ArrayData, NUM_OF_ELEMENTS); //write 50 bytes
+    Write_DATAFLASH_ARRAY(0x38E0, ArrayData, NUM_OF_ELEMENTS); //write NUM_OF_ELEMENTS bytes
     Write_DATAFLASH_ARRAY(0x38FE, (unsigned char *)&StructData, sizeof(StructData)); //write structure
 
 
