@@ -20,6 +20,7 @@
 #include "eeprom.h"
 #include "delay.h" 
 #include "uart.h"
+#include "common.h"
 //#include "timer.h"
 #include "IAP.h"
 #include "watchdog.h"

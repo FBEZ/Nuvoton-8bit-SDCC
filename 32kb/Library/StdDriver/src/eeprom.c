@@ -39,7 +39,7 @@ void Write_DATAFLASH_BYTE(unsigned int u16EPAddr, unsigned char u8EPData)
 {
     unsigned char looptmp = 0;
     unsigned int u16_addrl_r;
-    unsigned int RAMtmp;
+    unsigned char RAMtmp;
 
     //Check page start address
     u16_addrl_r = (u16EPAddr / 128) * 128;
