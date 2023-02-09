@@ -10,7 +10,7 @@ This is a work in progress. Right now the two "template" examples in the 16bit a
 1. Clone the repo
 2. Download [SDCC](http://sdcc.sourceforge.net/). This code works with v4.2.14 
 3. Download [NuMicro_ICP_Programming_Tool_V3.10.7443r](https://www.nuvoton.com/tool-and-software/software-tool/programmer-tool/index.html)
-3. Go folder `32kb/SampleCode/Template/Project_temp/SDCC/` and run `buildAll.bat`
+3. Go folder `32kb/SampleCode/Template/Project_temp/SDCC/`, run `buildAll.bat` and `loadflash.bat` or
 4. Open NuMicro ICP Programming tool
 	* click on APROM 
 	* select helloworld.hex
