@@ -800,7 +800,7 @@
                                     800 ;hircmap1                  Allocated to registers r5 
                                     801 ;trimvalue16bit            Allocated to registers r4 r7 
                                     802 ;------------------------------------------------------------
-                                    803 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:26: void MODIFY_HIRC(unsigned char u8HIRCSEL)
+                                    803 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:26: void MODIFY_HIRC(unsigned char u8HIRCSEL)
                                     804 ;	-----------------------------------------
                                     805 ;	 function MODIFY_HIRC
                                     806 ;	-----------------------------------------
@@ -814,36 +814,36 @@
                            000001   814 	ar1 = 0x01
                            000000   815 	ar0 = 0x00
       0000BA AF 82            [24]  816 	mov	r7,dpl
-                                    817 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:31: SFRS = 0 ;
+                                    817 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:31: SFRS = 0 ;
       0000BC 75 91 00         [24]  818 	mov	_SFRS,#0x00
-                                    819 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:32: switch (u8HIRCSEL)
+                                    819 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:32: switch (u8HIRCSEL)
       0000BF BF 06 02         [24]  820 	cjne	r7,#0x06,00130$
       0000C2 80 0A            [24]  821 	sjmp	00101$
       0000C4                        822 00130$:
       0000C4 BF 07 02         [24]  823 	cjne	r7,#0x07,00131$
       0000C7 80 0A            [24]  824 	sjmp	00102$
       0000C9                        825 00131$:
-                                    826 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:34: case HIRC_24:
+                                    826 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:34: case HIRC_24:
       0000C9 BF 08 0F         [24]  827 	cjne	r7,#0x08,00104$
       0000CC 80 0A            [24]  828 	sjmp	00103$
       0000CE                        829 00101$:
-                                    830 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:35: IAPAL = 0x38;
+                                    830 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:35: IAPAL = 0x38;
       0000CE 75 A6 38         [24]  831 	mov	_IAPAL,#0x38
-                                    832 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:36: break;
-                                    833 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:37: case HIRC_16:
+                                    832 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:36: break;
+                                    833 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:37: case HIRC_16:
       0000D1 80 08            [24]  834 	sjmp	00104$
       0000D3                        835 00102$:
-                                    836 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:38: IAPAL = 0x30;
+                                    836 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:38: IAPAL = 0x30;
       0000D3 75 A6 30         [24]  837 	mov	_IAPAL,#0x30
-                                    838 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:39: break;
-                                    839 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:40: case HIRC_166:
+                                    838 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:39: break;
+                                    839 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:40: case HIRC_166:
       0000D6 80 03            [24]  840 	sjmp	00104$
       0000D8                        841 00103$:
-                                    842 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:41: IAPAL = 0x30;
+                                    842 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:41: IAPAL = 0x30;
       0000D8 75 A6 30         [24]  843 	mov	_IAPAL,#0x30
-                                    844 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:43: }
+                                    844 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:43: }
       0000DB                        845 00104$:
-                                    846 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:44: set_CHPCON_IAPEN;
+                                    846 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:44: set_CHPCON_IAPEN;
       0000DB 75 91 00         [24]  847 	mov	_SFRS,#0x00
                                     848 ;	assignBit
       0000DE A2 AF            [12]  849 	mov	c,_EA
@@ -856,11 +856,11 @@
                                     856 ;	assignBit
       0000ED A2 00            [12]  857 	mov	c,_BIT_TMP
       0000EF 92 AF            [24]  858 	mov	_EA,c
-                                    859 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:45: IAPAH = 0x00;
+                                    859 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:45: IAPAH = 0x00;
       0000F1 75 A7 00         [24]  860 	mov	_IAPAH,#0x00
-                                    861 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:46: IAPCN = READ_UID;
+                                    861 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:46: IAPCN = READ_UID;
       0000F4 75 AF 04         [24]  862 	mov	_IAPCN,#0x04
-                                    863 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:47: set_IAPTRG_IAPGO;
+                                    863 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:47: set_IAPTRG_IAPGO;
       0000F7 75 91 00         [24]  864 	mov	_SFRS,#0x00
                                     865 ;	assignBit
       0000FA A2 AF            [12]  866 	mov	c,_EA
@@ -873,13 +873,13 @@
                                     873 ;	assignBit
       000109 A2 00            [12]  874 	mov	c,_BIT_TMP
       00010B 92 AF            [24]  875 	mov	_EA,c
-                                    876 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:48: hircmap0 = IAPFD;
+                                    876 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:48: hircmap0 = IAPFD;
       00010D AE AE            [24]  877 	mov	r6,_IAPFD
-                                    878 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:49: IAPAL++;
+                                    878 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:49: IAPAL++;
       00010F E5 A6            [12]  879 	mov	a,_IAPAL
       000111 04               [12]  880 	inc	a
       000112 F5 A6            [12]  881 	mov	_IAPAL,a
-                                    882 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:50: set_IAPTRG_IAPGO;
+                                    882 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:50: set_IAPTRG_IAPGO;
       000114 75 91 00         [24]  883 	mov	_SFRS,#0x00
                                     884 ;	assignBit
       000117 A2 AF            [12]  885 	mov	c,_EA
@@ -892,9 +892,9 @@
                                     892 ;	assignBit
       000126 A2 00            [12]  893 	mov	c,_BIT_TMP
       000128 92 AF            [24]  894 	mov	_EA,c
-                                    895 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:51: hircmap1 = IAPFD;
+                                    895 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:51: hircmap1 = IAPFD;
       00012A AD AE            [24]  896 	mov	r5,_IAPFD
-                                    897 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:52: clr_CHPCON_IAPEN;
+                                    897 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:52: clr_CHPCON_IAPEN;
       00012C 75 91 00         [24]  898 	mov	_SFRS,#0x00
                                     899 ;	assignBit
       00012F A2 AF            [12]  900 	mov	c,_EA
@@ -907,9 +907,9 @@
                                     907 ;	assignBit
       00013E A2 00            [12]  908 	mov	c,_BIT_TMP
       000140 92 AF            [24]  909 	mov	_EA,c
-                                    910 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:53: switch (u8HIRCSEL)
+                                    910 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:53: switch (u8HIRCSEL)
       000142 BF 08 2E         [24]  911 	cjne	r7,#0x08,00107$
-                                    912 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:56: trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
+                                    912 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:56: trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
       000145 8E 04            [24]  913 	mov	ar4,r6
       000147 7F 00            [12]  914 	mov	r7,#0x00
       000149 EC               [12]  915 	mov	a,r4
@@ -927,19 +927,19 @@
       000159 EB               [12]  927 	mov	a,r3
       00015A 3F               [12]  928 	addc	a,r7
       00015B FF               [12]  929 	mov	r7,a
-                                    930 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:57: trimvalue16bit = trimvalue16bit - 15;
+                                    930 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:57: trimvalue16bit = trimvalue16bit - 15;
       00015C EC               [12]  931 	mov	a,r4
       00015D 24 F1            [12]  932 	add	a,#0xf1
       00015F FC               [12]  933 	mov	r4,a
       000160 EF               [12]  934 	mov	a,r7
       000161 34 FF            [12]  935 	addc	a,#0xff
       000163 FF               [12]  936 	mov	r7,a
-                                    937 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:58: hircmap1 = trimvalue16bit & 0x01;
+                                    937 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:58: hircmap1 = trimvalue16bit & 0x01;
       000164 8C 03            [24]  938 	mov	ar3,r4
       000166 74 01            [12]  939 	mov	a,#0x01
       000168 5B               [12]  940 	anl	a,r3
       000169 FD               [12]  941 	mov	r5,a
-                                    942 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:59: hircmap0 = trimvalue16bit >> 1;
+                                    942 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:59: hircmap0 = trimvalue16bit >> 1;
       00016A EF               [12]  943 	mov	a,r7
       00016B C3               [12]  944 	clr	c
       00016C 13               [12]  945 	rrc	a
@@ -948,21 +948,21 @@
       00016F CC               [12]  948 	xch	a,r4
       000170 FF               [12]  949 	mov	r7,a
       000171 8C 06            [24]  950 	mov	ar6,r4
-                                    951 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:63: }
+                                    951 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:63: }
       000173                        952 00107$:
-                                    953 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:64: TA = 0xAA;
+                                    953 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:64: TA = 0xAA;
       000173 75 C7 AA         [24]  954 	mov	_TA,#0xaa
-                                    955 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:65: TA = 0x55;
+                                    955 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:65: TA = 0x55;
       000176 75 C7 55         [24]  956 	mov	_TA,#0x55
-                                    957 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:66: RCTRIM0 = hircmap0;
+                                    957 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:66: RCTRIM0 = hircmap0;
       000179 8E 84            [24]  958 	mov	_RCTRIM0,r6
-                                    959 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:67: TA = 0xAA;
+                                    959 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:67: TA = 0xAA;
       00017B 75 C7 AA         [24]  960 	mov	_TA,#0xaa
-                                    961 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:68: TA = 0x55;
+                                    961 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:68: TA = 0x55;
       00017E 75 C7 55         [24]  962 	mov	_TA,#0x55
-                                    963 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:69: RCTRIM1 = hircmap1;
+                                    963 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:69: RCTRIM1 = hircmap1;
       000181 8D 85            [24]  964 	mov	_RCTRIM1,r5
-                                    965 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:70: clr_CHPCON_IAPEN;
+                                    965 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:70: clr_CHPCON_IAPEN;
       000183 75 91 00         [24]  966 	mov	_SFRS,#0x00
                                     967 ;	assignBit
       000186 A2 AF            [12]  968 	mov	c,_EA
@@ -975,21 +975,21 @@
                                     975 ;	assignBit
       000195 A2 00            [12]  976 	mov	c,_BIT_TMP
       000197 92 AF            [24]  977 	mov	_EA,c
-                                    978 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:71: PCON &= CLR_BIT4;
+                                    978 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:71: PCON &= CLR_BIT4;
       000199 53 87 EF         [24]  979 	anl	_PCON,#0xef
-                                    980 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:72: }
+                                    980 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:72: }
       00019C 22               [24]  981 	ret
                                     982 ;------------------------------------------------------------
                                     983 ;Allocation info for local variables in function 'FsysSelect'
                                     984 ;------------------------------------------------------------
                                     985 ;u8FsysMode                Allocated to registers r7 
                                     986 ;------------------------------------------------------------
-                                    987 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:86: void FsysSelect(unsigned char u8FsysMode)
+                                    987 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:86: void FsysSelect(unsigned char u8FsysMode)
                                     988 ;	-----------------------------------------
                                     989 ;	 function FsysSelect
                                     990 ;	-----------------------------------------
       00019D                        991 _FsysSelect:
-                                    992 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:88: switch (u8FsysMode)
+                                    992 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:88: switch (u8FsysMode)
       00019D E5 82            [12]  993 	mov	a,dpl
       00019F FF               [12]  994 	mov	r7,a
       0001A0 24 FA            [12]  995 	add	a,#0xff - 0x05
@@ -1008,21 +1008,21 @@
       0001B5 02 01 F9         [24] 1008 	ljmp	00103$
       0001B8 02 02 1C         [24] 1009 	ljmp	00104$
       0001BB 02 02 4B         [24] 1010 	ljmp	00105$
-                                   1011 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:91: case FSYS_HXT:
+                                   1011 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:91: case FSYS_HXT:
       0001BE                       1012 00101$:
-                                   1013 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:92: ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
+                                   1013 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:92: ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
       0001BE 75 82 02         [24] 1014 	mov	dpl,#0x02
       0001C1 12 02 7A         [24] 1015 	lcall	_ClockEnable
-                                   1016 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:93: ClockSwitch(FSYS_HIRC);
+                                   1016 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:93: ClockSwitch(FSYS_HIRC);
       0001C4 75 82 02         [24] 1017 	mov	dpl,#0x02
       0001C7 12 03 EB         [24] 1018 	lcall	_ClockSwitch
-                                   1019 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:94: ClockEnable(FSYS_HXT);                  //step2: switching system clock to HXT
+                                   1019 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:94: ClockEnable(FSYS_HXT);                  //step2: switching system clock to HXT
       0001CA 75 82 00         [24] 1020 	mov	dpl,#0x00
       0001CD 12 02 7A         [24] 1021 	lcall	_ClockEnable
-                                   1022 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:95: ClockSwitch(FSYS_HXT);
+                                   1022 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:95: ClockSwitch(FSYS_HXT);
       0001D0 75 82 00         [24] 1023 	mov	dpl,#0x00
       0001D3 12 03 EB         [24] 1024 	lcall	_ClockSwitch
-                                   1025 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:96: clr_CKEN_HIRCEN;                      //step4: disable HIRC if needed 
+                                   1025 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:96: clr_CKEN_HIRCEN;                      //step4: disable HIRC if needed 
       0001D6 75 91 00         [24] 1026 	mov	_SFRS,#0x00
                                    1027 ;	assignBit
       0001D9 A2 AF            [12] 1028 	mov	c,_EA
@@ -1035,26 +1035,26 @@
                                    1035 ;	assignBit
       0001E8 A2 00            [12] 1036 	mov	c,_BIT_TMP
       0001EA 92 AF            [24] 1037 	mov	_EA,c
-                                   1038 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:97: break;    
+                                   1038 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:97: break;    
       0001EC 22               [24] 1039 	ret
-                                   1040 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:100: case FSYS_HIRC:
+                                   1040 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:100: case FSYS_HIRC:
       0001ED                       1041 00102$:
-                                   1042 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:101: ClockEnable(FSYS_HIRC);                 //step1: switching system clock HIRC
+                                   1042 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:101: ClockEnable(FSYS_HIRC);                 //step1: switching system clock HIRC
       0001ED 75 82 02         [24] 1043 	mov	dpl,#0x02
       0001F0 12 02 7A         [24] 1044 	lcall	_ClockEnable
-                                   1045 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:102: ClockSwitch(FSYS_HIRC);
+                                   1045 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:102: ClockSwitch(FSYS_HIRC);
       0001F3 75 82 02         [24] 1046 	mov	dpl,#0x02
-                                   1047 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:103: break;
+                                   1047 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:103: break;
       0001F6 02 03 EB         [24] 1048 	ljmp	_ClockSwitch
-                                   1049 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:106: case FSYS_LIRC:
+                                   1049 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:106: case FSYS_LIRC:
       0001F9                       1050 00103$:
-                                   1051 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:107: ClockEnable(FSYS_LIRC);                 //step2: switching system clock LIRC
+                                   1051 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:107: ClockEnable(FSYS_LIRC);                 //step2: switching system clock LIRC
       0001F9 75 82 03         [24] 1052 	mov	dpl,#0x03
       0001FC 12 02 7A         [24] 1053 	lcall	_ClockEnable
-                                   1054 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:108: ClockSwitch(FSYS_LIRC);
+                                   1054 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:108: ClockSwitch(FSYS_LIRC);
       0001FF 75 82 03         [24] 1055 	mov	dpl,#0x03
       000202 12 03 EB         [24] 1056 	lcall	_ClockSwitch
-                                   1057 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:109: clr_CKEN_HIRCEN;                        //step4: disable HIRC if needed 
+                                   1057 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:109: clr_CKEN_HIRCEN;                        //step4: disable HIRC if needed 
       000205 75 91 00         [24] 1058 	mov	_SFRS,#0x00
                                    1059 ;	assignBit
       000208 A2 AF            [12] 1060 	mov	c,_EA
@@ -1067,23 +1067,23 @@
                                    1067 ;	assignBit
       000217 A2 00            [12] 1068 	mov	c,_BIT_TMP
       000219 92 AF            [24] 1069 	mov	_EA,c
-                                   1070 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:110: break;
-                                   1071 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:113: case FSYS_OSCIN_P30:
+                                   1070 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:110: break;
+                                   1071 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:113: case FSYS_OSCIN_P30:
       00021B 22               [24] 1072 	ret
       00021C                       1073 00104$:
-                                   1074 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:114: ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
+                                   1074 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:114: ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
       00021C 75 82 02         [24] 1075 	mov	dpl,#0x02
       00021F 12 02 7A         [24] 1076 	lcall	_ClockEnable
-                                   1077 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:115: ClockSwitch(FSYS_HIRC);
+                                   1077 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:115: ClockSwitch(FSYS_HIRC);
       000222 75 82 02         [24] 1078 	mov	dpl,#0x02
       000225 12 03 EB         [24] 1079 	lcall	_ClockSwitch
-                                   1080 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:116: ClockEnable(FSYS_OSCIN_P30);                 //step1: switching system clock to External clock
+                                   1080 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:116: ClockEnable(FSYS_OSCIN_P30);                 //step1: switching system clock to External clock
       000228 75 82 04         [24] 1081 	mov	dpl,#0x04
       00022B 12 02 7A         [24] 1082 	lcall	_ClockEnable
-                                   1083 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:117: ClockSwitch(FSYS_OSCIN_P30);
+                                   1083 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:117: ClockSwitch(FSYS_OSCIN_P30);
       00022E 75 82 04         [24] 1084 	mov	dpl,#0x04
       000231 12 03 EB         [24] 1085 	lcall	_ClockSwitch
-                                   1086 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:118: clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
+                                   1086 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:118: clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
       000234 75 91 00         [24] 1087 	mov	_SFRS,#0x00
                                    1088 ;	assignBit
       000237 A2 AF            [12] 1089 	mov	c,_EA
@@ -1096,23 +1096,23 @@
                                    1096 ;	assignBit
       000246 A2 00            [12] 1097 	mov	c,_BIT_TMP
       000248 92 AF            [24] 1098 	mov	_EA,c
-                                   1099 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:119: break;
-                                   1100 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:122: case FSYS_HXTIN_P00:
+                                   1099 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:119: break;
+                                   1100 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:122: case FSYS_HXTIN_P00:
       00024A 22               [24] 1101 	ret
       00024B                       1102 00105$:
-                                   1103 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:123: ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
+                                   1103 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:123: ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
       00024B 75 82 02         [24] 1104 	mov	dpl,#0x02
       00024E 12 02 7A         [24] 1105 	lcall	_ClockEnable
-                                   1106 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:124: ClockSwitch(FSYS_HIRC);
+                                   1106 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:124: ClockSwitch(FSYS_HIRC);
       000251 75 82 02         [24] 1107 	mov	dpl,#0x02
       000254 12 03 EB         [24] 1108 	lcall	_ClockSwitch
-                                   1109 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:125: ClockEnable(FSYS_HXTIN_P00);                 //step1: switching system clock to External clock
+                                   1109 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:125: ClockEnable(FSYS_HXTIN_P00);                 //step1: switching system clock to External clock
       000257 75 82 05         [24] 1110 	mov	dpl,#0x05
       00025A 12 02 7A         [24] 1111 	lcall	_ClockEnable
-                                   1112 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:126: ClockSwitch(FSYS_HXTIN_P00);
+                                   1112 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:126: ClockSwitch(FSYS_HXTIN_P00);
       00025D 75 82 05         [24] 1113 	mov	dpl,#0x05
       000260 12 03 EB         [24] 1114 	lcall	_ClockSwitch
-                                   1115 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:127: clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
+                                   1115 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:127: clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
       000263 75 91 00         [24] 1116 	mov	_SFRS,#0x00
                                    1117 ;	assignBit
       000266 A2 AF            [12] 1118 	mov	c,_EA
@@ -1125,21 +1125,21 @@
                                    1125 ;	assignBit
       000275 A2 00            [12] 1126 	mov	c,_BIT_TMP
       000277 92 AF            [24] 1127 	mov	_EA,c
-                                   1128 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:129: }
+                                   1128 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:129: }
       000279                       1129 00107$:
-                                   1130 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:130: }
+                                   1130 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:130: }
       000279 22               [24] 1131 	ret
                                    1132 ;------------------------------------------------------------
                                    1133 ;Allocation info for local variables in function 'ClockEnable'
                                    1134 ;------------------------------------------------------------
                                    1135 ;u8FsysMode                Allocated to registers r7 
                                    1136 ;------------------------------------------------------------
-                                   1137 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:132: void ClockEnable(unsigned char u8FsysMode)
+                                   1137 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:132: void ClockEnable(unsigned char u8FsysMode)
                                    1138 ;	-----------------------------------------
                                    1139 ;	 function ClockEnable
                                    1140 ;	-----------------------------------------
       00027A                       1141 _ClockEnable:
-                                   1142 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:134: switch (u8FsysMode)
+                                   1142 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:134: switch (u8FsysMode)
       00027A E5 82            [12] 1143 	mov	a,dpl
       00027C FF               [12] 1144 	mov	r7,a
       00027D 24 FA            [12] 1145 	add	a,#0xff - 0x05
@@ -1158,9 +1158,9 @@
       000292 02 02 EC         [24] 1158 	ljmp	00109$
       000295 02 03 0C         [24] 1159 	ljmp	00113$
       000298 02 03 42         [24] 1160 	ljmp	00117$
-                                   1161 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:137: case FSYS_HXT:
+                                   1161 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:137: case FSYS_HXT:
       00029B                       1162 00101$:
-                                   1163 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:138: clr_CKEN_EXTEN1;                        /*step1: Enable extnal 4~ 24MHz crystal clock source.*/
+                                   1163 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:138: clr_CKEN_EXTEN1;                        /*step1: Enable extnal 4~ 24MHz crystal clock source.*/
       00029B 75 91 00         [24] 1164 	mov	_SFRS,#0x00
                                    1165 ;	assignBit
       00029E A2 AF            [12] 1166 	mov	c,_EA
@@ -1173,7 +1173,7 @@
                                    1173 ;	assignBit
       0002AD A2 00            [12] 1174 	mov	c,_BIT_TMP
       0002AF 92 AF            [24] 1175 	mov	_EA,c
-                                   1176 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:139: set_CKEN_EXTEN0;
+                                   1176 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:139: set_CKEN_EXTEN0;
       0002B1 75 91 00         [24] 1177 	mov	_SFRS,#0x00
                                    1178 ;	assignBit
       0002B4 A2 AF            [12] 1179 	mov	c,_EA
@@ -1186,12 +1186,12 @@
                                    1186 ;	assignBit
       0002C3 A2 00            [12] 1187 	mov	c,_BIT_TMP
       0002C5 92 AF            [24] 1188 	mov	_EA,c
-                                   1189 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:140: while(CKSWT|CLR_BIT7);                  /*step2: check clock source status and wait for ready*/
+                                   1189 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:140: while(CKSWT|CLR_BIT7);                  /*step2: check clock source status and wait for ready*/
       0002C7                       1190 00102$:
-                                   1191 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:144: case FSYS_HIRC:
+                                   1191 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:144: case FSYS_HIRC:
       0002C7 80 FE            [24] 1192 	sjmp	00102$
       0002C9                       1193 00105$:
-                                   1194 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:145: set_CKEN_HIRCEN;                        //step1: Enable extnal clock source.
+                                   1194 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:145: set_CKEN_HIRCEN;                        //step1: Enable extnal clock source.
       0002C9 75 91 00         [24] 1195 	mov	_SFRS,#0x00
                                    1196 ;	assignBit
       0002CC A2 AF            [12] 1197 	mov	c,_EA
@@ -1204,7 +1204,7 @@
                                    1204 ;	assignBit
       0002DB A2 00            [12] 1205 	mov	c,_BIT_TMP
       0002DD 92 AF            [24] 1206 	mov	_EA,c
-                                   1207 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:146: while((CKSWT|CLR_BIT5)==CLR_BIT5);      //step2: check clock source status and wait for ready
+                                   1207 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:146: while((CKSWT|CLR_BIT5)==CLR_BIT5);      //step2: check clock source status and wait for ready
       0002DF                       1208 00106$:
       0002DF 74 DF            [12] 1209 	mov	a,#0xdf
       0002E1 45 96            [12] 1210 	orl	a,_CKSWT
@@ -1213,10 +1213,10 @@
       0002E7 80 F6            [24] 1213 	sjmp	00106$
       0002E9                       1214 00166$:
       0002E9 22               [24] 1215 	ret
-                                   1216 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:150: case FSYS_LIRC:
+                                   1216 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:150: case FSYS_LIRC:
       0002EA 80 F3            [24] 1217 	sjmp	00106$
       0002EC                       1218 00109$:
-                                   1219 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:151: set_CKEN_LIRCEN;                        //step1: Enable extnal clock source.
+                                   1219 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:151: set_CKEN_LIRCEN;                        //step1: Enable extnal clock source.
       0002EC 75 91 00         [24] 1220 	mov	_SFRS,#0x00
                                    1221 ;	assignBit
       0002EF A2 AF            [12] 1222 	mov	c,_EA
@@ -1229,16 +1229,16 @@
                                    1229 ;	assignBit
       0002FE A2 00            [12] 1230 	mov	c,_BIT_TMP
       000300 92 AF            [24] 1231 	mov	_EA,c
-                                   1232 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:152: while((CKSWT|CLR_BIT4)==CLR_BIT4);      //step2: check clock source status and wait for ready
+                                   1232 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:152: while((CKSWT|CLR_BIT4)==CLR_BIT4);      //step2: check clock source status and wait for ready
       000302                       1233 00110$:
       000302 74 EF            [12] 1234 	mov	a,#0xef
       000304 45 96            [12] 1235 	orl	a,_CKSWT
       000306 FF               [12] 1236 	mov	r7,a
       000307 BF EF 6E         [24] 1237 	cjne	r7,#0xef,00122$
-                                   1238 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:156: case FSYS_OSCIN_P30:
+                                   1238 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:156: case FSYS_OSCIN_P30:
       00030A 80 F6            [24] 1239 	sjmp	00110$
       00030C                       1240 00113$:
-                                   1241 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:157: set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
+                                   1241 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:157: set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
       00030C 75 91 00         [24] 1242 	mov	_SFRS,#0x00
                                    1243 ;	assignBit
       00030F A2 AF            [12] 1244 	mov	c,_EA
@@ -1251,7 +1251,7 @@
                                    1251 ;	assignBit
       00031E A2 00            [12] 1252 	mov	c,_BIT_TMP
       000320 92 AF            [24] 1253 	mov	_EA,c
-                                   1254 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:158: set_CKEN_EXTEN0;
+                                   1254 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:158: set_CKEN_EXTEN0;
       000322 75 91 00         [24] 1255 	mov	_SFRS,#0x00
                                    1256 ;	assignBit
       000325 A2 AF            [12] 1257 	mov	c,_EA
@@ -1264,16 +1264,16 @@
                                    1264 ;	assignBit
       000334 A2 00            [12] 1265 	mov	c,_BIT_TMP
       000336 92 AF            [24] 1266 	mov	_EA,c
-                                   1267 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:159: while((CKSWT|CLR_BIT3)==CLR_BIT3);      //step2: check clock source status and wait for ready
+                                   1267 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:159: while((CKSWT|CLR_BIT3)==CLR_BIT3);      //step2: check clock source status and wait for ready
       000338                       1268 00114$:
       000338 74 F7            [12] 1269 	mov	a,#0xf7
       00033A 45 96            [12] 1270 	orl	a,_CKSWT
       00033C FF               [12] 1271 	mov	r7,a
       00033D BF F7 38         [24] 1272 	cjne	r7,#0xf7,00122$
-                                   1273 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:163: case FSYS_HXTIN_P00:
+                                   1273 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:163: case FSYS_HXTIN_P00:
       000340 80 F6            [24] 1274 	sjmp	00114$
       000342                       1275 00117$:
-                                   1276 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:164: set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
+                                   1276 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:164: set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
       000342 75 91 00         [24] 1277 	mov	_SFRS,#0x00
                                    1278 ;	assignBit
       000345 A2 AF            [12] 1279 	mov	c,_EA
@@ -1286,7 +1286,7 @@
                                    1286 ;	assignBit
       000354 A2 00            [12] 1287 	mov	c,_BIT_TMP
       000356 92 AF            [24] 1288 	mov	_EA,c
-                                   1289 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:165: clr_CKEN_EXTEN0;
+                                   1289 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:165: clr_CKEN_EXTEN0;
       000358 75 91 00         [24] 1290 	mov	_SFRS,#0x00
                                    1291 ;	assignBit
       00035B A2 AF            [12] 1292 	mov	c,_EA
@@ -1299,7 +1299,7 @@
                                    1299 ;	assignBit
       00036A A2 00            [12] 1300 	mov	c,_BIT_TMP
       00036C 92 AF            [24] 1301 	mov	_EA,c
-                                   1302 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:166: while((CKSWT|CLR_BIT6)==CLR_BIT6);      //step2: check clock source status and wait for ready
+                                   1302 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:166: while((CKSWT|CLR_BIT6)==CLR_BIT6);      //step2: check clock source status and wait for ready
       00036E                       1303 00118$:
       00036E 74 BF            [12] 1304 	mov	a,#0xbf
       000370 45 96            [12] 1305 	orl	a,_CKSWT
@@ -1307,33 +1307,33 @@
       000373 BF BF 02         [24] 1307 	cjne	r7,#0xbf,00172$
       000376 80 F6            [24] 1308 	sjmp	00118$
       000378                       1309 00172$:
-                                   1310 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:168: }
+                                   1310 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:168: }
       000378                       1311 00122$:
-                                   1312 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:169: }
+                                   1312 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:169: }
       000378 22               [24] 1313 	ret
                                    1314 ;------------------------------------------------------------
                                    1315 ;Allocation info for local variables in function 'ClockDisable'
                                    1316 ;------------------------------------------------------------
                                    1317 ;u8FsysMode                Allocated to registers r7 
                                    1318 ;------------------------------------------------------------
-                                   1319 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:171: void ClockDisable(unsigned char u8FsysMode)
+                                   1319 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:171: void ClockDisable(unsigned char u8FsysMode)
                                    1320 ;	-----------------------------------------
                                    1321 ;	 function ClockDisable
                                    1322 ;	-----------------------------------------
       000379                       1323 _ClockDisable:
       000379 AF 82            [24] 1324 	mov	r7,dpl
-                                   1325 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:173: __bit closeflag=0;
+                                   1325 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:173: __bit closeflag=0;
                                    1326 ;	assignBit
       00037B C2 01            [12] 1327 	clr	_ClockDisable_closeflag_65536_96
-                                   1328 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:175: SFRS = 0;
+                                   1328 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:175: SFRS = 0;
       00037D 75 91 00         [24] 1329 	mov	_SFRS,#0x00
-                                   1330 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:176: switch (u8FsysMode)
+                                   1330 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:176: switch (u8FsysMode)
       000380 EF               [12] 1331 	mov	a,r7
       000381 24 FA            [12] 1332 	add	a,#0xff - 0x05
       000383 40 4C            [24] 1333 	jc	00106$
       000385 EF               [12] 1334 	mov	a,r7
       000386 2F               [12] 1335 	add	a,r7
-                                   1336 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:179: case FSYS_HXT:
+                                   1336 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:179: case FSYS_HXT:
       000387 90 03 8B         [24] 1337 	mov	dptr,#00120$
       00038A 73               [24] 1338 	jmp	@a+dptr
       00038B                       1339 00120$:
@@ -1344,14 +1344,14 @@
       000393 80 36            [24] 1344 	sjmp	00104$
       000395 80 38            [24] 1345 	sjmp	00105$
       000397                       1346 00101$:
-                                   1347 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:180: closeflag = 1;                
+                                   1347 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:180: closeflag = 1;                
                                    1348 ;	assignBit
       000397 D2 01            [12] 1349 	setb	_ClockDisable_closeflag_65536_96
-                                   1350 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:181: break;
-                                   1351 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:183: case FSYS_HIRC:
+                                   1350 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:181: break;
+                                   1351 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:183: case FSYS_HIRC:
       000399 80 36            [24] 1352 	sjmp	00106$
       00039B                       1353 00102$:
-                                   1354 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:184: clr_CKEN_HIRCEN;                        
+                                   1354 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:184: clr_CKEN_HIRCEN;                        
       00039B 75 91 00         [24] 1355 	mov	_SFRS,#0x00
                                    1356 ;	assignBit
       00039E A2 AF            [12] 1357 	mov	c,_EA
@@ -1364,11 +1364,11 @@
                                    1364 ;	assignBit
       0003AD A2 00            [12] 1365 	mov	c,_BIT_TMP
       0003AF 92 AF            [24] 1366 	mov	_EA,c
-                                   1367 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:185: break;
-                                   1368 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:187: case FSYS_LIRC:
+                                   1367 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:185: break;
+                                   1368 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:187: case FSYS_LIRC:
       0003B1 80 1E            [24] 1369 	sjmp	00106$
       0003B3                       1370 00103$:
-                                   1371 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:188: clr_CKEN_LIRCEN;                        
+                                   1371 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:188: clr_CKEN_LIRCEN;                        
       0003B3 75 91 00         [24] 1372 	mov	_SFRS,#0x00
                                    1373 ;	assignBit
       0003B6 A2 AF            [12] 1374 	mov	c,_EA
@@ -1381,25 +1381,25 @@
                                    1381 ;	assignBit
       0003C5 A2 00            [12] 1382 	mov	c,_BIT_TMP
       0003C7 92 AF            [24] 1383 	mov	_EA,c
-                                   1384 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:189: break;
-                                   1385 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:191: case FSYS_OSCIN_P30:
+                                   1384 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:189: break;
+                                   1385 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:191: case FSYS_OSCIN_P30:
       0003C9 80 06            [24] 1386 	sjmp	00106$
       0003CB                       1387 00104$:
-                                   1388 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:192: closeflag = 1; 
+                                   1388 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:192: closeflag = 1; 
                                    1389 ;	assignBit
       0003CB D2 01            [12] 1390 	setb	_ClockDisable_closeflag_65536_96
-                                   1391 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:193: break;
-                                   1392 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:195: case FSYS_HXTIN_P00:
+                                   1391 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:193: break;
+                                   1392 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:195: case FSYS_HXTIN_P00:
       0003CD 80 02            [24] 1393 	sjmp	00106$
       0003CF                       1394 00105$:
-                                   1395 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:196: closeflag = 1; 
+                                   1395 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:196: closeflag = 1; 
                                    1396 ;	assignBit
       0003CF D2 01            [12] 1397 	setb	_ClockDisable_closeflag_65536_96
-                                   1398 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:198: }
+                                   1398 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:198: }
       0003D1                       1399 00106$:
-                                   1400 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:199: if (closeflag)
+                                   1400 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:199: if (closeflag)
       0003D1 30 01 16         [24] 1401 	jnb	_ClockDisable_closeflag_65536_96,00109$
-                                   1402 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:201: SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CKEN&=0x3F;EA=BIT_TMP;
+                                   1402 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:201: SFRS=0;BIT_TMP=EA;EA=0;TA=0xAA;TA=0x55;CKEN&=0x3F;EA=BIT_TMP;
       0003D4 75 91 00         [24] 1403 	mov	_SFRS,#0x00
                                    1404 ;	assignBit
       0003D7 A2 AF            [12] 1405 	mov	c,_EA
@@ -1412,33 +1412,33 @@
                                    1412 ;	assignBit
       0003E6 A2 00            [12] 1413 	mov	c,_BIT_TMP
       0003E8 92 AF            [24] 1414 	mov	_EA,c
-                                   1415 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:202: closeflag = 0;
+                                   1415 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:202: closeflag = 0;
       0003EA                       1416 00109$:
-                                   1417 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:205: }
+                                   1417 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:205: }
       0003EA 22               [24] 1418 	ret
                                    1419 ;------------------------------------------------------------
                                    1420 ;Allocation info for local variables in function 'ClockSwitch'
                                    1421 ;------------------------------------------------------------
                                    1422 ;u8FsysMode                Allocated to registers r7 
                                    1423 ;------------------------------------------------------------
-                                   1424 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:207: void ClockSwitch(unsigned char u8FsysMode)
+                                   1424 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:207: void ClockSwitch(unsigned char u8FsysMode)
                                    1425 ;	-----------------------------------------
                                    1426 ;	 function ClockSwitch
                                    1427 ;	-----------------------------------------
       0003EB                       1428 _ClockSwitch:
       0003EB AF 82            [24] 1429 	mov	r7,dpl
-                                   1430 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:209: __bit exflag=0;
+                                   1430 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:209: __bit exflag=0;
                                    1431 ;	assignBit
       0003ED C2 02            [12] 1432 	clr	_ClockSwitch_exflag_65536_100
-                                   1433 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:210: SFRS = 0 ;
+                                   1433 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:210: SFRS = 0 ;
       0003EF 75 91 00         [24] 1434 	mov	_SFRS,#0x00
-                                   1435 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:211: BIT_TMP=EA;EA=0;
+                                   1435 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:211: BIT_TMP=EA;EA=0;
                                    1436 ;	assignBit
       0003F2 A2 AF            [12] 1437 	mov	c,_EA
       0003F4 92 00            [24] 1438 	mov	_BIT_TMP,c
                                    1439 ;	assignBit
       0003F6 C2 AF            [12] 1440 	clr	_EA
-                                   1441 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:212: switch (u8FsysMode)
+                                   1441 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:212: switch (u8FsysMode)
       0003F8 EF               [12] 1442 	mov	a,r7
       0003F9 24 FA            [12] 1443 	add	a,#0xff - 0x05
       0003FB 50 03            [24] 1444 	jnc	00119$
@@ -1446,7 +1446,7 @@
       000400                       1446 00119$:
       000400 EF               [12] 1447 	mov	a,r7
       000401 2F               [12] 1448 	add	a,r7
-                                   1449 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:215: case FSYS_HXT:
+                                   1449 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:215: case FSYS_HXT:
       000402 90 04 06         [24] 1450 	mov	dptr,#00120$
       000405 73               [24] 1451 	jmp	@a+dptr
       000406                       1452 00120$:
@@ -1457,14 +1457,14 @@
       00040E 80 62            [24] 1457 	sjmp	00104$
       000410 80 64            [24] 1458 	sjmp	00105$
       000412                       1459 00101$:
-                                   1460 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:216: exflag = 1;
+                                   1460 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:216: exflag = 1;
                                    1461 ;	assignBit
       000412 D2 02            [12] 1462 	setb	_ClockSwitch_exflag_65536_100
-                                   1463 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:217: break;    
-                                   1464 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:219: case FSYS_HIRC:
+                                   1463 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:217: break;    
+                                   1464 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:219: case FSYS_HIRC:
       000414 80 62            [24] 1465 	sjmp	00106$
       000416                       1466 00102$:
-                                   1467 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:220: clr_CKSWT_OSC1;
+                                   1467 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:220: clr_CKSWT_OSC1;
       000416 75 91 00         [24] 1468 	mov	_SFRS,#0x00
                                    1469 ;	assignBit
       000419 A2 AF            [12] 1470 	mov	c,_EA
@@ -1477,7 +1477,7 @@
                                    1477 ;	assignBit
       000428 A2 00            [12] 1478 	mov	c,_BIT_TMP
       00042A 92 AF            [24] 1479 	mov	_EA,c
-                                   1480 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:221: clr_CKSWT_OSC0;
+                                   1480 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:221: clr_CKSWT_OSC0;
       00042C 75 91 00         [24] 1481 	mov	_SFRS,#0x00
                                    1482 ;	assignBit
       00042F A2 AF            [12] 1483 	mov	c,_EA
@@ -1490,11 +1490,11 @@
                                    1490 ;	assignBit
       00043E A2 00            [12] 1491 	mov	c,_BIT_TMP
       000440 92 AF            [24] 1492 	mov	_EA,c
-                                   1493 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:222: break;
-                                   1494 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:224: case FSYS_LIRC:
+                                   1493 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:222: break;
+                                   1494 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:224: case FSYS_LIRC:
       000442 80 34            [24] 1495 	sjmp	00106$
       000444                       1496 00103$:
-                                   1497 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:225: set_CKSWT_OSC1;
+                                   1497 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:225: set_CKSWT_OSC1;
       000444 75 91 00         [24] 1498 	mov	_SFRS,#0x00
                                    1499 ;	assignBit
       000447 A2 AF            [12] 1500 	mov	c,_EA
@@ -1507,7 +1507,7 @@
                                    1507 ;	assignBit
       000456 A2 00            [12] 1508 	mov	c,_BIT_TMP
       000458 92 AF            [24] 1509 	mov	_EA,c
-                                   1510 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:226: clr_CKSWT_OSC0;
+                                   1510 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:226: clr_CKSWT_OSC0;
       00045A 75 91 00         [24] 1511 	mov	_SFRS,#0x00
                                    1512 ;	assignBit
       00045D A2 AF            [12] 1513 	mov	c,_EA
@@ -1520,25 +1520,25 @@
                                    1520 ;	assignBit
       00046C A2 00            [12] 1521 	mov	c,_BIT_TMP
       00046E 92 AF            [24] 1522 	mov	_EA,c
-                                   1523 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:227: break;
-                                   1524 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:229: case FSYS_OSCIN_P30:
+                                   1523 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:227: break;
+                                   1524 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:229: case FSYS_OSCIN_P30:
       000470 80 06            [24] 1525 	sjmp	00106$
       000472                       1526 00104$:
-                                   1527 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:230: exflag = 1;
+                                   1527 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:230: exflag = 1;
                                    1528 ;	assignBit
       000472 D2 02            [12] 1529 	setb	_ClockSwitch_exflag_65536_100
-                                   1530 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:231: break;
-                                   1531 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:233: case FSYS_HXTIN_P00:
+                                   1530 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:231: break;
+                                   1531 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:233: case FSYS_HXTIN_P00:
       000474 80 02            [24] 1532 	sjmp	00106$
       000476                       1533 00105$:
-                                   1534 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:234: exflag = 1;
+                                   1534 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:234: exflag = 1;
                                    1535 ;	assignBit
       000476 D2 02            [12] 1536 	setb	_ClockSwitch_exflag_65536_100
-                                   1537 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:236: }
+                                   1537 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:236: }
       000478                       1538 00106$:
-                                   1539 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:237: if (exflag)
+                                   1539 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:237: if (exflag)
       000478 30 02 2C         [24] 1540 	jnb	_ClockSwitch_exflag_65536_100,00108$
-                                   1541 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:239: clr_CKSWT_OSC1;
+                                   1541 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:239: clr_CKSWT_OSC1;
       00047B 75 91 00         [24] 1542 	mov	_SFRS,#0x00
                                    1543 ;	assignBit
       00047E A2 AF            [12] 1544 	mov	c,_EA
@@ -1551,7 +1551,7 @@
                                    1551 ;	assignBit
       00048D A2 00            [12] 1552 	mov	c,_BIT_TMP
       00048F 92 AF            [24] 1553 	mov	_EA,c
-                                   1554 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:240: set_CKSWT_OSC0;
+                                   1554 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:240: set_CKSWT_OSC0;
       000491 75 91 00         [24] 1555 	mov	_SFRS,#0x00
                                    1556 ;	assignBit
       000494 A2 AF            [12] 1557 	mov	c,_EA
@@ -1565,11 +1565,11 @@
       0004A3 A2 00            [12] 1565 	mov	c,_BIT_TMP
       0004A5 92 AF            [24] 1566 	mov	_EA,c
       0004A7                       1567 00108$:
-                                   1568 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:242: EA = BIT_TMP;
+                                   1568 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:242: EA = BIT_TMP;
                                    1569 ;	assignBit
       0004A7 A2 00            [12] 1570 	mov	c,_BIT_TMP
       0004A9 92 AF            [24] 1571 	mov	_EA,c
-                                   1572 ;	..\..\..\..\..\Library\StdDriver\src\sys.c:243: }
+                                   1572 ;	..\..\..\..\..\lib\StdDriver\src\sys.c:243: }
       0004AB 22               [24] 1573 	ret
                                    1574 	.area CSEG    (CODE)
                                    1575 	.area CONST   (CODE)
