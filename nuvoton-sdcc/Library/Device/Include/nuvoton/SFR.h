@@ -1,3 +1,11 @@
+/**********************************************
+ *                  SFR list                  *
+ * ********************************************
+*/
+
+#ifndef SFR_H
+#define SRF_H
+
 __sfr __at (0x80)	P0;
 __sfr __at (0x81)	SP;
 __sfr __at (0x82)	DPL;
@@ -458,4 +466,7 @@ __sfr __at (0xF9)	PDTEN;		//TA Protection
 __sfr __at (0xFA)	PDTCNT;		//TA Protection
 __sfr __at (0xFB)	PMEN;
 __sfr __at (0xFC)	PMD;
+
+#endif
+
 #endif

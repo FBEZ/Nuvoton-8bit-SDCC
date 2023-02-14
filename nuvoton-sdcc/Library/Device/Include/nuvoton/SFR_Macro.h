@@ -6,7 +6,10 @@
 /******************************************************************************/
 /*                        SDCC MCS51 include files                            */
 /******************************************************************************/
-//#include <intrins.h>
+
+#ifndef SFR_MACRO_H
+#define SFR_MACRO_H
+
 #define _push_(x)		__asm push _##x __endasm
 #define _pop_(x)		__asm pop _##x __endasm
 
@@ -46,3 +49,6 @@
 #include "eeprom_sprom.h"
 #include "IAP_SPROM.h"
 #include "spi.h"
+
+
+#endif
