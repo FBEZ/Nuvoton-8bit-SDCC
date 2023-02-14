@@ -211,6 +211,7 @@ __sbit __at (0x98)	RI;			//SCON^0
 /*  P1  */     
 __sbit __at (0x97)	P17;		//P1^7
 __sbit __at (0x96)	P16;		//P1^6
+#ifndef CONFIG_FLASH_8
 __sbit __at (0x96)	TXD_1;		//P1^6
 __sbit __at (0x95)	P15;		//P1^5
 __sbit __at (0x94)	P14;		//P1^4
@@ -219,8 +220,9 @@ __sbit __at (0x93)	P13;		//P1^3
 __sbit __at (0x93)	SCL;		//P1^3 
 __sbit __at (0x92)	P12;		//P1^2
 __sbit __at (0x91)	P11;		//P1^1
-__sbit __at (0x90)	P10;		//P1^0
+#endif
 
+__sbit __at (0x90)	P10;		//P1^0
 /*  TCON  */
 __sbit __at (0x8F)	TF1;		//TCON^7
 __sbit __at (0x8E)	TR1;		//TCON^6
@@ -233,8 +235,10 @@ __sbit __at (0x88)	IT0;		//TCON^0
 
 /*  P0  */  
 
+#ifndef CONFIG_FLASH_8
 __sbit __at (0x87)	P07;		//P0^7
 __sbit __at (0x87)	RXD;		//P0^7
+#endif
 __sbit __at (0x86)	P06;		//P0^6
 __sbit __at (0x86)	TXD;		//P0^6
 __sbit __at (0x85)	P05;		//P0^5
