@@ -8,65 +8,65 @@
                                       8 ;--------------------------------------------------------
                                       9 ; Public variables in this module
                                      10 ;--------------------------------------------------------
-                                     11 	.globl _MOSI
-                                     12 	.globl _P00
-                                     13 	.globl _MISO
-                                     14 	.globl _P01
-                                     15 	.globl _RXD_1
-                                     16 	.globl _P02
-                                     17 	.globl _P03
-                                     18 	.globl _STADC
-                                     19 	.globl _P04
-                                     20 	.globl _P05
-                                     21 	.globl _TXD
-                                     22 	.globl _P06
-                                     23 	.globl _RXD
-                                     24 	.globl _P07
-                                     25 	.globl _IT0
-                                     26 	.globl _IE0
-                                     27 	.globl _IT1
-                                     28 	.globl _IE1
-                                     29 	.globl _TR0
-                                     30 	.globl _TF0
-                                     31 	.globl _TR1
-                                     32 	.globl _TF1
-                                     33 	.globl _P10
-                                     34 	.globl _P11
-                                     35 	.globl _P12
-                                     36 	.globl _SCL
-                                     37 	.globl _P13
-                                     38 	.globl _SDA
-                                     39 	.globl _P14
-                                     40 	.globl _P15
-                                     41 	.globl _TXD_1
-                                     42 	.globl _P16
-                                     43 	.globl _P17
-                                     44 	.globl _RI
-                                     45 	.globl _TI
-                                     46 	.globl _RB8
-                                     47 	.globl _TB8
-                                     48 	.globl _REN
-                                     49 	.globl _SM2
-                                     50 	.globl _SM1
-                                     51 	.globl _FE
-                                     52 	.globl _SM0
-                                     53 	.globl _P20
-                                     54 	.globl _EX0
-                                     55 	.globl _ET0
-                                     56 	.globl _EX1
-                                     57 	.globl _ET1
-                                     58 	.globl _ES
-                                     59 	.globl _EBOD
-                                     60 	.globl _EADC
-                                     61 	.globl _EA
-                                     62 	.globl _P30
-                                     63 	.globl _P31
-                                     64 	.globl _P32
-                                     65 	.globl _P33
-                                     66 	.globl _P34
-                                     67 	.globl _P35
-                                     68 	.globl _P36
-                                     69 	.globl _P37
+                                     11 	.globl _P31
+                                     12 	.globl _P32
+                                     13 	.globl _P33
+                                     14 	.globl _P34
+                                     15 	.globl _P35
+                                     16 	.globl _P36
+                                     17 	.globl _P37
+                                     18 	.globl _MOSI
+                                     19 	.globl _P00
+                                     20 	.globl _MISO
+                                     21 	.globl _P01
+                                     22 	.globl _RXD_1
+                                     23 	.globl _P02
+                                     24 	.globl _P03
+                                     25 	.globl _STADC
+                                     26 	.globl _P04
+                                     27 	.globl _P05
+                                     28 	.globl _TXD
+                                     29 	.globl _P06
+                                     30 	.globl _RXD
+                                     31 	.globl _P07
+                                     32 	.globl _IT0
+                                     33 	.globl _IE0
+                                     34 	.globl _IT1
+                                     35 	.globl _IE1
+                                     36 	.globl _TR0
+                                     37 	.globl _TF0
+                                     38 	.globl _TR1
+                                     39 	.globl _TF1
+                                     40 	.globl _P10
+                                     41 	.globl _P11
+                                     42 	.globl _P12
+                                     43 	.globl _SCL
+                                     44 	.globl _P13
+                                     45 	.globl _SDA
+                                     46 	.globl _P14
+                                     47 	.globl _P15
+                                     48 	.globl _TXD_1
+                                     49 	.globl _P16
+                                     50 	.globl _P17
+                                     51 	.globl _RI
+                                     52 	.globl _TI
+                                     53 	.globl _RB8
+                                     54 	.globl _TB8
+                                     55 	.globl _REN
+                                     56 	.globl _SM2
+                                     57 	.globl _SM1
+                                     58 	.globl _FE
+                                     59 	.globl _SM0
+                                     60 	.globl _P20
+                                     61 	.globl _EX0
+                                     62 	.globl _ET0
+                                     63 	.globl _EX1
+                                     64 	.globl _ET1
+                                     65 	.globl _ES
+                                     66 	.globl _EBOD
+                                     67 	.globl _EADC
+                                     68 	.globl _EA
+                                     69 	.globl _P30
                                      70 	.globl _PX0
                                      71 	.globl _PT0
                                      72 	.globl _PX1
@@ -224,81 +224,81 @@
                                     224 	.globl _P0S
                                     225 	.globl _P3SR
                                     226 	.globl _P3S
-                                    227 	.globl _EIPH1
-                                    228 	.globl _EIP1
-                                    229 	.globl _PORDIS
-                                    230 	.globl _PWM0MD
-                                    231 	.globl _PWM0MEN
-                                    232 	.globl _PWM0DTCNT
-                                    233 	.globl _PWM0DTEN
-                                    234 	.globl _SCON_1
-                                    235 	.globl _EIPH
-                                    236 	.globl _AINDIDS0
-                                    237 	.globl _SPDR
-                                    238 	.globl _SPSR
-                                    239 	.globl _SPCR
-                                    240 	.globl _CAPCON4
-                                    241 	.globl _CAPCON3
-                                    242 	.globl _B
-                                    243 	.globl _EIP
-                                    244 	.globl _C2H
-                                    245 	.globl _C2L
-                                    246 	.globl _PIF
-                                    247 	.globl _PIPEN
-                                    248 	.globl _PINEN
-                                    249 	.globl _PICON
-                                    250 	.globl _ADCCON0
-                                    251 	.globl _C1H
-                                    252 	.globl _C1L
-                                    253 	.globl _C0H
-                                    254 	.globl _C0L
-                                    255 	.globl _ADCDLY
-                                    256 	.globl _ADCCON2
-                                    257 	.globl _ADCCON1
-                                    258 	.globl _ACC
-                                    259 	.globl _PWM0CON1
-                                    260 	.globl _PIOCON0
-                                    261 	.globl _PWM0C3L
-                                    262 	.globl _PWM0C2L
-                                    263 	.globl _PWM0C1L
-                                    264 	.globl _PWM0C0L
-                                    265 	.globl _PWM0PL
-                                    266 	.globl _PWM0CON0
-                                    267 	.globl _PWM0FBD
-                                    268 	.globl _PNP
-                                    269 	.globl _PWM0C3H
-                                    270 	.globl _PWM0C2H
-                                    271 	.globl _PWM0C1H
-                                    272 	.globl _PWM0C0H
-                                    273 	.globl _PWM0PH
-                                    274 	.globl _PSW
-                                    275 	.globl _ADCMPH
-                                    276 	.globl _ADCMPL
-                                    277 	.globl _TH2
-                                    278 	.globl _TL2
-                                    279 	.globl _RCMP2H
-                                    280 	.globl _RCMP2L
-                                    281 	.globl _T2MOD
-                                    282 	.globl _T2CON
-                                    283 	.globl _TA
-                                    284 	.globl _RH3
-                                    285 	.globl _RL3
-                                    286 	.globl _T3CON
-                                    287 	.globl _ADCRH
-                                    288 	.globl _ADCRL
-                                    289 	.globl _I2ADDR
-                                    290 	.globl _I2CON
-                                    291 	.globl _I2TOC
-                                    292 	.globl _I2CLK
-                                    293 	.globl _I2STAT
-                                    294 	.globl _I2DAT
-                                    295 	.globl _SADDR_1
-                                    296 	.globl _SADEN_1
-                                    297 	.globl _SADEN
-                                    298 	.globl _IP
-                                    299 	.globl _PWMINTC
-                                    300 	.globl _IPH
-                                    301 	.globl _TOE
+                                    227 	.globl _PORDIS
+                                    228 	.globl _PWM0MD
+                                    229 	.globl _PWM0MEN
+                                    230 	.globl _PWM0DTCNT
+                                    231 	.globl _PWM0DTEN
+                                    232 	.globl _AINDIDS0
+                                    233 	.globl _PWM0CON1
+                                    234 	.globl _PIOCON0
+                                    235 	.globl _PWM0C3L
+                                    236 	.globl _PWM0C2L
+                                    237 	.globl _PWM0C1L
+                                    238 	.globl _PWM0C0L
+                                    239 	.globl _PWM0PL
+                                    240 	.globl _PWM0CON0
+                                    241 	.globl _PWM0FBD
+                                    242 	.globl _PNP
+                                    243 	.globl _PWM0C3H
+                                    244 	.globl _PWM0C2H
+                                    245 	.globl _PWM0C1H
+                                    246 	.globl _PWM0C0H
+                                    247 	.globl _PWM0PH
+                                    248 	.globl _TOE
+                                    249 	.globl _EIPH1
+                                    250 	.globl _EIP1
+                                    251 	.globl _SCON_1
+                                    252 	.globl _EIPH
+                                    253 	.globl _SPDR
+                                    254 	.globl _SPSR
+                                    255 	.globl _SPCR
+                                    256 	.globl _CAPCON4
+                                    257 	.globl _CAPCON3
+                                    258 	.globl _B
+                                    259 	.globl _EIP
+                                    260 	.globl _C2H
+                                    261 	.globl _C2L
+                                    262 	.globl _PIF
+                                    263 	.globl _PIPEN
+                                    264 	.globl _PINEN
+                                    265 	.globl _PICON
+                                    266 	.globl _ADCCON0
+                                    267 	.globl _C1H
+                                    268 	.globl _C1L
+                                    269 	.globl _C0H
+                                    270 	.globl _C0L
+                                    271 	.globl _ADCDLY
+                                    272 	.globl _ADCCON2
+                                    273 	.globl _ADCCON1
+                                    274 	.globl _ACC
+                                    275 	.globl _PSW
+                                    276 	.globl _ADCMPH
+                                    277 	.globl _ADCMPL
+                                    278 	.globl _TH2
+                                    279 	.globl _TL2
+                                    280 	.globl _RCMP2H
+                                    281 	.globl _RCMP2L
+                                    282 	.globl _T2MOD
+                                    283 	.globl _T2CON
+                                    284 	.globl _TA
+                                    285 	.globl _RH3
+                                    286 	.globl _RL3
+                                    287 	.globl _T3CON
+                                    288 	.globl _ADCRH
+                                    289 	.globl _ADCRL
+                                    290 	.globl _I2ADDR
+                                    291 	.globl _I2CON
+                                    292 	.globl _I2TOC
+                                    293 	.globl _I2CLK
+                                    294 	.globl _I2STAT
+                                    295 	.globl _I2DAT
+                                    296 	.globl _SADDR_1
+                                    297 	.globl _SADEN_1
+                                    298 	.globl _SADEN
+                                    299 	.globl _IP
+                                    300 	.globl _PWMINTC
+                                    301 	.globl _IPH
                                     302 	.globl _P1M2
                                     303 	.globl _P1M1
                                     304 	.globl _P0M2
@@ -405,81 +405,81 @@
                            0000B2   405 _P0M2	=	0x00b2
                            0000B3   406 _P1M1	=	0x00b3
                            0000B4   407 _P1M2	=	0x00b4
-                           0000B5   408 _TOE	=	0x00b5
-                           0000B7   409 _IPH	=	0x00b7
-                           0000B7   410 _PWMINTC	=	0x00b7
-                           0000B8   411 _IP	=	0x00b8
-                           0000B9   412 _SADEN	=	0x00b9
-                           0000BA   413 _SADEN_1	=	0x00ba
-                           0000BB   414 _SADDR_1	=	0x00bb
-                           0000BC   415 _I2DAT	=	0x00bc
-                           0000BD   416 _I2STAT	=	0x00bd
-                           0000BE   417 _I2CLK	=	0x00be
-                           0000BF   418 _I2TOC	=	0x00bf
-                           0000C0   419 _I2CON	=	0x00c0
-                           0000C1   420 _I2ADDR	=	0x00c1
-                           0000C2   421 _ADCRL	=	0x00c2
-                           0000C3   422 _ADCRH	=	0x00c3
-                           0000C4   423 _T3CON	=	0x00c4
-                           0000C5   424 _RL3	=	0x00c5
-                           0000C6   425 _RH3	=	0x00c6
-                           0000C7   426 _TA	=	0x00c7
-                           0000C8   427 _T2CON	=	0x00c8
-                           0000C9   428 _T2MOD	=	0x00c9
-                           0000CA   429 _RCMP2L	=	0x00ca
-                           0000CB   430 _RCMP2H	=	0x00cb
-                           0000CC   431 _TL2	=	0x00cc
-                           0000CD   432 _TH2	=	0x00cd
-                           0000CE   433 _ADCMPL	=	0x00ce
-                           0000CF   434 _ADCMPH	=	0x00cf
-                           0000D0   435 _PSW	=	0x00d0
-                           0000D1   436 _PWM0PH	=	0x00d1
-                           0000D2   437 _PWM0C0H	=	0x00d2
-                           0000D3   438 _PWM0C1H	=	0x00d3
-                           0000D4   439 _PWM0C2H	=	0x00d4
-                           0000D5   440 _PWM0C3H	=	0x00d5
-                           0000D6   441 _PNP	=	0x00d6
-                           0000D7   442 _PWM0FBD	=	0x00d7
-                           0000D8   443 _PWM0CON0	=	0x00d8
-                           0000D9   444 _PWM0PL	=	0x00d9
-                           0000DA   445 _PWM0C0L	=	0x00da
-                           0000DB   446 _PWM0C1L	=	0x00db
-                           0000DC   447 _PWM0C2L	=	0x00dc
-                           0000DD   448 _PWM0C3L	=	0x00dd
-                           0000DE   449 _PIOCON0	=	0x00de
-                           0000DF   450 _PWM0CON1	=	0x00df
-                           0000E0   451 _ACC	=	0x00e0
-                           0000E1   452 _ADCCON1	=	0x00e1
-                           0000E2   453 _ADCCON2	=	0x00e2
-                           0000E3   454 _ADCDLY	=	0x00e3
-                           0000E4   455 _C0L	=	0x00e4
-                           0000E5   456 _C0H	=	0x00e5
-                           0000E6   457 _C1L	=	0x00e6
-                           0000E7   458 _C1H	=	0x00e7
-                           0000E8   459 _ADCCON0	=	0x00e8
-                           0000E9   460 _PICON	=	0x00e9
-                           0000EA   461 _PINEN	=	0x00ea
-                           0000EB   462 _PIPEN	=	0x00eb
-                           0000EC   463 _PIF	=	0x00ec
-                           0000ED   464 _C2L	=	0x00ed
-                           0000EE   465 _C2H	=	0x00ee
-                           0000EF   466 _EIP	=	0x00ef
-                           0000F0   467 _B	=	0x00f0
-                           0000F1   468 _CAPCON3	=	0x00f1
-                           0000F2   469 _CAPCON4	=	0x00f2
-                           0000F3   470 _SPCR	=	0x00f3
-                           0000F4   471 _SPSR	=	0x00f4
-                           0000F5   472 _SPDR	=	0x00f5
-                           0000F6   473 _AINDIDS0	=	0x00f6
-                           0000F7   474 _EIPH	=	0x00f7
-                           0000F8   475 _SCON_1	=	0x00f8
-                           0000F9   476 _PWM0DTEN	=	0x00f9
-                           0000FA   477 _PWM0DTCNT	=	0x00fa
-                           0000FB   478 _PWM0MEN	=	0x00fb
-                           0000FC   479 _PWM0MD	=	0x00fc
-                           0000FD   480 _PORDIS	=	0x00fd
-                           0000FE   481 _EIP1	=	0x00fe
-                           0000FF   482 _EIPH1	=	0x00ff
+                           0000B7   408 _IPH	=	0x00b7
+                           0000B7   409 _PWMINTC	=	0x00b7
+                           0000B8   410 _IP	=	0x00b8
+                           0000B9   411 _SADEN	=	0x00b9
+                           0000BA   412 _SADEN_1	=	0x00ba
+                           0000BB   413 _SADDR_1	=	0x00bb
+                           0000BC   414 _I2DAT	=	0x00bc
+                           0000BD   415 _I2STAT	=	0x00bd
+                           0000BE   416 _I2CLK	=	0x00be
+                           0000BF   417 _I2TOC	=	0x00bf
+                           0000C0   418 _I2CON	=	0x00c0
+                           0000C1   419 _I2ADDR	=	0x00c1
+                           0000C2   420 _ADCRL	=	0x00c2
+                           0000C3   421 _ADCRH	=	0x00c3
+                           0000C4   422 _T3CON	=	0x00c4
+                           0000C5   423 _RL3	=	0x00c5
+                           0000C6   424 _RH3	=	0x00c6
+                           0000C7   425 _TA	=	0x00c7
+                           0000C8   426 _T2CON	=	0x00c8
+                           0000C9   427 _T2MOD	=	0x00c9
+                           0000CA   428 _RCMP2L	=	0x00ca
+                           0000CB   429 _RCMP2H	=	0x00cb
+                           0000CC   430 _TL2	=	0x00cc
+                           0000CD   431 _TH2	=	0x00cd
+                           0000CE   432 _ADCMPL	=	0x00ce
+                           0000CF   433 _ADCMPH	=	0x00cf
+                           0000D0   434 _PSW	=	0x00d0
+                           0000E0   435 _ACC	=	0x00e0
+                           0000E1   436 _ADCCON1	=	0x00e1
+                           0000E2   437 _ADCCON2	=	0x00e2
+                           0000E3   438 _ADCDLY	=	0x00e3
+                           0000E4   439 _C0L	=	0x00e4
+                           0000E5   440 _C0H	=	0x00e5
+                           0000E6   441 _C1L	=	0x00e6
+                           0000E7   442 _C1H	=	0x00e7
+                           0000E8   443 _ADCCON0	=	0x00e8
+                           0000E9   444 _PICON	=	0x00e9
+                           0000EA   445 _PINEN	=	0x00ea
+                           0000EB   446 _PIPEN	=	0x00eb
+                           0000EC   447 _PIF	=	0x00ec
+                           0000ED   448 _C2L	=	0x00ed
+                           0000EE   449 _C2H	=	0x00ee
+                           0000EF   450 _EIP	=	0x00ef
+                           0000F0   451 _B	=	0x00f0
+                           0000F1   452 _CAPCON3	=	0x00f1
+                           0000F2   453 _CAPCON4	=	0x00f2
+                           0000F3   454 _SPCR	=	0x00f3
+                           0000F4   455 _SPSR	=	0x00f4
+                           0000F5   456 _SPDR	=	0x00f5
+                           0000F7   457 _EIPH	=	0x00f7
+                           0000F8   458 _SCON_1	=	0x00f8
+                           0000FE   459 _EIP1	=	0x00fe
+                           0000FF   460 _EIPH1	=	0x00ff
+                           0000B5   461 _TOE	=	0x00b5
+                           0000D1   462 _PWM0PH	=	0x00d1
+                           0000D2   463 _PWM0C0H	=	0x00d2
+                           0000D3   464 _PWM0C1H	=	0x00d3
+                           0000D4   465 _PWM0C2H	=	0x00d4
+                           0000D5   466 _PWM0C3H	=	0x00d5
+                           0000D6   467 _PNP	=	0x00d6
+                           0000D7   468 _PWM0FBD	=	0x00d7
+                           0000D8   469 _PWM0CON0	=	0x00d8
+                           0000D9   470 _PWM0PL	=	0x00d9
+                           0000DA   471 _PWM0C0L	=	0x00da
+                           0000DB   472 _PWM0C1L	=	0x00db
+                           0000DC   473 _PWM0C2L	=	0x00dc
+                           0000DD   474 _PWM0C3L	=	0x00dd
+                           0000DE   475 _PIOCON0	=	0x00de
+                           0000DF   476 _PWM0CON1	=	0x00df
+                           0000F6   477 _AINDIDS0	=	0x00f6
+                           0000F9   478 _PWM0DTEN	=	0x00f9
+                           0000FA   479 _PWM0DTCNT	=	0x00fa
+                           0000FB   480 _PWM0MEN	=	0x00fb
+                           0000FC   481 _PWM0MD	=	0x00fc
+                           0000FD   482 _PORDIS	=	0x00fd
                            0000AC   483 _P3S	=	0x00ac
                            0000AD   484 _P3SR	=	0x00ad
                            0000B1   485 _P0S	=	0x00b1
@@ -642,65 +642,65 @@
                            0000BA   642 _PX1	=	0x00ba
                            0000B9   643 _PT0	=	0x00b9
                            0000B8   644 _PX0	=	0x00b8
-                           0000B7   645 _P37	=	0x00b7
-                           0000B6   646 _P36	=	0x00b6
-                           0000B5   647 _P35	=	0x00b5
-                           0000B4   648 _P34	=	0x00b4
-                           0000B3   649 _P33	=	0x00b3
-                           0000B2   650 _P32	=	0x00b2
-                           0000B1   651 _P31	=	0x00b1
-                           0000B0   652 _P30	=	0x00b0
-                           0000AF   653 _EA	=	0x00af
-                           0000AE   654 _EADC	=	0x00ae
-                           0000AD   655 _EBOD	=	0x00ad
-                           0000AC   656 _ES	=	0x00ac
-                           0000AB   657 _ET1	=	0x00ab
-                           0000AA   658 _EX1	=	0x00aa
-                           0000A9   659 _ET0	=	0x00a9
-                           0000A8   660 _EX0	=	0x00a8
-                           0000A0   661 _P20	=	0x00a0
-                           00009F   662 _SM0	=	0x009f
-                           00009F   663 _FE	=	0x009f
-                           00009E   664 _SM1	=	0x009e
-                           00009D   665 _SM2	=	0x009d
-                           00009C   666 _REN	=	0x009c
-                           00009B   667 _TB8	=	0x009b
-                           00009A   668 _RB8	=	0x009a
-                           000099   669 _TI	=	0x0099
-                           000098   670 _RI	=	0x0098
-                           000097   671 _P17	=	0x0097
-                           000096   672 _P16	=	0x0096
-                           000096   673 _TXD_1	=	0x0096
-                           000095   674 _P15	=	0x0095
-                           000094   675 _P14	=	0x0094
-                           000094   676 _SDA	=	0x0094
-                           000093   677 _P13	=	0x0093
-                           000093   678 _SCL	=	0x0093
-                           000092   679 _P12	=	0x0092
-                           000091   680 _P11	=	0x0091
-                           000090   681 _P10	=	0x0090
-                           00008F   682 _TF1	=	0x008f
-                           00008E   683 _TR1	=	0x008e
-                           00008D   684 _TF0	=	0x008d
-                           00008C   685 _TR0	=	0x008c
-                           00008B   686 _IE1	=	0x008b
-                           00008A   687 _IT1	=	0x008a
-                           000089   688 _IE0	=	0x0089
-                           000088   689 _IT0	=	0x0088
-                           000087   690 _P07	=	0x0087
-                           000087   691 _RXD	=	0x0087
-                           000086   692 _P06	=	0x0086
-                           000086   693 _TXD	=	0x0086
-                           000085   694 _P05	=	0x0085
-                           000084   695 _P04	=	0x0084
-                           000084   696 _STADC	=	0x0084
-                           000083   697 _P03	=	0x0083
-                           000082   698 _P02	=	0x0082
-                           000082   699 _RXD_1	=	0x0082
-                           000081   700 _P01	=	0x0081
-                           000081   701 _MISO	=	0x0081
-                           000080   702 _P00	=	0x0080
-                           000080   703 _MOSI	=	0x0080
+                           0000B0   645 _P30	=	0x00b0
+                           0000AF   646 _EA	=	0x00af
+                           0000AE   647 _EADC	=	0x00ae
+                           0000AD   648 _EBOD	=	0x00ad
+                           0000AC   649 _ES	=	0x00ac
+                           0000AB   650 _ET1	=	0x00ab
+                           0000AA   651 _EX1	=	0x00aa
+                           0000A9   652 _ET0	=	0x00a9
+                           0000A8   653 _EX0	=	0x00a8
+                           0000A0   654 _P20	=	0x00a0
+                           00009F   655 _SM0	=	0x009f
+                           00009F   656 _FE	=	0x009f
+                           00009E   657 _SM1	=	0x009e
+                           00009D   658 _SM2	=	0x009d
+                           00009C   659 _REN	=	0x009c
+                           00009B   660 _TB8	=	0x009b
+                           00009A   661 _RB8	=	0x009a
+                           000099   662 _TI	=	0x0099
+                           000098   663 _RI	=	0x0098
+                           000097   664 _P17	=	0x0097
+                           000096   665 _P16	=	0x0096
+                           000096   666 _TXD_1	=	0x0096
+                           000095   667 _P15	=	0x0095
+                           000094   668 _P14	=	0x0094
+                           000094   669 _SDA	=	0x0094
+                           000093   670 _P13	=	0x0093
+                           000093   671 _SCL	=	0x0093
+                           000092   672 _P12	=	0x0092
+                           000091   673 _P11	=	0x0091
+                           000090   674 _P10	=	0x0090
+                           00008F   675 _TF1	=	0x008f
+                           00008E   676 _TR1	=	0x008e
+                           00008D   677 _TF0	=	0x008d
+                           00008C   678 _TR0	=	0x008c
+                           00008B   679 _IE1	=	0x008b
+                           00008A   680 _IT1	=	0x008a
+                           000089   681 _IE0	=	0x0089
+                           000088   682 _IT0	=	0x0088
+                           000087   683 _P07	=	0x0087
+                           000087   684 _RXD	=	0x0087
+                           000086   685 _P06	=	0x0086
+                           000086   686 _TXD	=	0x0086
+                           000085   687 _P05	=	0x0085
+                           000084   688 _P04	=	0x0084
+                           000084   689 _STADC	=	0x0084
+                           000083   690 _P03	=	0x0083
+                           000082   691 _P02	=	0x0082
+                           000082   692 _RXD_1	=	0x0082
+                           000081   693 _P01	=	0x0081
+                           000081   694 _MISO	=	0x0081
+                           000080   695 _P00	=	0x0080
+                           000080   696 _MOSI	=	0x0080
+                           0000B7   697 _P37	=	0x00b7
+                           0000B6   698 _P36	=	0x00b6
+                           0000B5   699 _P35	=	0x00b5
+                           0000B4   700 _P34	=	0x00b4
+                           0000B3   701 _P33	=	0x00b3
+                           0000B2   702 _P32	=	0x00b2
+                           0000B1   703 _P31	=	0x00b1
                                     704 ;--------------------------------------------------------
                                     705 ; overlayable register banks
                                     706 ;--------------------------------------------------------

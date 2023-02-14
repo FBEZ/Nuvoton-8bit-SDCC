@@ -26,4 +26,4 @@ sdcc ..\..\%proname%.c --iram-size 256 --xram-size 1024 putchar.rel sys.rel uart
 cd ..
 del %proname%.hex
 sdobjcopy -Iihex -Obinary .\build\%proname%.ihx %proname%.hex
-pause
+

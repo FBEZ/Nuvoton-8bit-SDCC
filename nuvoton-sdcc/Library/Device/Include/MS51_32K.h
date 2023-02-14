@@ -10,6 +10,6 @@
 
 #define CONFIG_FLASH_32
 
-#include "SFR_Macro_MS51_32K.h"
+#include "SFR_Macro.h"
 #include "SFR.h"
 

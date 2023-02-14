@@ -1,37 +1,8 @@
-/********************************************************************/
-/*  <Define rule I> set or clr _ regsiter name _ register bit name  */
-/********************************************************************/
-/******************************************************************************/
-/*                        SDCC MCS51 include files                            */
-/******************************************************************************/
-//#include <intrins.h>
-#define _push_(x)		__asm push _##x __endasm
-#define _pop_(x)		__asm pop _##x __endasm
-#include <stdio.h>
-//#include <absacc.h>
-#include <string.h>
-/******************************************************************************/
-/******************************************************************************/
-/*                         Peripheral header files                            */
-/******************************************************************************/
-#include "Function_Define_MS51_32K.h"
-//#include "adc.h"
-#include "sys.h"
-#include "eeprom.h"
-#include "delay.h" 
-#include "uart.h"
-#include "common.h"
-//#include "timer.h"
-#include "IAP.h"
-#include "watchdog.h"
-//#include "pwm0.h"
-//#include "pwm123.h"
-//#include "uart2.h"
-//#include "uart3.h"
-//#include "uart4.h"
-#include "eeprom_sprom.h"
-#include "IAP_SPROM.h"
-#include "spi.h"
+/*--------------------------------------------------------------------------------------*/
+/*  SFR_Macro_MS51_32K.H                                                                */
+/*  SFR Macro define for Nuvoton 32k flash                      */
+/*  <Define rule I> set or clr _ regsiter name _ register bit name                      */
+/*--------------------------------------------------------------------------------------*/
 
 /********SFR ALL PAGES*************/
 /**** P0  80H  PAGE A ****/

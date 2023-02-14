@@ -459,5 +459,3 @@ __sfr __at (0xFA)	PDTCNT;		//TA Protection
 __sfr __at (0xFB)	PMEN;
 __sfr __at (0xFC)	PMD;
 #endif
-#ifdef CONFIG_FLASH_8
-#endif
