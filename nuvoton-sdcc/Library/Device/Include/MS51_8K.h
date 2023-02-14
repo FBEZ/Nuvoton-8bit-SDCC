@@ -11,3 +11,4 @@
 #define CONFIG_FLASH_8
 
 #include "SFR_Macro_MS51_8K.h"
+#include "SFR.h"
