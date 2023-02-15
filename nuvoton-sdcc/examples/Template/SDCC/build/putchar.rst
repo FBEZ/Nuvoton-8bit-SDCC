@@ -774,7 +774,7 @@
                                     774 ;------------------------------------------------------------
                                     775 ;c                         Allocated to registers r6 r7 
                                     776 ;------------------------------------------------------------
-                                    777 ;	..\..\..\..\..\lib\putchar.c:12: int putchar (int c)
+                                    777 ;	..\..\..\..\components\StdDriver\src\putchar.c:12: int putchar (int c)
                                     778 ;	-----------------------------------------
                                     779 ;	 function putchar
                                     780 ;	-----------------------------------------
@@ -789,19 +789,19 @@
                            000000   789 	ar0 = 0x00
       0000AA AE 82            [24]  790 	mov	r6,dpl
       0000AC AF 83            [24]  791 	mov	r7,dph
-                                    792 ;	..\..\..\..\..\lib\putchar.c:14: while (!TI);
+                                    792 ;	..\..\..\..\components\StdDriver\src\putchar.c:14: while (!TI);
       0000AE                        793 00101$:
-                                    794 ;	..\..\..\..\..\lib\putchar.c:15: TI = 0;
+                                    794 ;	..\..\..\..\components\StdDriver\src\putchar.c:15: TI = 0;
                                     795 ;	assignBit
       0000AE 10 99 02         [24]  796 	jbc	_TI,00114$
       0000B1 80 FB            [24]  797 	sjmp	00101$
       0000B3                        798 00114$:
-                                    799 ;	..\..\..\..\..\lib\putchar.c:16: SBUF = c;
+                                    799 ;	..\..\..\..\components\StdDriver\src\putchar.c:16: SBUF = c;
       0000B3 8E 99            [24]  800 	mov	_SBUF,r6
-                                    801 ;	..\..\..\..\..\lib\putchar.c:17: return c;
+                                    801 ;	..\..\..\..\components\StdDriver\src\putchar.c:17: return c;
       0000B5 8E 82            [24]  802 	mov	dpl,r6
       0000B7 8F 83            [24]  803 	mov	dph,r7
-                                    804 ;	..\..\..\..\..\lib\putchar.c:18: }
+                                    804 ;	..\..\..\..\components\StdDriver\src\putchar.c:18: }
       0000B9 22               [24]  805 	ret
                                     806 	.area CSEG    (CODE)
                                     807 	.area CONST   (CODE)
