@@ -61,6 +61,7 @@ build:
 clean:
 #   Remove all files in build folder
 	@rm $(BUILDS)*
+	@rm -f $(PROJECT_NAME).hex
 	@echo Build Folder Cleaned
 
 flash: $(PROJECT_NAME).hex
