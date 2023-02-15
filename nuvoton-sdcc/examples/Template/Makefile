@@ -2,8 +2,9 @@
 #  Makefile for SDCC    #
 #########################
 
-## TODO: Instead of using the old Stdriver, recursively compile all components in the "components" folder
-
+## TODO: 
+## * Instead of using the old Stdriver, recursively compile all components in the "components" folder
+## * Add Prerequisites to build
 
 INCLUDES = ../../components/StdDriver/inc/
 DEV_INCLUDES = ../../components/core/
