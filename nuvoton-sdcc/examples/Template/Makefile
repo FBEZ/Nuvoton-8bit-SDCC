@@ -1,3 +1,10 @@
+#########################
+#  Makefile for SDCC    #
+#########################
+
+## TODO: Instead of using the old Stdriver, recursively compile all components in the "components" folder
+
+
 INCLUDES = ../../components/StdDriver/inc/
 DEV_INCLUDES = ../../components/core/
 SOURCES = ../../components/StdDriver/src/
