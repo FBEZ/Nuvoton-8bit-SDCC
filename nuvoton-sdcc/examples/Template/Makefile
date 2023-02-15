@@ -10,17 +10,19 @@ INCLUDES = ../../components/StdDriver/inc/
 DEV_INCLUDES = ../../components/core/
 SOURCES = ../../components/StdDriver/src/
 BUILDS = build/
+
 CC = sdcc
 OBC = sdobjcopy
 CFLAGS = -o $(BUILDS)
+LOADER = NuLink_8051OT
 
 PROJECT_NAME = helloworld
-
-LOADER = NuLink_8051OT
 
 CONFIG_F_OSC = FOSC_240000
 CONFIG_IRAM = 256
 CONFIG_XRAM = 1024
+
+.PHONY: build flash clean
 
 build: 
 	@mkdir -p $(BUILDS)
