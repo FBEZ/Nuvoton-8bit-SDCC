@@ -1,6 +1,6 @@
 # Makefile travelling and building the components directory 
 
-.PHONY: build clean test
+.PHONY: build clean test all
 
 # Default path to the project: we assume the Makefile including this file
 # is in the project directory
@@ -56,8 +56,51 @@ COMPONENTS := $(filter-out $(subst ",,$(EXCLUDE_COMPONENTS)), $(COMPONENTS))
 endif
 export COMPONENTS
 
+# Resolve all of COMPONENTS into absolute paths in COMPONENT_PATHS.
+# For each entry in COMPONENT_DIRS:
+# - either this is directory with multiple components, in which case check that
+#   a subdirectory with component name exists, and it contains a component.mk file.
+# - or, this is a directory of a single component, in which case the name of this
+#   directory has to match the component name
+#
+# If a component name exists in multiple COMPONENT_DIRS, we take the first match.
+#
+# NOTE: These paths must be generated WITHOUT a trailing / so we
+# can use $(notdir x) to get the component name.
+COMPONENT_PATHS := $(foreach comp,$(COMPONENTS),\
+                        $(firstword $(foreach cd,$(COMPONENT_DIRS),\
+                            $(if $(findstring $(cd),$(MULTI_COMPONENT_DIRS)),\
+                                 $(abspath $(dir $(wildcard $(cd)/$(comp)/component.mk))),)\
+                            $(if $(findstring $(cd),$(SINGLE_COMPONENT_DIRS)),\
+                                 $(if $(filter $(comp),$(notdir $(cd))),$(cd),),)\
+                   )))
+export COMPONENT_PATHS
+
+
+# COMPONENT_PROJECT_VARS is the list of component_project_vars.mk generated makefiles
+# for each component.
+#
+# Including $(COMPONENT_PROJECT_VARS) builds the COMPONENT_INCLUDES,
+# COMPONENT_LDFLAGS variables and also targets for any inter-component
+# dependencies.
+#
+
+
+# Also add top-level project include path, for top-level includes
+COMPONENT_INCLUDES += $(abspath $(BUILD_DIR_BASE)/include/)
+
+export COMPONENT_INCLUDES
+
+# Set variables common to both project & component
+include $(IDF_PATH)/make/common.mk
+
+CC = sdcc
+OBC = sdobjcopy
+CFLAGS = -o $(BUILDS)
+LOADER = NuLink_8051OT
+
+all:
+	APP_HEX:=$(BUILD_DIR_BASE)/$(PROJECT_NAME).hex
+
 test:
-	@echo $(PROJECT_PATH)
-	@echo $(BUILD_DIR_BASE)
-	@echo $(COMPONENT_DIRS)
-	@echo $(COMPONENTS)
+	@echo $(COMPONENT_PROJECT_VARS)
