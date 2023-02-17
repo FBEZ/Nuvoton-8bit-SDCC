@@ -4,7 +4,14 @@
 #
 
 # Initially hardcoded path, then it will be setup otherwise
-N8S_PATH = C:\Users\Francesco\Documents\Nuvoton-8bit-SDCC\nuvoton-sdcc
+
+OS := $(shell uname)
+
+ifeq ($(OS),Linux) 
+    N8S_PATH = /home/francesco/Documents/Nuvoton-8bit-SDCC/nuvoton-sdcc
+else
+    N8S_PATH = C:\Users\Francesco\Documents\Nuvoton-8bit-SDCC\nuvoton-sdcc
+endif
 
 PROJECT_NAME := helloworld
 

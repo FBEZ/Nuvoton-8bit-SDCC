@@ -92,7 +92,7 @@ COMPONENT_INCLUDES += $(abspath $(BUILD_DIR_BASE)/include/)
 export COMPONENT_INCLUDES
 
 # Set variables common to both project & component
-include $(IDF_PATH)/make/common.mk
+include $(N8S_PATH)/make/common.mk
 
 CC = sdcc
 OBC = sdobjcopy
