@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #define UART0_Timer1  0
 #define UART0_Timer3  1
 #define UART1_Timer3  2

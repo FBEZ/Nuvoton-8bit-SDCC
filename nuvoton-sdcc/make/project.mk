@@ -105,7 +105,7 @@ $(BUILD_DIR_BASE):
 #
 # Is recursively expanded by the GenerateComponentTargets macro
 define ComponentMake
-+$(MAKE) -C $(BUILD_DIR_BASE)/$(3) -f $(1)/component.mk COMPONENT_DIR=$(1) CORE_DIR=$(N8S_PATH)/components/core/include
++$(MAKE) -C $(BUILD_DIR_BASE)/$(3) -f $(1)/component.mk COMPONENT_DIR=$(1) CORE_DIR=$(N8S_PATH)/components/core/include DEVICE_DIR=$(N8S_PATH)/components/device/include BUILD_DIR_BASE=$(BUILD_DIR_BASE)
 #$(N8S_PATH)/make/component_wrapper.mk COMPONENT_MAKEFILE=$(1)/component.mk COMPONENT_NAME=$(2)
 endef
 
