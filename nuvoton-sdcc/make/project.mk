@@ -94,6 +94,49 @@ export COMPONENT_INCLUDES
 # Set variables common to both project & component
 include $(N8S_PATH)/make/common.mk
 
+##### TO BE CHECKED BEGIN
+
+$(BUILD_DIR_BASE):
+	mkdir -p $(BUILD_DIR_BASE)
+
+# Macro for the recursive sub-make for each component
+# $(1) - component directory
+# $(2) - component name only
+#
+# Is recursively expanded by the GenerateComponentTargets macro
+define ComponentMake
++$(MAKE) -C $(BUILD_DIR_BASE)/$(3) -f $(1)/component.mk COMPONENT_DIR=$(1) CORE_DIR=$(N8S_PATH)/components/core/include
+#$(N8S_PATH)/make/component_wrapper.mk COMPONENT_MAKEFILE=$(1)/component.mk COMPONENT_NAME=$(2)
+endef
+
+# Generate top-level component-specific targets for each component
+# $(1) - path to component dir
+# $(2) - name of component
+#
+define GenerateComponentTargets
+.PHONY: component-$(2)-build component-$(2)-clean
+
+component-$(2)-build: | $(BUILD_DIR_BASE)/$(2)
+	$(call ComponentMake,$(1),$(2)) build
+
+component-$(2)-clean: | $(BUILD_DIR_BASE)/$(2) $(BUILD_DIR_BASE)/$(2)/component_project_vars.mk
+	$(call ComponentMake,$(1),$(2)) clean
+
+$(BUILD_DIR_BASE)/$(2):
+	@mkdir -p $(BUILD_DIR_BASE)/$(2)
+
+# tell make it can build any component's library by invoking the -build target
+# (this target exists for all components even ones which don't build libraries, but it's
+# only invoked for the targets whose libraries appear in COMPONENT_LIBRARIES and hence the
+# APP_ELF dependencies.)
+$(BUILD_DIR_BASE)/$(2)/lib$(2).a: component-$(2)-build
+	$(details) "Target '$$^' responsible for '$$@'" # echo which build target built this file
+endef
+
+$(foreach component,$(COMPONENT_PATHS),$(eval $(call GenerateComponentTargets,$(component),$(notdir $(component)))))
+
+### TO BE CHECKED: END
+
 CC = sdcc
 OBC = sdobjcopy
 CFLAGS = -o $(BUILDS)
@@ -103,4 +146,5 @@ all:
 	APP_HEX:=$(BUILD_DIR_BASE)/$(PROJECT_NAME).hex
 
 test:
-	@echo $(COMPONENT_PROJECT_VARS)
+	@echo $(COMPONENT_PATHS)
+	@echo $(BUILD_DIR_BASE)
