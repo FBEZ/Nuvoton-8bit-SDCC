@@ -9,7 +9,10 @@
 //  E-Mail : MicroC-8bit@nuvoton.com
 //  Date   : June/21/2020
 //***********************************************************************************************************
-#include "MS51_32K.h"
+#include "SFR.h"
+#include "Function_Define_MS51_32K.h"
+#include "SFR_Macro_MS51_32K.h"
+#include "sys.h"
 
 __bit BIT_TMP;
 unsigned char __data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;

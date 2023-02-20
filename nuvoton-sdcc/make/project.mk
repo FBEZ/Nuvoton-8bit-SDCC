@@ -1,6 +1,13 @@
 # Makefile travelling and building the components directory 
 
-.PHONY: build clean test all
+.PHONY: build clean test all list-components
+
+
+# Check if sdcc is installed
+
+ifeq (, $(shell which sdcc))
+ $(error "No sdcc in $(PATH), consider doing apt-get install sdcc")
+endif
 
 # Default path to the project: we assume the Makefile including this file
 # is in the project directory
@@ -74,7 +81,9 @@ COMPONENT_PATHS := $(foreach comp,$(COMPONENTS),\
                             $(if $(findstring $(cd),$(SINGLE_COMPONENT_DIRS)),\
                                  $(if $(filter $(comp),$(notdir $(cd))),$(cd),),)\
                    )))
+COMPONENT_INCLUDE_PATHS := $(foreach cp, $(COMPONENT_PATHS),-I $(cp)/include -I $(cp) ) 
 export COMPONENT_PATHS
+export COMPONENT_INCLUDE_PATHS
 
 
 # COMPONENT_PROJECT_VARS is the list of component_project_vars.mk generated makefiles
@@ -105,8 +114,8 @@ $(BUILD_DIR_BASE):
 #
 # Is recursively expanded by the GenerateComponentTargets macro
 define ComponentMake
-+$(MAKE) -C $(BUILD_DIR_BASE)/$(3) -f $(1)/component.mk COMPONENT_DIR=$(1) CORE_DIR=$(N8S_PATH)/components/core/include DEVICE_DIR=$(N8S_PATH)/components/device/include BUILD_DIR_BASE=$(BUILD_DIR_BASE)
-#$(N8S_PATH)/make/component_wrapper.mk COMPONENT_MAKEFILE=$(1)/component.mk COMPONENT_NAME=$(2)
++$(MAKE) -C $(BUILD_DIR_BASE)/$(3) -f $(1)/component.mk COMPONENT_DIR=$(1) BUILD_DIR_BASE=$(BUILD_DIR_BASE)
+# $(N8S_PATH)/make/component_wrapper.mk COMPONENT_MAKEFILE=$(1)/component.mk COMPONENT_NAME=$(2)
 endef
 
 # Generate top-level component-specific targets for each component
@@ -129,6 +138,7 @@ $(BUILD_DIR_BASE)/$(2):
 # (this target exists for all components even ones which don't build libraries, but it's
 # only invoked for the targets whose libraries appear in COMPONENT_LIBRARIES and hence the
 # APP_ELF dependencies.)
+
 $(BUILD_DIR_BASE)/$(2)/lib$(2).a: component-$(2)-build
 	$(details) "Target '$$^' responsible for '$$@'" # echo which build target built this file
 endef
@@ -143,8 +153,30 @@ CFLAGS = -o $(BUILDS)
 LOADER = NuLink_8051OT
 
 all:
-	APP_HEX:=$(BUILD_DIR_BASE)/$(PROJECT_NAME).hex
+#	APP_HEX:=$(BUILD_DIR_BASE)/$(PROJECT_NAME).hex
+	$(CC) $(PROJECT_NAME).c --iram-size $(CONFIG_IRAM) --xram-size $(CONFIG_XRAM) $(foreach comp, $(COMPONENTS), $(BUILD_DIR_BASE)/$(comp).rel) $(COMPONENT_INCLUDE_PATHS) -o $(BUILD_DIR_BASE)
+#	@$(OBC) -Iihex -Obinary $(BUILDS)$(PROJECT_NAME).ihx $(PROJECT_NAME).hex
 
 test:
 	@echo $(COMPONENT_PATHS)
 	@echo $(BUILD_DIR_BASE)
+
+## Build all?
+$(APP_HEX): $(foreach libcomp,$(COMPONENT_LIBRARIES),$(BUILD_DIR_BASE)/$(libcomp)/lib$(libcomp).a) $(COMPONENT_LINKER_DEPS) $(COMPONENT_PROJECT_VARS)
+	$(summary) LD $(patsubst $(PWD)/%,%,$@)
+#	$(CC) $(LDFLAGS) -o $@ -Wl,-Map=$(APP_MAP)
+
+# PHONY target to list components in the build and their paths
+list-components:
+	$(info $(call dequote,$(SEPARATOR)))
+	$(info COMPONENT_DIRS (components searched for here))
+	$(foreach cd,$(COMPONENT_DIRS),$(info $(cd)))
+	$(info $(call dequote,$(SEPARATOR)))
+	$(info COMPONENT_INCLUDES (list of test component names))
+	$(info $(COMPONENT_INCLUDE_PATHS))
+	$(info $(call dequote,$(SEPARATOR)))
+	$(info COMPONENTS (list of test excluded names))
+	$(info $(COMPONENTS))
+	$(info $(call dequote,$(SEPARATOR)))
+	$(info COMPONENT_PATHS (paths to all components):)
+	$(foreach cp,$(COMPONENT_PATHS),$(info $(cp)))

@@ -15,5 +15,8 @@ endif
 
 PROJECT_NAME := helloworld
 
+CONFIG_F_OSC = FOSC_240000
+CONFIG_IRAM = 256
+CONFIG_XRAM = 1024
 
 include $(N8S_PATH)/make/project.mk

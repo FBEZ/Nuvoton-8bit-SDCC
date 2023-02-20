@@ -7,81 +7,24 @@
 //***********************************************************************************************************
 //  Website: http://www.nuvoton.com
 //  E-Mail : MicroC-8bit@nuvoton.com
-//  Date   : June/21/2020
 //***********************************************************************************************************
+
 #include "MS51_32K.h"
-
-__bit BIT_TMP;
-unsigned char __data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
-
-  /**
-  * @brief This API configures modify system HIRC value
-  * @param[in] u8FsysMode . Valid values are:
-  *                       - \ref HIRC_24                 :Internal HIRC 24MHz .
-  *                       - \ref HIRC_16                 :Internal HIRC 16MHz.
-  *                       - \ref HIRC_166                :Internal HIRC 16.6MHz.
-  * @note      None.
-  * @exmaple : MODIFY_HIRC(HIRC_24);
-  */
-void MODIFY_HIRC(unsigned char u8HIRCSEL)
-{
-    unsigned char __data hircmap0,hircmap1;
-    unsigned int trimvalue16bit;
-    /* Check if power on reset, modify HIRC */
-    SFRS = 0 ;
-    switch (u8HIRCSEL)
-    {
-      case HIRC_24:
-        IAPAL = 0x38;
-      break;
-      case HIRC_16:
-        IAPAL = 0x30;
-      break;
-      case HIRC_166:
-        IAPAL = 0x30;
-      break;
-    }
-    set_CHPCON_IAPEN;
-    IAPAH = 0x00;
-    IAPCN = READ_UID;
-    set_IAPTRG_IAPGO;
-    hircmap0 = IAPFD;
-    IAPAL++;
-    set_IAPTRG_IAPGO;
-    hircmap1 = IAPFD;
-    clr_CHPCON_IAPEN;
-    switch (u8HIRCSEL)
-    {
-      case HIRC_166:
-        trimvalue16bit = ((hircmap0 << 1) + (hircmap1 & 0x01));
-        trimvalue16bit = trimvalue16bit - 15;
-        hircmap1 = trimvalue16bit & 0x01;
-        hircmap0 = trimvalue16bit >> 1;
-
-      break;
-      default: break;
-    }
-    TA = 0xAA;
-    TA = 0x55;
-    RCTRIM0 = hircmap0;
-    TA = 0xAA;
-    TA = 0x55;
-    RCTRIM1 = hircmap1;
-    clr_CHPCON_IAPEN;
-    PCON &= CLR_BIT4;
-}
+unsigned char data  TA_REG_TMP,BYTE_TMP,SFRS_TMP;
 
 
   /**
-  * @brief This API configures system clock source
-  * @param[in] u8FsysMode . Valid values are:
-  *                       - \ref FSYS_HXT                 :External crsytal input.
-  *                       - \ref FSYS_HIRC                :Internal HIRC (16MHz as default).
-  *                       - \ref FSYS_LIRC                :Internal LIRC.
-  *                       - \ref FSYS_OSCIN_P30            :External clock input from P3.0.
-  *                       - \ref FSYS_HXTIN_P00            :External clock input from P0.0.
-  * @note      None.
-  * @exmaple : FsysSelect(FSYS_HXT);
+  * @brief This API configures ADC module to be ready for convert the input from selected channel
+  * @param[in] u8OpMode Decides the ADC operation mode. Valid values are:
+  *                       - \ref ADC_SINGLE               :Single mode.
+  *                       - \ref ADC_CONTINUOUS           :Continuous scan mode.
+  * @param[in] u8ChMask Channel enable bit. Each bit corresponds to a input channel. 0 is channel 0, 1 is channel 1..., 7 is channel 7.
+  *              VBG means band-gap voltage, VTEMP means temperature sensor, VLDO means LDO voltage.
+  * @return  None
+  * @note ML51 series MCU ADC can only convert 1 channel at a time. If more than 1 channels are enabled, only channel
+  *       with smallest number will be convert.
+  * @note This API does not turn on ADC power nor does trigger ADC conversion
+  * @exmaple :  ADC_Open(ADC_SINGLE,0);
   */
 void FsysSelect(unsigned char u8FsysMode)
 {
@@ -110,20 +53,20 @@ void FsysSelect(unsigned char u8FsysMode)
     break;
         
     /***** ECLK enable part clock in with P3.0 *****/      
-    case FSYS_OSCIN_P30:
+    case FSYS_ECLK_P30:
         ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
         ClockSwitch(FSYS_HIRC);
-        ClockEnable(FSYS_OSCIN_P30);                 //step1: switching system clock to External clock
-        ClockSwitch(FSYS_OSCIN_P30);
+        ClockEnable(FSYS_ECLK_P30);                 //step1: switching system clock to External clock
+        ClockSwitch(FSYS_ECLK_P30);
         clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
     break;
     
     /***** ECLK enable part clock in with P0.0 *****/ 
-    case FSYS_HXTIN_P00:
+    case FSYS_ECLK_P00:
         ClockEnable(FSYS_HIRC);                 //step1: switching system clock to HIRC
         ClockSwitch(FSYS_HIRC);
-        ClockEnable(FSYS_HXTIN_P00);                 //step1: switching system clock to External clock
-        ClockSwitch(FSYS_HXTIN_P00);
+        ClockEnable(FSYS_ECLK_P00);                 //step1: switching system clock to External clock
+        ClockSwitch(FSYS_ECLK_P00);
         clr_CKEN_HIRCEN;                        //step5: disable HIRC if needed 
     break;
   }
@@ -153,14 +96,14 @@ void ClockEnable(unsigned char u8FsysMode)
     break;
     
     /***** ECLK P30 enable part ******/
-    case FSYS_OSCIN_P30:
+    case FSYS_ECLK_P30:
         set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
         set_CKEN_EXTEN0;
         while((CKSWT|CLR_BIT3)==CLR_BIT3);      //step2: check clock source status and wait for ready
     break;
     
     /***** ECLK P00 enable part ******/
-    case FSYS_HXTIN_P00:
+    case FSYS_ECLK_P00:
         set_CKEN_EXTEN1;                        //step1: Enable extnal clock source.
         clr_CKEN_EXTEN0;
         while((CKSWT|CLR_BIT6)==CLR_BIT6);      //step2: check clock source status and wait for ready
@@ -170,9 +113,7 @@ void ClockEnable(unsigned char u8FsysMode)
 
 void ClockDisable(unsigned char u8FsysMode)
 {
-  __bit closeflag=0;
-
-  SFRS = 0;
+  bit closeflag=0;
   switch (u8FsysMode)
   {
     /***** HXT Disable part ******/
@@ -188,11 +129,11 @@ void ClockDisable(unsigned char u8FsysMode)
         clr_CKEN_LIRCEN;                        
     break;
     //***** ECLK from P3.0 Disable part ******/
-    case FSYS_OSCIN_P30:
+    case FSYS_ECLK_P30:
         closeflag = 1; 
     break;
     //***** ECLK from P0.0 Disable part ******/
-    case FSYS_HXTIN_P00:
+    case FSYS_ECLK_P00:
         closeflag = 1; 
     break;
   }
@@ -206,8 +147,7 @@ void ClockDisable(unsigned char u8FsysMode)
 
 void ClockSwitch(unsigned char u8FsysMode)
 {
-  __bit exflag=0;
-  SFRS = 0 ;
+  bit exflag=0;
   BIT_TMP=EA;EA=0;
   switch (u8FsysMode)
   {
@@ -226,11 +166,11 @@ void ClockSwitch(unsigned char u8FsysMode)
         clr_CKSWT_OSC0;
     break;
     /***** ECLK P30 Disable part ******/
-    case FSYS_OSCIN_P30:
+    case FSYS_ECLK_P30:
         exflag = 1;
     break;
     /***** ECLK P00 Disable part ******/
-    case FSYS_HXTIN_P00:
+    case FSYS_ECLK_P00:
         exflag = 1;
     break;
   }
@@ -241,4 +181,5 @@ void ClockSwitch(unsigned char u8FsysMode)
   }
   EA = BIT_TMP;
 }
+
 
