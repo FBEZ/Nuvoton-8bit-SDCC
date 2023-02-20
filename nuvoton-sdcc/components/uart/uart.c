@@ -70,7 +70,7 @@ void UART_Open(unsigned long u32SysClock, unsigned char u8UARTPort, unsigned lon
             set_PCON_SMOD;          //UART0 Double Rate Enable
             set_CKCON_T1M;
             clr_T3CON_BRCK;          //Serial port 0 baud rate clock source = Timer1
-            TH1 = 256 - (u32SysClock / 16 / u32Baudrate);
+            TH1 = 256 - (u32SysClock / 16 / u32Baudrate); // with standard 8051 the factor is 192. This is 1/12th of it
             set_TCON_TR1;
             set_IE_ES;
             break;
