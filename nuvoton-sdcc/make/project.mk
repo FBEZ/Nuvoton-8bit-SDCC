@@ -37,7 +37,10 @@ endif
 COMPONENT_DIRS := $(foreach cd,$(COMPONENT_DIRS),$(abspath $(cd)))
 export COMPONENT_DIRS
 
+# Components that will not be linked, like device which only contains header files.
 HEADER_ONLY_COMPONENTS := device
+
+
 # List of component directories, i.e. directories which contain a component.mk file
 SINGLE_COMPONENT_DIRS := $(abspath $(dir $(dir $(foreach cd,$(COMPONENT_DIRS),\
                              $(wildcard $(cd)/component.mk)))))
@@ -103,7 +106,6 @@ export COMPONENT_INCLUDES
 # Set variables common to both project & component
 include $(N8S_PATH)/make/common.mk
 
-##### TO BE CHECKED BEGIN
 
 $(BUILD_DIR_BASE):
 	mkdir -p $(BUILD_DIR_BASE)
@@ -129,18 +131,15 @@ component-$(2)-build:
 	@echo "Calling component-$(2)-build"
 	$(call ComponentMake,$(1),$(2)) build
 
-component-$(2)-clean: $(BUILD_DIR_BASE)/$(2) $(BUILD_DIR_BASE)/$(2)/component_project_vars.mk
-	$(call ComponentMake,$(1),$(2)) clean
-
-
 $(BUILD_DIR_BASE)/$(2).rel: component-$(2)-build
 	@echo "Target '$$^' responsible for '$$@'" 
 
 endef
 
+
+# Creates all the component-xxx-build targets using GenerateComponentTargets function
 $(foreach component,$(COMPONENT_PATHS),$(eval $(call GenerateComponentTargets,$(component),$(notdir $(component)))))
 
-### TO BE CHECKED: END
 
 CC = sdcc
 OBC = sdobjcopy
@@ -148,19 +147,13 @@ CFLAGS = -o $(BUILDS)
 LOADER = NuLink_8051OT
 
 
-all: $(BUILD_DIR_BASE) $(foreach comp,$(COMPONENTS),$(if $(filter-out device,$(comp)),$(BUILD_DIR_BASE)/$(comp).rel))
-# $(foreach libcomp,$(COMPONENTS),$(BUILD_DIR_BASE)/$(libcomp).rel) 
-#	APP_HEX:=$(BUILD_DIR_BASE)/$(PROJECT_NAME).hex
-	$(CC) $(PROJECT_NAME).c --iram-size $(CONFIG_IRAM) --xram-size $(CONFIG_XRAM) $(foreach comp, $(COMPONENTS), $(if $(filter-out device,$(comp)),$(BUILD_DIR_BASE)/$(comp).rel)) $(COMPONENT_INCLUDE_PATHS) -o $(BUILD_DIR_BASE)/$(PROJECT_NAME).ihx 
+all: $(BUILD_DIR_BASE) $(foreach comp,$(COMPONENTS),$(if $(filter-out $(HEADER_ONLY_COMPONENTS),$(comp)),$(BUILD_DIR_BASE)/$(comp).rel))
+	$(CC) $(PROJECT_NAME).c --iram-size $(CONFIG_IRAM) --xram-size $(CONFIG_XRAM) $(foreach comp, $(COMPONENTS), $(if $(filter-out $(HEADER_ONLY_COMPONENTS),$(comp)),$(BUILD_DIR_BASE)/$(comp).rel)) $(COMPONENT_INCLUDE_PATHS) -o $(BUILD_DIR_BASE)/$(PROJECT_NAME).ihx 
 	$(OBC) -Iihex -Obinary $(BUILD_DIR_BASE)/$(PROJECT_NAME).ihx $(PROJECT_NAME).hex
-
-test:
-	@echo $(COMPONENT_PATHS)
-
-## Build all?
-#$(APP_HEX): $(foreach libcomp,$(COMPONENT_LIBRARIES),$(BUILD_DIR_BASE)/$(libcomp)/lib$(libcomp).a) $(COMPONENT_LINKER_DEPS) $(COMPONENT_PROJECT_VARS)
-#	$(summary) LD $(patsubst $(PWD)/%,%,$@)
-#	$(CC) $(LDFLAGS) -o $@ -Wl,-Map=$(APP_MAP)
+	@echo "\n\n**************** Build complete"
+clean: 
+	@rm -r ./build
+	@rm $(PROJECT_NAME).hex
 
 # PHONY target to list components in the build and their paths
 list-components:
