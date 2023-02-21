@@ -8,8 +8,13 @@
 /*                      Macro define  header files                            */
 /******************************************************************************/
 
+#ifndef MS51_H
+#define MS51_H
 
 #include "sdkconfig.h"
-#include "SFR_Macro.h"
 #include "SFR.h"
+#include "SFR_Macro.h"
+
+
+#endif
 

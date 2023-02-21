@@ -18,6 +18,7 @@
 #include "MS51.h"
 #include "uart.h"
 #include "sys.h"
+#include <stdio.h>
 
 
 void main (void) 

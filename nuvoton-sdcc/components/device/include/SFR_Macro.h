@@ -31,26 +31,5 @@
 #include "SFR_Macro_MS51_8K.h"
 #endif
 
-#include <stdio.h>
-//#include <absacc.h>
-#include <string.h>
-//#include "adc.h"
-//#include "sys.h"
-//#include "eeprom.h"
-//#include "delay.h" 
-//#include "uart.h"
-//#include "common.h"
-//#include "timer.h"
-//#include "IAP.h"
-//#include "watchdog.h"
-//#include "pwm0.h"
-//#include "pwm123.h"
-//#include "uart2.h"
-//#include "uart3.h"
-//#include "uart4.h"
-//#include "eeprom_sprom.h"
-//#include "IAP_SPROM.h"
-//#include "spi.h"
-
 
 #endif

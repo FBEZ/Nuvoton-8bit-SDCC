@@ -1,3 +1,4 @@
+#include "sdkconfig.h"
 #include "MS51.h"
 
 #if 0
