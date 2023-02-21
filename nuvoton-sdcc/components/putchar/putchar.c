@@ -1,4 +1,4 @@
-#include "MS51_32K.h"
+#include "MS51.h"
 
 #if 0
 int putchar (int c)

@@ -84,7 +84,7 @@ COMPONENT_PATHS := $(foreach comp,$(COMPONENTS),\
                             $(if $(findstring $(cd),$(SINGLE_COMPONENT_DIRS)),\
                                  $(if $(filter $(comp),$(notdir $(cd))),$(cd),),)\
                    )))
-COMPONENT_INCLUDE_PATHS := $(foreach cp, $(COMPONENT_PATHS),-I $(cp)/include -I $(cp) ) 
+COMPONENT_INCLUDE_PATHS := $(foreach cp, $(COMPONENT_PATHS),-I $(cp)/include -I $(cp) ) -I $(PROJECT_PATH)/include
 export COMPONENT_PATHS
 export COMPONENT_INCLUDE_PATHS
 
@@ -154,6 +154,10 @@ all: $(BUILD_DIR_BASE) $(foreach comp,$(COMPONENTS),$(if $(filter-out $(HEADER_O
 clean: 
 	@rm -r ./build
 	@rm $(PROJECT_NAME).hex
+
+config: 
+	mkdir -p $(PROJECT_PATH)/include
+	@cp $(N8S_PATH)/make/sdkconfig.default.h $(PROJECT_PATH)/include/sdkconfig.h
 
 # PHONY target to list components in the build and their paths
 list-components:

@@ -14,7 +14,8 @@
 /*  File Function: MS51 DEMO project                                                                        */
 /************************************************************************************************************/
 
-#include "MS51PC0AE.h"
+#include "sdkconfig.h"
+#include "MS51.h"
 #include "uart.h"
 #include "sys.h"
 

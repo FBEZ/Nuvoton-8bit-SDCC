@@ -7,6 +7,8 @@
 /*                        SDCC MCS51 include files                            */
 /******************************************************************************/
 
+#include "sdkconfig.h"
+
 #ifndef SFR_MACRO_H
 #define SFR_MACRO_H
 
@@ -16,15 +18,15 @@
 /******************************************************************************/
 /*                         Peripheral header files                            */
 /******************************************************************************/
-#ifdef CONFIG_FLASH_32
+#ifdef CONFIG_FLASH_SIZE_32
 #include "Function_Define_MS51_32K.h"
 #include "SFR_Macro_MS51_32K.h"
 #endif
-#ifdef CONFIG_FLASH_16
+#ifdef CONFIG_FLASH_SIZE_16
 #include "Function_define_MS51_16K.h"
 #include "SFR_Macro_MS51_16K.h"
 #endif
-#ifdef CONFIG_FLASH_8
+#ifdef CONFIG_FLASH_SIZE_8
 #include "Function_define_MS51_8K.h"
 #include "SFR_Macro_MS51_8K.h"
 #endif
