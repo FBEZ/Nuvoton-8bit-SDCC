@@ -37,7 +37,7 @@ endif
 COMPONENT_DIRS := $(foreach cd,$(COMPONENT_DIRS),$(abspath $(cd)))
 export COMPONENT_DIRS
 
-
+HEADER_ONLY_COMPONENTS := device
 # List of component directories, i.e. directories which contain a component.mk file
 SINGLE_COMPONENT_DIRS := $(abspath $(dir $(dir $(foreach cd,$(COMPONENT_DIRS),\
                              $(wildcard $(cd)/component.mk)))))
@@ -114,7 +114,7 @@ $(BUILD_DIR_BASE):
 #
 # Is recursively expanded by the GenerateComponentTargets macro
 define ComponentMake
-+$(MAKE) -C $(BUILD_DIR_BASE)/$(3) -f $(1)/component.mk COMPONENT_DIR=$(1) BUILD_DIR_BASE=$(BUILD_DIR_BASE)
++$(MAKE) -C $(BUILD_DIR_BASE) -f $(1)/component.mk COMPONENT_DIR=$(1) BUILD_DIR_BASE=$(BUILD_DIR_BASE)
 # $(N8S_PATH)/make/component_wrapper.mk COMPONENT_MAKEFILE=$(1)/component.mk COMPONENT_NAME=$(2)
 endef
 
@@ -125,22 +125,17 @@ endef
 define GenerateComponentTargets
 .PHONY: component-$(2)-build component-$(2)-clean
 
-component-$(2)-build: | $(BUILD_DIR_BASE)/$(2)
+component-$(2)-build: 
+	@echo "Calling component-$(2)-build"
 	$(call ComponentMake,$(1),$(2)) build
 
-component-$(2)-clean: | $(BUILD_DIR_BASE)/$(2) $(BUILD_DIR_BASE)/$(2)/component_project_vars.mk
+component-$(2)-clean: $(BUILD_DIR_BASE)/$(2) $(BUILD_DIR_BASE)/$(2)/component_project_vars.mk
 	$(call ComponentMake,$(1),$(2)) clean
 
-$(BUILD_DIR_BASE)/$(2):
-	@mkdir -p $(BUILD_DIR_BASE)/$(2)
 
-# tell make it can build any component's library by invoking the -build target
-# (this target exists for all components even ones which don't build libraries, but it's
-# only invoked for the targets whose libraries appear in COMPONENT_LIBRARIES and hence the
-# APP_ELF dependencies.)
+$(BUILD_DIR_BASE)/$(2).rel: component-$(2)-build
+	@echo "Target '$$^' responsible for '$$@'" 
 
-$(BUILD_DIR_BASE)/$(2)/lib$(2).a: component-$(2)-build
-	$(details) "Target '$$^' responsible for '$$@'" # echo which build target built this file
 endef
 
 $(foreach component,$(COMPONENT_PATHS),$(eval $(call GenerateComponentTargets,$(component),$(notdir $(component)))))
@@ -152,18 +147,19 @@ OBC = sdobjcopy
 CFLAGS = -o $(BUILDS)
 LOADER = NuLink_8051OT
 
-all:
+
+all: $(BUILD_DIR_BASE) $(foreach comp,$(COMPONENTS),$(if $(filter-out device,$(comp)),$(BUILD_DIR_BASE)/$(comp).rel))
+# $(foreach libcomp,$(COMPONENTS),$(BUILD_DIR_BASE)/$(libcomp).rel) 
 #	APP_HEX:=$(BUILD_DIR_BASE)/$(PROJECT_NAME).hex
-	$(CC) $(PROJECT_NAME).c --iram-size $(CONFIG_IRAM) --xram-size $(CONFIG_XRAM) $(foreach comp, $(COMPONENTS), $(BUILD_DIR_BASE)/$(comp).rel) $(COMPONENT_INCLUDE_PATHS) -o $(BUILD_DIR_BASE)
-#	@$(OBC) -Iihex -Obinary $(BUILDS)$(PROJECT_NAME).ihx $(PROJECT_NAME).hex
+	$(CC) $(PROJECT_NAME).c --iram-size $(CONFIG_IRAM) --xram-size $(CONFIG_XRAM) $(foreach comp, $(COMPONENTS), $(if $(filter-out device,$(comp)),$(BUILD_DIR_BASE)/$(comp).rel)) $(COMPONENT_INCLUDE_PATHS) -o $(BUILD_DIR_BASE)/$(PROJECT_NAME).ihx 
+	$(OBC) -Iihex -Obinary $(BUILD_DIR_BASE)/$(PROJECT_NAME).ihx $(PROJECT_NAME).hex
 
 test:
 	@echo $(COMPONENT_PATHS)
-	@echo $(BUILD_DIR_BASE)
 
 ## Build all?
-$(APP_HEX): $(foreach libcomp,$(COMPONENT_LIBRARIES),$(BUILD_DIR_BASE)/$(libcomp)/lib$(libcomp).a) $(COMPONENT_LINKER_DEPS) $(COMPONENT_PROJECT_VARS)
-	$(summary) LD $(patsubst $(PWD)/%,%,$@)
+#$(APP_HEX): $(foreach libcomp,$(COMPONENT_LIBRARIES),$(BUILD_DIR_BASE)/$(libcomp)/lib$(libcomp).a) $(COMPONENT_LINKER_DEPS) $(COMPONENT_PROJECT_VARS)
+#	$(summary) LD $(patsubst $(PWD)/%,%,$@)
 #	$(CC) $(LDFLAGS) -o $@ -Wl,-Map=$(APP_MAP)
 
 # PHONY target to list components in the build and their paths
