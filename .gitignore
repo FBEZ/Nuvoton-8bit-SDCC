@@ -15,7 +15,7 @@
 *.lk
 *.sym
 *.hex
-	*.rst 
+*.rst 
 
 build/*
 
