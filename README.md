@@ -12,8 +12,10 @@ This is a work in progress. Right now the two "template" examples in the 16bit a
 3. Download [NuMicro_ICP_Programming_Tool_V3.10.7443r](https://www.nuvoton.com/tool-and-software/software-tool/programmer-tool/index.html)
 4. Download [NuLink_Command_Tool](https://www.nuvoton.com/tool-and-software/software-tool/programmer-tool/index.html)
 	* Check that the folder of NuLink_8051OT is in your path, otherwise add it. It is probably located under `C:\Program Files (x86)\Nuvoton Tools\NuLink Command Tool`
-5. Move the switches of `VCOM` on the NuLink-Me debugger board to the ON position
-3. Flash the program. You have two options:
+5. Install make (in windows: `Winget install GnuWin32.make`) and then add it to path (probably it's under `C:\Program Files(x86)\GnuWin32\bin\make.exe`)
+6. Move the switches of `VCOM` on the NuLink-Me debugger board to the ON position
+
+7. Flash the program. You have two options:
 	* Go folder `32kb/SampleCode/Template/Project_temp/SDCC/`, run `buildAll.bat` and `loadflash.bat` or
 	* Open NuMicro ICP Programming tool
 		* click on APROM 
