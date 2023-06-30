@@ -11,7 +11,7 @@ This is a work in progress. Right now the two "template" examples in the 16bit a
 2. Download [SDCC](http://sdcc.sourceforge.net/). This code works with v4.2.14 
 3. Download [NuMicro_ICP_Programming_Tool_V3.10.7443r](https://www.nuvoton.com/tool-and-software/software-tool/programmer-tool/index.html)
 4. Download [NuLink_Command_Tool](https://www.nuvoton.com/tool-and-software/software-tool/programmer-tool/index.html)
-	* Check that the folder of NuLink_8051OT is in your path, otherwise add it. 
+	* Check that the folder of NuLink_8051OT is in your path, otherwise add it. It is probably located under `C:\Program Files (x86)\Nuvoton Tools\NuLink Command Tool`
 3. Flash the program. You have two options:
 	* Go folder `32kb/SampleCode/Template/Project_temp/SDCC/`, run `buildAll.bat` and `loadflash.bat` or
 	* Open NuMicro ICP Programming tool
